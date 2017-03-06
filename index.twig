@@ -1,0 +1,81 @@
+{# Home Twig template #}
+
+{{ set(this, 'title', _Blog.getBlogTitle()) }}
+
+{% set limit = 17 %}
+{% set articlesArr = _Blog.getBlogFeed({'limit': limit, 'offset': 0}) %}
+{% set articles = articlesArr.articles %}
+
+{{this.registerJs("HomeController.listing();")}}
+<div class="layout-container">
+    <div class="home ajaxArticles" data-existing-nonpinned-count="{{articlesArr.existingNonPinnedCount}}"  data-offset="{{limit}}">
+        {% if articles|length > 0 %}
+            {% if articles[0] is defined %}
+                {{this.render('partials/_single-article.twig', {article: articles[0], 'position': 1, containerClass: 'col-full'}) | raw}}
+            {% endif %}
+            {% for i in 1..2 %}
+                {% if articles[i] %}
+                    {{this.render('partials/_single-article.twig', {article: articles[i], 'position': (i+1), containerClass: 'col-third'}) | raw}}
+                {% endif %}
+            {% endfor %}
+            {% if events[0] is defined and events[1] is defined and events[2] is defined %}
+               {# {% include '_elements/event-card' with {events: events} %} #}
+            {% elseif articles[3] is defined and articles[4] is defined and articles[5] is defined %}
+                <div class="col-third-container">
+                    {% for i in 3..5 %}
+                        {% if articles[i] %}
+                            {{this.render('partials/_single-article.twig', {article: articles[i], 'position': (i+1), containerClass: 'col-third'}) | raw}}
+                        {% endif %}
+                    {% endfor %}
+                </div>
+            {% endif %}
+            {% if articles[6] is defined %}
+                {{this.render('partials/_single-article.twig', {article: articles[6], 'position': 7, containerClass: 'col-third'}) | raw}}        
+            {% endif %}
+            
+            {% if articles[7] is defined %}
+                {{this.render('partials/_single-article.twig', {article: articles[7], 'position': 8, containerClass: 'col-third'}) | raw}}
+            {% endif %}
+            {% if articles[8] is defined and articles[9] is defined and articles[10] is defined %}
+                <div class="col-third-container">
+                    {% for i in 8..10 %}
+                        {% if articles[i] %}
+                            {{this.render('partials/_single-article.twig', {article: articles[i], 'position': (i+1), containerClass: 'col-third'}) | raw}}
+                        {% endif %}
+                    {% endfor %}
+                </div>
+            {% endif %}
+            {% if articles[11] is defined %}
+                {{this.render('partials/_single-article.twig', {article: articles[11], 'position': 12, containerClass: 'col-full'}) | raw}}
+           {% endif %}
+            {% if articles[12] is defined %}
+                {{this.render('partials/_single-article.twig', {article: articles[12], 'position': 13, containerClass: 'col-third'}) | raw}}
+            {% endif %}
+            {% if articles[13] is defined %}
+                {{this.render('partials/_single-article.twig', {article: articles[13], 'position': 14, containerClass: 'col-third'}) | raw}}
+            {% endif %}
+            {% if articles[14] is defined %}
+                <div class="col-third-container">
+                    {% for i in 14..16 %}
+                        {% if articles[i] %}
+                            {{this.render('partials/_single-article.twig', {article: articles[i], 'position': (i+1), containerClass: 'col-third'}) | raw}}
+                        {% endif %}
+                    {% endfor %}
+                </div>
+            {% endif %}
+        {% endif %}
+    </div>
+</div>
+<div class="text-center has-margin-bottom-20">
+    {% if articles|length >= limit %}
+        <a href="javascript:void(0)" class="button loadMoreArticles"><i class="fa fa-arrow-down"></i> Load More</a>
+    {% endif %}
+</div>
+{% set noDataCls = 'hide' %}
+{% if articles|length == 0 %}
+    {% set noDataCls = '' %}
+{% endif %}
+<div class=" text-center has-margin-bottom-20 has-margin-top-20 {{noDataCls}} NoArticlesMsg">
+    <p class="no-data text-center">No articles found.</p>  
+</div>
+

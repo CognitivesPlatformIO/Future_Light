@@ -1,0 +1,41 @@
+.view-all {
+	padding: 40px 0px 130px;
+}
+
+.view-all-header {
+	@extend .container;
+	flex-direction: column;
+	margin-bottom: 40px;
+	&__title {
+		@include text-lg($color: $article-body-text, $font-multiplier: 2.44, $font-multiplier-sm: 2);
+		margin: 0px 15px 45px;
+	}
+	&__divider {
+		height: 1px;
+		margin: 0px 20px 40px;
+		background-color: #dbdbdb;
+	}
+	&__tabs {
+		background: none!important;
+		margin: 0px 15px;
+	}
+	&__tab {
+		display: inline-block;
+		margin-right: 30px;
+		width: 105px;
+		&_link {
+			@include text-md($color: #4b4b4b, $font-multiplier: 1.33);
+			background-color: none!important;
+			opacity: 0.8;
+			&:hover {
+				color: #4b4b4b;
+			}
+		}
+		&.active {
+			.view-all-header__tab_link {
+				@include text-md($color: #4b4b4b, $font-multiplier: 1.33, $font-weight: 700);
+				opacity: 1;
+			}
+		}
+	}
+}

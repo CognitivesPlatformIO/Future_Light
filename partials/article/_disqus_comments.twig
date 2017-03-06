@@ -1,0 +1,7 @@
+{% set disqusArr = _AppHelper.getDisqusToken(disqus) %}
+{% if disqusArr.token != FALSE and disqusArr.token != '' %}
+{% set disqusJsParams = {articleId: articleId, url: url, userId:userId, token: disqusArr.token, networkName: disqusArr.networkName, shortName:disqus.shortName, apiKey: disqus.apiKey  }  %}
+{{this.registerJs('$.fn.Disqus({params:'~ disqusJsParams|json_encode|raw ~'})')}}
+<!-- The empty element required for Disqus to loads comments into -->
+<div id="disqus_thread"></div>
+{% endif %}

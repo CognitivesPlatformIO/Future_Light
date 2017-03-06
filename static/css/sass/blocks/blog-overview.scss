@@ -1,0 +1,100 @@
+.blog-overview {
+}
+
+.blog-overview-card {
+  height: auto;
+  width: 100%;
+  border: solid 1px #d4d4d4;
+  @include tablet {
+    display: flex;
+    flex-direction: column;
+    height: 586px;
+  }
+  &__thumb {
+    position: relative;
+    height: 190px;
+    display: flex;
+  }
+  &__image {
+    position: absolute;
+    transition: 0.5s;
+    @include image_background;
+    filter: grayscale(100%);
+    height: 190px;
+    width: 100%;
+    &:hover {
+      transition: 0.5s;
+      background-position: 0px -120px;
+    }
+  }
+  &__overlay {
+    background-color: rgba(0,0,0,0.34);
+    width: 100%;
+    height: 190px;
+    display: flex;
+    align-items: center;
+    padding: 0 30px;
+    position: relative;
+  }
+  &__text {
+    @extend .card__channel;
+    @include text-md($font-weight: 600, $font-multiplier: 0.722, $letter-spacing: 0.2px);
+    margin: 80px 30px;
+    opacity: 0;
+  }
+  &__content {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    padding: 50px 70px 78px 30px;
+    height: 100%;
+    min-height: 170px;
+    flex-basis: auto;
+  }
+  &__bar {
+    width: 20px;
+    height: 4px;
+    background: $body-text;
+    border-radius: 200px;
+    margin-bottom: 18px;
+    flex-shrink: 0;
+  }
+  &__title {
+    @include text-md($color: $body-text, $line-height: 1.67, $font-weight: 700, $font-multiplier: 1.33);
+    margin-bottom: 16px;
+    width: 100%;
+  }
+  &__subtitle {
+    @include text-md($color: $body-text, $line-height: 1.79, $font-multiplier: 0.77);
+    width: 100%;
+    height: 46px;
+    overflow: hidden;
+  }
+  &__contact {
+    width: 100%;
+    margin: 20px 0px 0px;
+    &_title {
+      @include text-md($color: $body-text, $font-weight: 600, $line-height: 1.79, $font-multiplier: 0.77);
+    }
+    &_row {
+      @include text-md($color: $body-text, $font-weight: 400, $line-height: 1.79, $font-multiplier: 0.77);
+    }
+  }
+  &__view-more {
+    position: absolute;
+    bottom: 25px;
+    left: 30px;
+    @include text-md($color: $body-text, $font-weight: 600, $font-multiplier: 0.72);
+    width: 100%;
+    transition: 0.5s;
+    align-self: flex-end;
+    background-color: rgba(0,0,0,0)!important;
+    &:hover {
+      transition: 0.5s;
+      color: $body-text;
+    }
+    @media (min-width: 615px) {
+      padding-top: 0px;
+    }
+  }
+}

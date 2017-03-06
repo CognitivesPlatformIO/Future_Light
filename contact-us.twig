@@ -1,0 +1,55 @@
+{{ set(this, 'title', 'Contact Us') }}  
+
+<div class="contact">
+    <div class="contact__container">
+        <form class="contact__form" id="contactForm" name="contactForm" action="{{_AppHelper.getContactFormUrl()}}" method="post" autoComplete="off">
+            <input type="hidden" name="_csrf" value="{{_AppHelper.getCsrfToken()}}" />
+            <input type="text" name="name" placeholder="Name" class="contact__control">
+            <input type="email" id="contactform-email" name="email" placeholder="Email" class="contact__control">
+            <input type="text" name="phone" placeholder="Phone" class="contact__control">
+            <textarea type="text" name="message" placeholder="Message" class="contact__textarea"></textarea>
+            <button type="submit" class="contact__form__submit button button__contact-submit">Submit</button>
+        </form>
+        {% set businessDetails = _Blog.getHomeBlogSettings() %}
+        <div class="contact__content">
+            <div class="contact__headline">Contact Us</div>
+            <div class="contact__text">Please fill out the form and we’ll get back to you.</div>
+            <div class="contact__number">{{businessDetails.contact['phone']}}</div>
+            <div class="contact__address">{{businessDetails.contact['address']}}<br />
+                {{businessDetails.contact['city']}}, {{businessDetails.contact['state']}}
+                <br />
+                {{businessDetails.contact['country']}} {{businessDetails.contact['postcode']}}</div>
+            <div class="social-links">
+                <a href="{{businessDetails.social['twitter']}}"><i class="fa fa-twitter"></i></a>
+                <a href="{{businessDetails.social['youtube']}}"><i class="fa fa-youtube-play"></i></a>
+                <a href="{{businessDetails.social['google']}}"><i class="fa fa-google-plus"></i></a>
+                <a href="{{businessDetails.social['facebook']}}"><i class="fa fa-facebook-f"></i></a>
+            </div>
+        </div>
+    </div>
+    {% set googleMapAddress = ''%}
+    {% if businessDetails.contact['address'] is not empty%}
+        {% set googleMapAddress = businessDetails.contact['address'] %}
+        {% if businessDetails.contact['city'] is not empty %}
+            {% set googleMapAddress = googleMapAddress~','~businessDetails.contact['city'] %}
+        {% endif %}
+        {% if businessDetails.contact['state'] is not empty %}
+            {% set googleMapAddress = googleMapAddress~','~businessDetails.contact['state'] %}
+        {% endif %}
+        {% if businessDetails.contact['country'] is not empty %}
+            {% set googleMapAddress = googleMapAddress~','~businessDetails.contact['country'] %}
+        {% endif %}
+    {% endif %}
+            
+   {% if googleMapAddress is not empty %}
+    <iframe
+        src="https://www.google.com/maps/embed/v1/place?q={{googleMapAddress | url_encode}}&key=AIzaSyDMdDBfWf_VurIr9I-SeG_gOgajMQN9RyM"
+        width="1580"
+        height="470"
+        frameborder="0"
+        style="border:0"
+        class="contact__map"
+        allowfullscreen>
+    </iframe>
+   {% endif %}
+</div>

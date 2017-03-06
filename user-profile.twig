@@ -1,0 +1,70 @@
+{{ set(this, 'title', 'User Profile') }}
+
+{% set profileImage =_Media.getMediaUrl(userDetails.media, 500, 500, {crop: 'thumb', gravity: 'face', type:'user'} )%}
+{{this.registerJs("$('.loginModal').loginModal({});")}}
+<div class="profile">
+    <div class="profile__section">
+        <div class="profile-sidebar__wrap">
+            <div class="profile-sidebar">
+                <div class="profile-sidebar__picture" style="background-image:url({{profileImage}});" ></div>
+                <div class="profile-sidebar__name">{{Html.encode(userDetails.firstname)}} {{Html.encode(userDetails.lastname)}}</div>
+
+                {% if _User.isGuest() %}
+                    <a href="{{_AppHelper.getLoginUrl()}}" class="button button__follow button-blue button__profile-follow forceLoginModal">Follow</a>
+                {% endif %}
+                
+                {% if not _User.isGuest() and _User.getId() != userDetails.id %}
+                    {% set isUserFollowing = _User.isUserFollowing('user', userDetails.id)  %}
+                    <a href="javascript:void(0);" class="button button__follow button-blue button__profile-follow FollowProfileUser"  data-guid="{{userDetails.guid}}" data-status="{% if isUserFollowing == 'TRUE' %}unfollow{% else %} follow {% endif %}">{% if isUserFollowing == 'TRUE' %} Unfollow {% else %} Follow {% endif %}</a>
+                {% endif %}
+                <span class="profile-sidebar__description">{{Html.decode(userDetails.bio) | raw }}</span>
+                <!--<div class="social-links">
+                    <a href="#"><i class="fa fa-twitter"></i></a>
+                    <a href="#"><i class="fa fa-youtube-play"></i></a>
+                    <a href="#"><i class="fa fa-google-plus"></i></a>
+                    <a href="#"><i class="fa fa-facebook-f"></i></a>
+                </div>-->
+            </div>
+        </div>
+        <div class="profile__activity">
+            {% if userOwnerBlogs is not empty and userOwnerBlogs | length > 0 %}
+                <div class="profile__title">Contributes to:</div>
+                <div class="profile__card-container">
+                    {{this.render('partials/user-profile/_user_blogs.twig', {userOwnerBlogs : userOwnerBlogs}) | raw }}
+                </div>
+            {% endif %}
+            
+            {% if myBlogs is not empty and myBlogs | length > 0 %}
+                <div class="profile__title">Following Blogs:</div>
+                <div class="profile__card-container">
+                    {{this.render('partials/user-profile/_user_following_blogs.twig', {myBlogs : myBlogs}) | raw }}
+                </div>
+            {% endif %}
+
+            {% if myFollowings is not empty and myFollowings | length > 0 %}
+                <div class="profile__title">Follows:</div>
+                <div class="profile__card-container">
+                    {{this.render('partials/user-profile/_user_following_writer.twig', {myFollowings : myFollowings}) | raw }}
+                </div>
+            {% endif %}
+            
+            {% if myFollowers is not empty and myFollowers | length > 0 %}
+                <div class="profile__title">Followers:</div>
+                <div class="profile__card-container">
+                    {{this.render('partials/user-profile/_user_followed_by.twig', {myFollowers : myFollowers}) | raw }}
+                </div>
+            {% endif %}
+            
+            {% if myArticles is not empty and myArticles | length > 0%}
+                <div class="profile__title">Articles by {{Html.encode(userDetails.firstname)}} {{Html.encode(userDetails.lastname)}}:</div>
+                <div class="profile__card-container">
+                    {{this.render('partials/user-profile/_recent_articles.twig', {myArticles : myArticles}) | raw }}
+                </div>
+                <div class="text-center">
+                    <a href="{{ _AppHelper.buildUrl('profile/user-posts',{name :  Html.encode(myArticles[0].createdBy['username'])})}}" class="button button__profile-follow"><i class="fa fa-arrow-right"></i> View More</a>
+                </div>
+            {% endif%}
+        </div>
+    </div>
+</div>
+

@@ -1,0 +1,196 @@
+// Sections
+@each $section, $values in $sections {
+  $name:  $section;
+  $color: map-get($values, color);
+  //$gradient: map-get($values, gradient);
+  $background-color: map-get($values, background-color);
+  $length: length($sections);
+
+  .dropdown-menu .footer__navigation-list, .dropdown-menu .header__navigation-list {
+    li.channel-#{$name} a:hover {
+      background-color: $color;
+    }
+  }
+
+  .header__navigation-list, .footer__navigation-list {
+    li.channel-#{$name} a:hover {
+      color: $color;
+    }
+  }
+
+  .channel-card.channel-#{$name} {
+    .channel-card__content {
+      background-color: $color;
+    }
+  }
+
+  .card--channel.channel-#{$name} .card__overlay {
+    background-color: rgba($color, 0.8);
+  }
+
+  .channel-#{$name} {
+    .card {
+      background-color: $color;
+      .card {
+        &__channel {
+          color: white;
+          &::after {
+            background-color: white;
+          }
+        }
+        &__overlay {
+          //background: $background-color;
+          //background-image: $gradient!important;
+        }
+        &__no-image .card__overlay {
+          //background: $color;
+        }
+        &__author {
+          //color: $color;
+        }
+      }
+    }
+    &.article {
+      &__image {
+        //border-top: 4px solid $article-image-color;
+      }
+      &__channel {
+        //@include text-sm($letter-spacing: 0.012em);
+        //color: $article-image-color;
+        //&::after {
+        //  background-color: $article-image-color;
+        //}
+      }
+      .button-sm {
+        //background-color: $color;
+        //&:hover, &:active {
+        //  border: 1px solid $color;
+        //  background-color: $white;
+        //}
+      }
+    }
+  }
+  div.channels {
+    a:nth-child(#{$length}n+#{$name}) {
+      .channel-thumb {
+        &__overlay {
+          //background: $background-color;
+          //background-image: $gradient!important;
+        }
+      }
+    }
+  }
+
+  .channel-overview-card.channel-#{$name} {
+    background-color: $color;
+    .channel-overview-card__channel-text {
+      color: $color;
+      &:after {
+        background-color: $color;
+      }
+    }
+  }
+
+  .social-modal__channel--#{$name} {
+    color: $color;
+  }
+
+  .card__follow.card--#{$name} {
+    background-color: $color;
+  }
+
+  .article--#{$name} {
+    border-color: $color;
+
+    .article {
+      &__banner {
+        border-color: $color;
+      }
+      &__category {
+        color: $color;
+        &:after{
+          background: $color;
+        }
+      }
+      &__follow {
+        background-color: $color;
+      }
+      &__caption {
+        .card {
+          &__author {
+            color: $color;
+          }
+        }
+      }
+    }
+  }
+}
+
+$random-section: map-get($sections, (random(length($sections)) - 1));
+$random-section-two: map-get($sections, (random(length($sections)) - 1));
+$random-section-three: map-get($sections, (random(length($sections)) - 1));
+$random-section-four: map-get($sections, (random(length($sections)) - 1));
+
+$first-card-color: map-get($random-section, color);
+$article-image-color: map-get($random-section-two, color);
+$profile-image-color: map-get($random-section-three, color);
+$contact-image-color: map-get($random-section-four, color);
+
+#content > .col-full .card__channel::after {
+  background-color: $first-card-color;
+}
+
+#content > .col-full .card {
+  //border-top: 4px solid $first-card-color;
+}
+
+.contact__body {
+  //border-top: 4px solid $contact-image-color;
+  .contact__submit {
+    //border: 1px solid $contact-image-color;
+    color: $contact-image-color;
+  }
+}
+
+.profile__header {
+  //border-top: 4px solid $profile-image-color;
+  .button__follow {
+    border: 1px solid $profile-image-color;
+    color: $profile-image-color;
+    &:hover, &:active {
+      background: $profile-image-color;
+      color: $white;
+    }
+  }
+}
+
+
+
+.simplemodal {
+  &-overlay {
+    &:hover {
+      cursor: pointer;
+    }
+  }
+}
+
+
+@each $social-color in $social-colors {
+  $name:  nth($social-color, 1);
+  $color: nth($social-color, 2);
+  i.fa.fa-#{$name} {
+    &:hover {
+      color: $color;
+    }
+  }
+  @if $name == 'facebook' {
+    i.fa.fa-facebook-f:hover {
+      color: $color;
+    }
+  }
+  @if $name == 'youtube' {
+    i.fa.fa-youtube-play:hover {
+      color: $color;
+    }
+  }
+}

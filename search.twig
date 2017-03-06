@@ -1,0 +1,23 @@
+{# Search Twig template #}
+{{ set(this, 'title', 'Search - ' ~ search) }}
+
+{{this.registerJs("SearchController.listing();")}}
+
+{% set limit = 20 %}
+{% set articles = _Search.searchArticles({'limit': limit, 'offset': 0, 'search': search}) %}
+{% set blog = _Blog.getBlog() %}
+<div class="search__heading">{{ articles|length }} Search results for: <i>{{search}}</i></div>
+<div class="search">
+    {% if articles|length %}
+        {% for article in articles %}
+            {{this.render('partials/_single-article.twig', {article: article, containerClass: 'col-quarter'}) | raw}}
+        {% endfor %}
+    {% else %}
+        <p>Your search for "{{ search }}" didn't return any results.</p>
+    {% endif %}
+</div>
+<!-- Start Pagination block -->     
+{% if articles|length >= limit %}
+    <button class="button button-xs loadMoreArticles" style="margin-left: 50%; cursor: pointer;"> Load More</button>
+{% endif %}
+<!-- End Pagination Block -->

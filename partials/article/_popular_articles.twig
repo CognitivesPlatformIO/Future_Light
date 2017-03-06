@@ -1,0 +1,11 @@
+{% set popularArticles = _Article.getPopularArticles({ limit: 3, excludeArticleIds : articleId }) %}
+{% if popularArticles|length > 0 %}
+    <h2 class="text-center additional-articles__header">You may also like ...</h2>
+    <div class="card-container">
+        {% set i = 1 %}
+        {% for article in popularArticles %}
+            {{this.render('../_single-article.twig', {article: article, 'position': i, containerClass: 'col-third'}) | raw}}
+            {% set i = i+1 %}
+        {% endfor %}
+    </div>
+{% endif %}

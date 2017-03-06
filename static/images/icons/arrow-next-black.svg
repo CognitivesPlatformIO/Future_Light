@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="20px" height="33px" viewBox="0 0 20 33" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 41 (35326) - http://www.bohemiancoding.com/sketch -->
+    <title>Right arrow</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Desktop---Light" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" stroke-linecap="square">
+        <g id="Theme-Marketer---Light---Product-Detail" transform="translate(-752.000000, -746.000000)" stroke="#2D2D2D" stroke-width="3">
+            <g id="Feature-product" transform="translate(214.000000, 498.000000)">
+                <g id="Arrows" transform="translate(291.500000, 264.500000) rotate(-180.000000) translate(-291.500000, -264.500000) translate(27.000000, 250.000000)">
+                    <path d="M11.9067395,14.7854191 L1.18198052,25.5101781 L0.121320344,26.5708382 L2.24264069,28.6921586 L3.30330086,27.6314984 L14.8741391,16.0606602 L15.9347993,15 L15.7202184,14.7854191 L15.9347993,14.5708382 L14.8741391,13.5101781 L3.30330086,1.93933983 L2.24264069,0.878679656 L0.121320344,3 L1.18198052,4.06066017 L11.9067395,14.7854191 Z" id="Right-arrow" transform="translate(8.028060, 14.785419) scale(-1, 1) translate(-8.028060, -14.785419) "></path>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

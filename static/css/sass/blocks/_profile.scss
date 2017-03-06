@@ -1,0 +1,143 @@
+.profile {
+  flex-direction: column;
+  @extend .container;
+  padding: 0 15px;
+  @include tablet {
+    padding: 40px 20px 0!important ;
+  }
+  &__section {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 60px;
+    @include tablet-lg {
+      flex-direction: row;
+      justify-content: space-between;
+      margin-bottom: 90px;
+    }
+  }
+  &-sidebar {
+    background-color: #ffffff;
+    border: solid 1px #d4d4d4;
+    padding: 50px 30px 60px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 4px;
+    margin-bottom: 5px;
+    @include tablet-lg {
+      margin-bottom: 0;
+      margin-right: 30px;
+      min-width: 370px;
+      max-width: 370px;
+    }
+    &__wrap {
+      flex: 1 0 auto;
+    }
+    &__picture {
+      width: 140px;
+      height: 140px;
+      border-radius: 100%;
+      margin: 0 auto 15px;
+      background-size: cover;
+      background-position: center center;
+    }
+    &__name {
+      font-family: $heading-font-family;
+      @include text-lg($font-multiplier: 1.22, $font-multiplier-sm: 1.22, $color: $article-body-text);
+      margin-bottom: 20px;
+    }
+    &__description {
+      @include text-md($color: #384362, $line-height: 1.56);
+      margin-bottom: 35px;
+      max-width: 100%;
+    }
+    .social-links i {
+      background-color: #979797;
+    }
+  }
+  &__following, &__contributions {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  &__activity {
+    display: flex;
+    flex-direction: column;
+    flex: 0 1 auto;
+    // Remove margin from first .profile-title
+    > div:first-child {
+      @include tablet-lg {
+        margin-top: 0;
+      }
+    }
+  }
+  &__title {
+    @include text-lg($color: $article-body-text, $font-multiplier: 1.94, $font-multiplier-sm: 1.6);
+    margin: 35px 0 35px;
+  }
+  &__heading {
+    text-transform: capitalize;
+    @include text-lg($line-height: 1.3, $font-multiplier: 1.9, $font-weight: 400, $color: $body-text);
+    opacity: 0.62;
+    margin: 0 auto 40px;
+  }
+  &__card-container {
+    display: flex;
+    flex-wrap: wrap;
+    margin-left: -15px;
+    margin-right: 15px;
+    width: calc(100% + 30px);
+    .col-half {
+      flex: 0 0 100%;
+      margin-bottom: 0;
+      @include tablet {
+        flex: 0 0 50%;
+        margin: 0 0 15px;
+      }
+      @include desktop-lg {
+        flex: 0 0 33.33%;
+      }
+      .channel-card, .card {
+        margin: 7.5px 15px;
+      }
+    }
+  }
+}
+
+.social-icon_wrap--white {
+  .fa {
+    color: white;
+    font-size: 18px;
+    margin: 0 7px;
+    &.fa-twitter {
+      margin-left: 10px;
+    }
+  }
+}
+
+.user-header {
+  display: flex;
+  justify-content: space-around;
+  align-items: flex-end;
+  position: relative;
+  bottom: 70px;
+  padding: 0 10px;
+  text-align: center;
+  @include tablet {
+    padding: 0;
+  }
+  &__image {
+    width:140px;
+    height: 140px;
+    background-image: url('/static/images/icons/user.png')
+  }
+  &__name {
+    text-align: center;
+    @include text-sm($font-multiplier: 0.78, $color: #4A4A4A, $font-weight: 700);
+    position: relative;
+    margin-top: 4px;
+  }
+  .user-header__share {
+    margin-top: 10px;
+  }
+}

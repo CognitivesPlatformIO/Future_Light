@@ -1,0 +1,21 @@
+{% if myFollowers | length > 0 %}
+    {% for follower in myFollowers %}
+        {% set imgWidth = 390 %}
+        {% set imgHeight = 220 %}
+        {% set hasImage = (follower.follower['media'] is defined and follower.follower['media']['path'] != '') ? 1 : 0 %}
+        {% if hasImage %}
+            {% set userImg = _Media.getMediaUrl(follower.follower['media'],imgWidth, imgHeight, {'crop': 'fill', 'gravity': 'faces'} ) %}
+        {% endif %}
+        <div class="col-half">
+        <a href="{{_AppHelper.buildUrl('profile/user-profile',{name: Html.encode(following.following['username'])})}}" class="channel-card  {% if not hasImage %}channel__no-image{% endif %}" {% if hasImage %}style="background-image: url('{{ userImg }}');"{% endif %}>
+            <div class="channel-card__overlay">
+                <div class="channel-card__content_wrap">
+                    <div class="channel-card__channel-wrap">
+                        <div class="channel-card__channel">{{follower.follower['name'] }}</div>
+                    </div>
+                </div>
+            </div>
+        </a>
+        </div>
+        {% endfor %}
+{% endif %}

@@ -1,0 +1,101 @@
+.contact {
+  @extend .container;
+  padding: 0 15px;
+  @include tablet {
+    padding: 0 10px;
+  }
+  @include desktop-sm {
+    padding: 0 10px 30px;
+  }
+  &__body {
+    background-color: white;
+  }
+  &__container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 80px 0 74px;
+    width: 100%;
+    @include tablet-lg {
+      flex-direction: row;
+    }
+    @include desktop-lg {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+  }
+  &__form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    max-width: 570px;
+    order: 1;
+    padding: 0px 25px;
+    @include tablet-lg {
+      order: 0;
+      align-items: flex-end;
+    }
+    @include desktop {
+      padding: 0px 0px 0px 15px;
+    }
+  }
+  &__control {
+    display: block;
+    @include text-md($font-multiplier: 1.1, $font-weight: 600);
+    @include placeholder($color: #a9b0bc);
+    background: #ececec;
+    padding: 13px 25px 14px;
+    margin: 0px 0px 20px;
+    width: 100%;
+    letter-spacing: 0px;
+    color: $article-body-text;
+    border-radius: 2px;
+    border: none;
+  }
+  &__textarea {
+    @extend .contact__control;
+    min-height: 160px;
+    height:100px;
+    margin: 0px 0px 30px;
+    resize: none;
+  }
+  &__submit {
+    max-width: 230px;
+    width: 100%;
+  }
+  &__content {
+    max-width: 100%;
+    text-align: center;
+    padding: 0px 25px 74px;
+    @include tablet-lg {
+      text-align: left;
+      padding: 0px 25px 74px 130px;
+    }
+  }
+  &__headline {
+    @include text-lg($color: $article-body-text, $font-multiplier-sm: 2);
+    margin-bottom:25px;
+  }
+  &__text {
+    @include text-md($color: $article-body-text, $font-weight: 600, $font-multiplier: 1.38);
+    margin-bottom:25px;
+    max-width: 100%;
+    @include tablet-lg {
+      max-width: 295px;
+    }
+  }
+  &__number {
+    @include text-md($color: $article-body-text, $line-height: 1.67);
+    letter-spacing: 0px;
+  }
+  &__address {
+    @extend .contact__number;
+    margin-bottom: 25px;
+  }
+  &__map {
+    width: 100%;
+    margin-bottom: 26px;
+    padding: 0px 15px;
+  }
+}

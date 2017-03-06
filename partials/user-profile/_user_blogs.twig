@@ -1,0 +1,16 @@
+{% if userOwnerBlogs | length > 0 %}
+    {% for blog in userOwnerBlogs %}
+        {% set hasImage = (blog.media['thumb'] is defined and blog.media['thumb']['path'] != '') ? 1 : 0 %}
+        <div class="col-half">
+        <a href="{{blog.url}}" class="channel-card channel-card__{{ Html.encode(blog.title)|lower }} {% if not hasImage %}channel__no-image{% endif %}" {% if hasImage %}style="background-image: url('{{ blog.media['thumb']['path'] }}');"{% endif %}>
+            <div class="channel-card__overlay">
+                <div class="channel-card__content_wrap">
+                    <div class="channel-card__channel-wrap">
+                        <div class="channel-card__channel">{{blog.title | raw}}</div>
+                    </div>
+                </div>
+            </div>
+        </a>
+        </div>
+    {% endfor %}
+{% endif %}

@@ -1,0 +1,615 @@
+.card {
+  height: 471px;
+  display: flex;
+  background-color: $white;
+  background-size: cover;
+  background-position:center center;
+  background-repeat: no-repeat;
+  &__no-image {
+    height: auto;
+    @include tablet-lg {
+      height: 471px;
+    }
+    .card__channel {
+      //background-color: $white;
+    }
+    .card__read-more, .card__author {
+      @include text-sm($letter-spacing: 0.21px);
+    }
+    .card__text {
+      color: $body-text!important;
+    }
+    .card__content {
+      flex: 0 1 auto!important;
+    }
+    .card__content_wrap {
+      flex-direction: row!important;
+    }
+
+  }
+  &__channel-wrap {
+    margin-bottom: auto;
+  }
+  &__content_wrap {
+    display: flex;
+    align-items: flex-end;
+    width: 100%;
+    height:100%;
+    //background-color: rgba(0, 0, 0, 0.34);
+    position: relative;
+    @include transition(all 0.4s ease);
+  }
+  &:hover {
+    .card__content_wrap {
+      background-color: rgba(0, 0, 0, 0)!important;
+    }
+    .admin-actions {
+      display: flex;
+    }
+  }
+  &__read-time {
+    @include text-md($color: $white, $font-multiplier: 0.777, $font-weight: 600);
+    padding: 3px 9px 3px;
+    border:1px solid white;
+    display: inline-block;
+    background-color: rgba(0,0,0,0);
+    @include transition(background-color 0.4s ease);
+    &:hover {
+      background-color: rgba(0,0,0,0.2);
+    }
+    span  {
+      position: relative;
+      height: 15px;
+      display: inline-block;
+      width: 17px;
+      top: 2px;
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: contain;
+      margin-right: 3px;
+      background-image: url('/static/images/icons/paragraph-dark.svg');
+    }
+  }
+  &__overlay {
+    width: 100%;
+    height: 100%;
+  }
+  &__content {
+    text-align: left;
+    padding: 20px 30px 30px;
+    margin-right: auto;
+    max-width: 100%;
+  }
+  &__author {
+    @include text-sm($letter-spacing: 0.012em);
+    // Padding to make .card__author same height as read estimate
+    padding-top: 17px;
+  }
+  &__network-icon {
+    position: relative;
+    font-size: 18px;
+    color: $body-text;
+    top: 2px;
+    margin-right: 3px;
+  }
+  &__channel {
+    @include text-sm($letter-spacing: 0.21px, $font-multiplier: 0.72, $color: $body-text);
+    margin-bottom: 22px;
+    display: inline-block;
+    padding-bottom: 14px;
+    position: relative;
+    &::after {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 20px;
+      height: 4px;
+      border-radius: 25%;
+      background-color: $body-text;
+    }
+  }
+  &__headline {
+    max-width: 650px;
+    margin-bottom: 22px;
+    @include text-sm($font-weight: 700, $color: $white, $font-multiplier: 1.4, $line-height: 1.2, $letter-spacing: -0.014em);
+    // Padding here for overflow hidden text
+    padding-bottom: 2px;
+  }
+  &__play-button {
+    width: 76px;
+    height: 76px;
+  }
+  &__text {
+    max-width: 680px;
+    min-width: 0px;
+    flex: 0 1 auto;
+    margin-bottom: 30px;
+    @include text-md($color: $white, $font-weight: 600);
+    display: none;
+  }
+  &__read-more {
+    display: none;
+  }
+}
+
+.card--channel {
+  .card__text {
+    max-width: 550px;
+  }
+}
+
+.card--social {
+  height: 100%;
+  .card__text {
+    display: block;
+    max-width: 750px;
+    margin: auto;
+    @include text-sm($font-weight: 700, $color: $white, $font-multiplier: 1.4, $line-height: 1.2, $letter-spacing: -0.014em);
+    margin-bottom: 0;
+  }
+}
+
+.admin-actions {
+  flex-direction: column;
+  width: 85px;
+  position: absolute;
+  right: 0px;
+  top: 0px;
+  z-index: 1;
+  display: none;
+  button:last-child {
+    border-bottom: none;
+  }
+  @include text-sm($color: $white, $font-multiplier: 0.68);
+  &__action {
+    display: flex;
+    justify-content: space-between;
+    background-color: rgb(23, 39, 52);
+    border: none;
+    border-bottom: 1px solid rgb(132, 135, 147);
+    padding: 5px 6px 5px 10px;
+    align-items: center;
+    @include transition(background-color 0.4s ease);
+    &:hover {
+      background-color: rgb(89, 93, 110);
+    }
+    &--move, &--edit {
+      img {
+        margin-right: 1px;
+      }
+    }
+    &--pin {
+      img {
+        margin-right: 3px;
+      }
+    }
+  }
+}
+
+.col-full,
+.col-three-quarters,
+.col-third-container,
+.col-two-thirds,
+.col-half,
+.col-third,
+.col-quarter {
+  margin: 0 0 10px;
+  @include tablet {
+    margin: 0 0px 20px;
+  }
+  @include tablet-lg {
+    margin: 0 15px 30px;
+  }
+}
+
+div.home, div.channel, div.profile, .card-container, .profile__card-container {
+  > .col-three-quarters,
+  > .col-two-thirds,
+  > .col-half,
+  > .col-third,
+  > .col-quarter {
+    .card {
+      background-image: none!important;
+      &__text {
+        color: $body-text;
+        max-height: 62px;
+        overflow: hidden;
+        // Padding bottom is here to stop text being cut off
+        padding-bottom: 2px;
+      }
+      &__headline {
+        color: $body-text;
+        max-height: 62px;
+        overflow: hidden;
+      }
+      &__content_wrap {
+        flex-direction: column;
+      }
+      &__content {
+        flex: 1 0 47%;
+        order: 1;
+        display: flex;
+        flex-direction: column;
+      }
+      &__image {
+        height: 100%;
+        width: 100%;
+        flex: 1 0 53%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      &__text-wrap {
+        .card__play-button {
+          display: none;
+        }
+      }
+      &__read-time {
+        @include text-md($color: $body-text, $font-multiplier: 0.777, $font-weight: 600);
+        border:1px solid $body-text;
+        background-color: rgba(0,0,0,0);
+        img  {
+          position: relative;
+          bottom: 2px;
+          margin-right: 5px;
+        }
+      }
+      .card__channel {
+        color: $body-text;
+        &::after {
+          background-color: $body-text;
+        }
+      }
+    }
+    .card--article {
+      .card__headline {
+        margin-bottom: 16px;
+      }
+    }
+  }
+  > .col-full,
+  > .col-third-container .col-third {
+    .card__image {
+      display: none;
+    }
+    .card {
+      .card__read-more {
+        opacity: 1;
+      }
+      &__content {
+        .card__read-more, .card__author {
+          color: white;
+        }
+      }
+      &__text-wrap {
+        display: flex;
+        .card__play-button {
+          width: 56px;
+          height: 56px;
+          margin-right: 15px;
+          position: relative;
+          top: 4px;
+        }
+      }
+    }
+    .card__network-icon {
+      color: white;
+    }
+  }
+  .col-third-container .col-third .card__no-image .card__content {
+    .card__read-more, .card__author, .card__network-icon {
+      color: $body-text;
+    }
+  }
+}
+
+.col-full {
+  .card {
+    height: auto;
+    @include tablet {
+      height: 471px;
+    }
+    &__headline {
+      @include text-lg;
+      @include tablet {
+        margin-bottom: 20px;
+      }
+    }
+    &__text {
+      @include tablet {
+        display: block;
+      }
+    }
+    &__content {
+      padding: 50px 30px 40px;
+      margin: auto;
+      width: 100%;
+      max-width: 1170px;
+      @include desktop-sm {
+        padding: 50px 30px 20px;
+      }
+      @include desktop-lg {
+        max-width: 1580px;
+      }
+    }
+    &__content_wrap {
+      background-color: rgba(0, 0, 0, 0.34);
+    }
+    &__read-time .card__paragraph-icon {
+      background-image: url('/static/images/icons/paragraph.svg');
+    }
+    .card__channel {
+      color: white;
+      &::after {
+        background-color: white;
+      }
+    }
+    &__no-image {
+      @include tablet {
+        height: auto;
+      }
+      @include tablet-lg {
+        height: 471px;
+      }
+      .card__channel {
+        color: $body-text;
+        &::after {
+          background-color: $body-text;
+        }
+      }
+      .card__headline {
+        color: $body-text;
+      }
+      .card__read-time {
+        @include text-md($color: $body-text, $font-multiplier: 0.777, $font-weight: 600);
+        border:1px solid $body-text;
+        background-color: rgba(0,0,0,0);
+        span  {
+          position: relative;
+          margin-right: 5px;
+          background-image: url('/static/images/icons/paragraph-dark.svg');
+        }
+      }
+      .card__author {
+        i {
+          color: $body-text!important;
+        }
+        color: $body-text!important;
+      }
+      .card__content_wrap {
+        background-color: transparent;
+      }
+    }
+  }
+  .card--social {
+    .card__content {
+      width: 100%;
+      text-align: left;
+      height: auto;
+      margin: auto auto 0 0;
+      padding: 50px 30px 30px;
+    }
+    .card__text {
+      margin-top: 0;
+      @include text-sm($font-weight: 700, $color: $white, $font-multiplier: 1.4, $line-height: 1.2, $letter-spacing: -0.014em);
+      max-width: 800px;
+      margin-left: 0;
+    }
+    .card__channel-wrap {
+      text-align: left;
+    }
+  }
+
+}
+
+.col-quarter {
+  .card {
+    &__read-time .card__paragraph-icon {
+      background-image: url('/static/images/icons/paragraph.svg');
+    }
+  }
+}
+
+.col-third {
+  .card__content {
+    max-height: 221px;
+  }
+  @include desktop-sm {
+    .card__content {
+      flex: 0 1 310px;
+    }
+    .card__image {
+      flex: 0 1 420px;
+    }
+    .card__text {
+      //max-width: 275px;
+    }
+  }
+  .card__no-image {
+    @include tablet {
+      height: 471px;
+    }
+    .card__text {
+      max-width: 300px;
+    }
+  }
+}
+
+.col-third-container {
+  display: flex;
+  margin-bottom: 0;
+  @include tablet {
+    margin-bottom: 20px;
+  }
+  @include tablet-lg {
+    margin-bottom: 30px;
+  }
+  .col-third {
+    margin: 0 0 10px;
+    @include tablet {
+      margin: 0;
+    }
+    .card {
+      min-height: 0;
+      height:157px;
+      margin-bottom: 0;
+      position: relative;
+    }
+    .card__content_wrap {
+      background-color: rgba(0, 0, 0, 0.34);
+      padding: 20px 22px 30px 22px;
+      display: block;
+    }
+    .card__text {
+      width: 100%!important;
+      max-width: 400px!important;
+    }
+    .card__no-image {
+      .card__content_wrap {
+        background-color: rgba(0, 0, 0, 0)!important;
+        .card__channel {
+          color: $body-text;
+        }
+      }
+    }
+    .card__content {
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      margin: 0;
+      height: 100%;
+      flex: 1 0 100%;
+    }
+    .card__author, .card__read-more {
+      position: absolute;
+      top: 22px;
+      right: 22px;
+      padding-top: 0;
+    }
+    .card__channel {
+      margin: 0;
+      padding: 0;
+      color: $white;
+      &::after {
+        display: none;
+      }
+    }
+    .card__text, .card__headline {
+      @include text-md($font-weight: 700, $color: $white, $font-multiplier: 1.11, $line-height: 1.3);
+      margin-bottom: 0;
+      max-width: 535px;
+      max-height: 50px;
+      overflow: hidden;
+      margin-left: 0;
+      @include tablet {
+        max-height: 75px;
+      }
+      @include desktop-sm {
+        max-height: 50px;
+      }
+    }
+    .card__read-more {
+      display: none;
+    }
+    .card__read-time_wrap {
+      display: none;
+    }
+  }
+}
+
+.col-half {
+  @include desktop-sm {
+
+  }
+}
+
+.col-two-thirds {
+
+  > article {
+    height: 100%;
+  }
+  article .card {
+    height: 100%;
+    // Here to overwrite base card styles
+    .card {
+      &__text {
+        margin-bottom: 22px;
+        @include tablet {
+          max-height: none;
+        }
+      }
+      &__content_wrap {
+        flex-direction: column;
+        @include tablet {
+          flex-wrap: wrap;
+          flex-direction: row;
+        }
+      }
+      &__content {
+        order: 1;
+        @include tablet {
+          flex: 0 1 43%;
+          order: 0;
+        }
+      }
+      &__image {
+        @include tablet {
+          flex: 0 1 57%;
+        }
+      }
+    }
+  }
+}
+
+.col-three-quarters {
+
+}
+
+.card-container {
+  @extend .container;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.channel .col-full {
+  .card {
+    cursor: default;
+    &__content {
+      @include desktop-sm {
+        padding: 50px 100px 20px;
+      }
+    }
+    &__text {
+      display: block;
+      margin-bottom: 22px;
+      @include tablet {
+        @include text-sm($font-multiplier: 1.33, $letter-spacing: -0.3px);
+      }
+    }
+    &__content_wrap {
+      background-color: transparent;
+    }
+    &__headline {
+      color: $body-text;
+      margin-bottom: 18px;
+    }
+    &__button-wrap {
+      display: flex;
+      .button__follow {
+        max-width: none;
+        color: $body-text;
+        background-color: white;
+        border: 1px solid #C6D5B8;
+        margin-left: 5px;
+      }
+      .header_actions__share {
+        color: $body-text;
+        margin-right: 10px;
+        background-color: white;
+        border: 1px solid #C6D5B8;
+      }
+    }
+  }
+}

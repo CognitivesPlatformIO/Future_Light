@@ -1,0 +1,134 @@
+{% set blogInfo = _Blog.getBlog() %}
+{% set networkData = _Network.getNetworkData() %}
+
+{{ set(this, 'title', blogInfo.title) }}
+
+{% set limit = 12 %}
+{% set articlesArr = _Blog.getBlogFeed({'limit': limit, 'offset': 0}) %}
+{% set articles = articlesArr.articles %}
+
+{% set hasBlogImage = FALSE %}
+{% set blogImage = "" %}
+{% if blogInfo.media['cover']['id'] is not empty %}
+    {% set blogImage = _Media.getMediaUrl(blogInfo.media['cover'], 1160, 600, {gravity: 'north'}) %}
+    {% set hasBlogImage = TRUE %}
+{% endif %}    
+
+{% set blogOwnerImage = _Media.getMediaUrl(blogInfo.owner['media'], 180, 180, {crop:"thumb", radius:"max", gravity:"face", type: "user"}) %}
+{{this.registerJs("HomeController.listing();")}}
+{{this.registerJs("HomeController.blog();")}}
+<div class="blog">
+    <div class="blog__header">
+        <div class="blog__background" {%if hasBlogImage%}style="background-image:url('{{blogImage}}');"{%endif%}>
+            <div class="blog__overlay"></div>
+            <div class="blog__user-header">
+                {% set blogOwnerImage = '' %}
+                {% if blogInfo.owner['media'] | length > 0 and blogInfo.owner['media']['id'] is defined %}
+                    {% set blogOwnerImage = _Media.getMediaUrl(blogInfo.owner['media'], 160, 160, {crop:"thumb", radius:"max", gravity:"face"}) %}
+                {% endif %}
+                <div class="blog__user-header__display">
+                    <span class="blog__user-header__image" {%if blogOwnerImage is not empty%}style="background-image:url('{{blogOwnerImage}}'); background-size: cover; display: inline-block; border-radius: 50%;"{%endif%}></span>
+                    <div class="blog__user-header__name">{{blogInfo.owner['display_name'] | raw}}</div>
+                    <div class="button-container">
+                        <div class="button button__share">
+                            <?xml version="1.0" encoding="UTF-8" standalone="no"?>
+                            <svg width="13px" height="14px" viewBox="0 0 13 14" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                <!-- Generator: Sketch 40.1 (33804) - http://www.bohemiancoding.com/sketch -->
+                                <title>Shape</title>
+                                <desc>Created with Sketch.</desc>
+                                <defs></defs>
+                                <g id="Desktop" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                    <g id="Theme-3-Article---desktop" transform="translate(-1113.000000, -793.000000)" fill="#C0C2CA">
+                                        <g id="Article" transform="translate(215.000000, 216.000000)">
+                                            <g id="Comments-Share" transform="translate(735.000000, 568.000000)">
+                                                <g id="Share-button" transform="translate(151.000000, 0.000000)">
+                                                    <path d="M22.0625,18.3333333 C21.5305808,18.3333333 21.0420077,18.5150222 20.650499,18.8174222 L16.6106375,16.3818889 C16.6309173,16.2572889 16.6442308,16.1302 16.6442308,16 C16.6442308,15.8694889 16.6309173,15.7427111 16.6106375,15.6179556 L20.650499,13.1824222 C21.0420077,13.4851333 21.5305808,13.6666667 22.0625,13.6666667 C23.3447721,13.6666667 24.3846154,12.6218 24.3846154,11.3333333 C24.3846154,10.0448667 23.3447721,9 22.0625,9 C20.7802279,9 19.7403846,10.0448667 19.7403846,11.3333333 C19.7403846,11.4635333 19.7536981,11.5906222 19.7742875,11.7152222 L15.734426,14.1507556 C15.3429173,13.8483556 14.8543442,13.6666667 14.3221154,13.6666667 C13.0398433,13.6666667 12,14.7115333 12,16 C12,17.2884667 13.0398433,18.3333333 14.3221154,18.3333333 C14.8543442,18.3333333 15.3429173,18.1518 15.734426,17.8490889 L19.7742875,20.2846222 C19.7536981,20.4093778 19.7403846,20.5361556 19.7403846,20.6666667 C19.7403846,21.9551333 20.7802279,23 22.0625,23 C23.3447721,23 24.3846154,21.9551333 24.3846154,20.6666667 C24.3846154,19.3782 23.3447721,18.3333333 22.0625,18.3333333 L22.0625,18.3333333 Z" id="Shape"></path>
+                                                </g>
+                                            </g>
+                                        </g>
+                                    </g>
+                                </g>
+                            </svg>
+                            Share
+                            {{this.render('partials/article/_share-modal.twig', {network: networkData, url:blogInfo.url}) | raw }}
+                        </div>
+                        {% if not _User.isGuest %}
+                            {% set isUserFollowingBlog = _User.isUserFollowing('blog', blogInfo.id) %}
+                            {% if isUserFollowingBlog %}
+                                <a href="javascript:void(0)" class="button button__follow--reverse blog__user-header__share followBlog" data-status="unfollow"  data-guid="{{blogInfo.guid}}">Following</a>
+                            {% else %}
+                                <a href="javascript:void(0)" class="button button__follow--reverse blog__user-header__share followBlog" data-status="follow"  data-guid="{{blogInfo.guid}}">Follow</a>
+                            {% endif %}
+                        {% else %}
+                            <a href="javascript:void(0)" class="button button__follow--reverse blog__user-header__share forceLoginModal">Follow</a>
+                        {% endif %}
+                    </div>
+
+
+                </div>
+            </div>
+            <div class="blog__title">
+                <h1 class="blog__heading">{{blogInfo.owner['display_name']}}'s Posts</h1>
+                <span class="blog__description">{{ blogInfo.owner['bio']|striptags[:120] ~ '...' }}</span>
+            </div>
+        </div>
+    </div>
+    <!-- Social Bar -->
+    <div class="social-bar__container">
+        <div class="social-bar">
+            <div class="social-bar__button-wrap">
+                {% set twitterLink = '#' %}
+                {% if blogInfo.settings['social']['twitter'] is not empty %}
+                    {% set twitterLink = blogInfo.settings['social']['twitter'] %}
+                {% endif %}
+                <a  href="{{twitterLink}}" target="_blank" class="social-bar__button--twitter"><i class="fa fa-twitter"></i><span>Twitter</span></a>
+                
+                {% set linkedinLink = '#'%}
+                {% if blogInfo.settings['social']['linkedin'] is not empty %}
+                    {% set linkedinLink = blogInfo.settings['social']['linkedin']%}
+                {% endif %}
+                <a href="{{linkedinLink}}" target="_blank" class="social-bar__button--linkedin"><i class="fa fa-linkedin"></i><span>Linkedin</span></a>  
+            </div>
+            <div class="blog__data">
+                <div class="blog__followers">
+                    <strong>{{ (blogInfo.total['followers'] > 0) ? blogInfo.total['followers'] : 0 }}</strong>
+                    <span>Followers</span>
+                </div>
+                <div class="blog__following">
+                    <strong>{{ (blogInfo.total['following'] > 0) ? blogInfo.total['following'] : 0 }}</strong>
+                    <span>Following</span>
+                </div>
+                <div class="blog__articles">
+                    <strong>{{ (blogInfo.total['article'] > 0) ? blogInfo.total['article'] : 0 }}</strong>
+                    <span>Articles</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {% if articles|length > 0 %}
+        <div class="card-container">
+            <div class="card-container ajaxArticles" data-existing-nonpinned-count="{{articlesArr.existingNonPinnedCount}}" data-offset="{{limit}}">
+                {% for i in 0..(articles|length - 1) %}
+                    {% if articles[i] is defined %}
+                        {{this.render('partials/_single-article.twig', {article: articles[i], 'position': (i+1), containerClass: 'col-third'}) | raw}}
+                    {% endif %}
+                {% endfor %}
+            </div>
+        </div>
+    {% endif%}
+
+    <div class="text-center has-margin-bottom-20">
+        {% if articles|length >= limit %}
+            <a href="javascript:void(0)" class="button loadMoreArticles"><i class="fa fa-arrow-down"></i>&nbsp;Load More</a>
+        {% endif %}
+    </div>
+
+    {% set noDataCls = 'hide' %}
+    {% if articles|length == 0 %}
+        {% set noDataCls = '' %}
+    {% endif %}
+    <div class=" text-center has-margin-bottom-20 has-margin-top-20 {{noDataCls}} NoArticlesMsg">
+        <p class="no-data text-center">No articles found.</p>  
+    </div>
+</div>

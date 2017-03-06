@@ -1,0 +1,51 @@
+{{ set(this, 'title', 'Edit Profile') }}
+
+{% set user = _User.getUser()%}
+<div class="auth">
+            <div role="tabpanel" class="tab-pane sign-up" id="signUp">
+                <div class="user-avatar">
+                    {% set profileImage = _Media.getMediaUrl(user.profileMedia, 120, 120, {radius: 'max', gravity: 'face', 'crop': 'thumb'})%}
+                        <div class="user-pic"><span class="uploadedUser"{% if profileImage is not empty %} style="background-image:url({{profileImage}});  display: inline-block; height: 120px; width: 120px;"{% endif %}><i class="fa fa-user {{ (profileImage is not empty) ? 'hide' : ''}}"></i></span></div>
+                        <a href="javascript:void(0)" class="em grey_themer upload-profile uploadFileBtn" data-imgcls="uploadedUser" data-id="userProfileImage">
+                            <i class="fa fa-plus-circle green"></i>add new image
+                        </a>
+                </div>
+                <div class="sign-up__form-title">
+                    Profile Details
+                </div>
+                <form name="signupForm" id="profile-form" class="sign-up-form" action="" method="post" enctype="multipart/form-data" autocomplete="off">
+                    <input type="hidden" name="_csrf" value="{{_AppHelper.getCsrfToken()}}" />
+                    <input type="hidden" name="profileImage" id="userProfileImage" value="" />
+                    <div class="form__input-wrap">
+                        <input type="text" class="form-control" name="firstname" value="{{user.firstname}}" placeholder="Firstname">
+                        <input type="text" class="form-control" name="lastname" value="{{user.lastname}}" placeholder="Lastname">
+                    </div>
+                    <input type="text" class="form-control" name="username" value="{{user.username}}" placeholder="Username">
+                    
+                    <div class="row" style="margin-top:15px;">
+                        <div class="col-md-6">
+                            <div class="cog_button_set">
+                                <label><input type="radio" id="User_by_line0" class="form-control" name="by_line" value="FirstNameLastName" {% if user.by_line == 'FirstNameLastName'%} checked='checked' {% endif %}><span><!-- fake radio --></span>Firstname Lastname</label>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="cog_button_set">
+                                <label><input type="radio" id="User_by_line1" class="form-control" name="by_line" value="Username" {% if user.by_line == 'Username'%} checked='checked' {% endif %}><span><!-- fake radio --></span>Username</label>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <input type="text" class="form-control" name="email" value="{{user.email}}" placeholder="Email" id="email" style="margin-top:10px;">
+                    <textarea class="form-control" name="bio" placeholder="Tell us a bit about yourself" id="user-bio" rows="3" type="text">{{Html.decode(user.bio)}}</textarea>
+                    <input type="password" id="password" class="form-control" name="password" value="" placeholder="Password">
+                    <input type="password" class="form-control" name="verifypassword" value="" placeholder="Verify Password">
+                    
+                    <div class="button-set">
+                        <div class="button-set__right">
+                            <button type="submit" class="button" name="submitSignupForm" style="margin-left:0px;">Submit</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+    </div>
+</div>

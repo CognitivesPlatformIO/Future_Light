@@ -1,0 +1,42 @@
+<div class="side-navigation">
+    <form id= "searchArticleForm" action="{{blog.url}}/search" method="get" autocomplete="off">
+        <input type="text" class="side-navigation__search" placeholder="Search" name="s" value="{{_AppHelper.getRequest('s')}}">
+    </form>
+    <ul class="side-navigation__list">
+            {% set menuItems = blogData.blogHeaderMenu %}
+            {% for i in 0..menuItems|length %}
+                {% if menuItems[i] is defined %}
+                    {% set parentItem = menuItems[i] %}
+                    {% set activeClass = (parentItem.link == _AppHelper.getServerUrl()) ? 'active' : ''%}
+                    {% set externalClass = (parentItem.isExternal) ? 'external-link' : '' %}  
+                    <li class="side-navigation__item {% if parentItem.children is defined  and parentItem.children | length > 0 %}side-navigation__item--dropdown{% endif %}">
+                        {% if parentItem.children is not defined  or parentItem.children | length <= 0 %}
+                            <a href="{{parentItem.link |raw}}" class="side-navigation__link {{activeClass}} {{externalClass}}" {% if parentItem.target != "" %}target="{{parentItem.target}}"{% endif %}>
+                                {{ ((parentItem.label is empty) ? ((parentItem.pageTitle is empty)? parentItem.blogTitle : parentItem.pageTitle) : parentItem.label )}}
+                            </a> 
+                        {% else %}
+                            <a href="javascript:void(0)" class="side-navigation__link" type="button" id="dropdown" data-toggle="dropdown" aria-expanded="false" aria-haspopup="true">
+                                {{ ((parentItem.label is empty) ? ((parentItem.pageTitle is empty)? parentItem.blogTitle : parentItem.pageTitle) : parentItem.label )}} <i class="fa fa-angle-right"></i>
+                            </a>
+                        {% endif %}
+                        {% if parentItem.children is defined and parentItem.children | length > 0 %}
+                            <div class="side-navigation__dropdown">
+                                {% for childItem in parentItem.children%}
+                                    {% set externalClass = (childItem.isExternal) ? 'external-link' : '' %}
+                                    <a href="{{childItem.link |raw}}" class="side-navigation__dropdown_item {{externalClass}}" {% if childItem.target != "" %}target="{{childItem.target}}"{% endif %}>{{ ((childItem.label is empty) ? ((childItem.pageTitle is empty)? childItem.blogTitle : childItem.pageTitle) : childItem.label)}}</a>
+                                {% endfor %}
+                            </div>
+                        {% endif %}
+                    </li>
+                {% endif %}
+            {% endfor %}
+            {% if _User.isGuest() %}
+                <li class="side-navigation__item">
+                    <a class="side-navigation__link side-navigation__link--login">Login</a>
+                </li>
+                <li class="side-navigation__item">
+                    <a class="side-navigation__link side-navigation__link--login side-navigation__link--signup">Sign Up</a>
+                </li>
+            {% endif %}
+        </ul>	
+</div>

@@ -1,0 +1,76 @@
+.social-bar {
+  display: flex;
+  height: 120px;
+  margin-bottom: 30px;
+  width: 100%;
+  flex-direction: column;
+  @include tablet {
+    height: 70px;
+    flex-direction: row;
+  }
+  @include tablet-lg {
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+  &__container {
+    @extend .container;
+  }
+  &__button--twitter {
+    background-color: rgba(53, 183, 243, 0.6);
+  }
+  &__button--linkedin {
+    background-color: rgba(24, 85, 155, 0.6);
+  }
+  &__button-wrap {
+    flex: 0 1 50%;
+    display: flex;
+    i {
+      margin-right: 20px;
+      color: white;
+      font-size: 20px;
+      position: relative;
+      bottom: 1px;
+    }
+    a {
+      @include text-sm($color: white, $font-multiplier: 0.78);
+      display: flex;
+      flex: 0 1 50%;
+      align-items: center;
+      justify-content: center;
+      font-family:$raleway;
+    }
+  }
+  .blog__data {
+    flex: 0 1 50%;
+    display: flex;
+    > div {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      flex: 0 1 33.3333%;
+      border-bottom: solid 1px #d0d8e7;
+      @include tablet {
+        border-top: solid 1px #d0d8e7;
+      }
+    }
+    > div:not(:last-child) {
+      border-right: solid 1px #d0d8e7;
+    }
+    > div:last-child {
+      @include tablet-lg {
+        border-right: solid 1px #d0d8e7;
+      }
+    }
+    strong, span {
+      font-family: $raleway;
+    }
+    strong {
+      @include text-md($font-weight: 600, $color: #181818);
+      display: block;
+    }
+    span {
+      @include text-sm($font-multiplier: 0.78, $color: #888);
+    }
+  }
+}

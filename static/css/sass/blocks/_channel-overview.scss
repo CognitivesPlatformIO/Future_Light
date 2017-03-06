@@ -1,0 +1,99 @@
+.channel-overview {
+}
+
+.channel-overview-card {
+  height: auto;
+  width: 100%;
+  @include tablet {
+    height: 671px;
+  }
+  &__thumb {
+    display: flex;
+    position: relative;
+    height: 190px;
+  }
+  &__channel-image {
+    position: absolute;
+    transition: 0.5s;
+    top: 0px;
+    left: 0px;
+    @include image_background;
+    filter: grayscale(100%);
+    height: 190px;
+    width: 100%;
+    &:hover {
+      transition: 0.5s;
+      background-position: 0px -120px;
+    }
+  }
+  &__channel-overlay {
+    background-color: rgba(0,0,0,0.34);
+    height: 190px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    padding: 0 30px;
+    position: relative;
+  }
+  &__channel-text {
+    @extend .card__channel;
+    margin-bottom: 0;
+  }
+  &__content {
+    height: 100%;
+    min-height: 170px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 0px 0px 34px;
+    color: white;
+    @include tablet {
+      max-height: 483px;
+    }
+  }
+  &__article {
+    @include text-md($color: $body-text, $font-weight: 700, $line-height: 1.67);
+    font-family: $heading-font-family;
+    display: flex;
+    flex-direction: column;
+    padding: 42px 28px 0px;
+    transition: 0.5s;
+    overflow: hidden;
+    background-color: rgba(0,0,0,0)!important;
+    &:hover {
+      transition: 0.4s;
+      color: $body-text;
+      background: rgba(255,255,255, 0.06);
+      .channel-overview-card__bar {
+        width: 28px;
+      }
+    }
+  }
+  &__text {
+    display: block;
+    max-height: 60px;
+    overflow: hidden;
+    margin-bottom: 33px;
+  }
+  &__bar {
+    transition: 0.5s;
+    width: 20px;
+    height: 4px;
+    background: $body-text;
+    border-radius: 200px;
+  }
+  &__view-more {
+    @include text-md($color: $body-text, $font-weight: 600, $font-multiplier: 0.72, $letter-spacing: 0);
+    padding-left: 30px;
+    padding-top: 34px;
+    transition: 0.5s;
+    background-color: rgba(0,0,0,0)!important;
+    &:hover {
+      transition: 0.5s;
+      color: $body-text;
+    }
+    @media (min-width: 615px) {
+      padding-top: 0px;
+    }
+  }
+}

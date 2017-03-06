@@ -1,0 +1,110 @@
+.services-header {
+  @extend .container;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding: 30px 15px 87px;
+  @include tablet {
+    flex-direction: row;
+    align-items: flex-start;
+  }
+  &__title {
+    @include text-lg($color: $article-body-text, $font-multiplier: 2.44, $font-multiplier-sm: 2.1);
+    margin-bottom: 50px;
+  }
+}
+
+.services-content {
+  @extend .container;
+  display: flex;
+  flex-direction: column;
+  padding: 30px 15px 87px;
+  @include desktop {
+    align-items: center;
+  }
+  &__service {
+    display: flex;
+    flex-direction: column;
+    margin: 0px 0px 90px;
+    @include tablet {
+      padding-right: 30px;
+      flex-direction: row;
+    }
+    @include desktop {
+      padding-right: 0px;
+    }
+  }
+  &__type {
+    text-align: center;
+    @include text-md($color: $article-body-text, $font-multiplier: 1.33, $font-weight: 600);
+    margin-bottom: 30px;
+    @include tablet {
+      text-align: right;
+      width: 170px;
+      flex-shrink: 0;
+      margin: 0px 70px 30px 20px;
+    }
+    @include desktop {
+      margin: 0px 130px 30px 0px;
+    }
+  }
+  &__text {
+    max-width: 670px;
+    @include desktop-lg {
+      max-width: 800px;
+    }
+    &_header {
+      @include text-md($color: $article-body-text, $font-multiplier: 1.33, $font-weight: 600);
+      margin-bottom: 30px;
+    }
+    &_description {
+      @include text-md($color: $article-body-text, $line-height: 1.67);
+    }
+  }
+}
+
+.services-banner {
+  display: flex;
+  text-align: center;
+  background-color: #fff3cb;
+  padding: 95px 30px 100px;
+  &__container {
+    @extend .container;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 0px 15px;
+    @include tablet-lg {
+      flex-direction: row;
+      justify-content: space-between;
+      text-align: left;
+    }
+  }
+  &__content {
+    max-width: 100%;
+    margin-left: 0px;
+    flex-shrink: 1;
+    @include tablet-lg {
+      margin-left: 0px;
+      max-width: 720px;
+    }
+    &_title {
+      @include text-lg($color: $body-text, $font-multiplier: 2.5, $font-multiplier-sm: 2);
+      margin-bottom: 35px;
+      line-height: 45px;
+    }
+    &_paragraph {
+      @include text-md($color: $body-text);
+      line-height: 32px;
+    }
+  }
+  &__button {
+    margin: 50px auto 0px;
+    @include tablet-lg {
+      margin: 0px 0px 0px 65px;
+    }
+  }
+}

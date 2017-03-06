@@ -1,0 +1,221 @@
+.landing-page-logo {
+  @extend .container;
+  padding: 53px 0px;
+  &__image {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    width: 100%;
+    @include desktop {
+      justify-content: flex-start;
+    }
+  }
+}
+
+.landing-page-header {
+  @extend .container;
+  @include image_background;
+  &__overlay {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+    text-align: center;
+    background-color: rgba(0,0,0,0.26);
+    width: 100%;
+    padding: 146px 30px 30px;
+  }
+  &__title {
+    @include text-lg($color: $white, $font-weight: 700, $font-multiplier-sm: 2, $letter-spacing: 0);
+    margin-bottom: 30px;
+    font-family: $landing-page-font;
+  }
+  &__subtitle {
+    @include text-md($color: $white, $line-height: 1.44, $letter-spacing: 0);
+    margin-bottom: 45px;
+    max-width: 650px;
+    font-family: $chivo;
+    flex-shrink: 1;
+  }
+  &__button {
+    margin: 0 auto 72px;
+  }
+  &__arrow {
+    cursor: pointer;
+    img {
+      width: 28px;
+      height: 16px;
+    }
+  }
+}
+
+.landing-page-content {
+  @extend .container;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 100%;
+  padding: 93px 30px 0px;
+  @include desktop {
+    padding: 93px 0px 0px;
+  }
+  img {
+    width: 100%;
+    margin-top: 30px;
+    margin-bottom: 60px;
+
+  }
+  h1 {
+    @include text-lg($font-weight: 700, $color: $article-body-text, $font-multiplier-sm:1.4);
+    margin-bottom: 28px;
+    max-width: 100%;
+  }
+  p {
+    @include text-md($line-height: 1.66, $color: $article-body-text);
+    margin-bottom: 28px;
+  }
+  p + ol, p + ul {
+    //margin-top: -20px;
+  }
+  ol, ul {
+    margin-bottom: 15px;
+    margin-left: 15px;
+    li {
+      @include text-md($font-multiplier: 1.11, $color: $article-body-text);
+      list-style-position: inside;
+    }
+  }
+  ul li {
+    list-style-type: disc;
+  }
+  ol li {
+    list-style-type: decimal;
+  }
+  img {
+    width: calc(100% + 20px);
+    margin-left: -10px;
+    margin-right: -10px;
+    @include desktop-sm {
+      width: 1170px;
+      margin-top: 30px;
+      margin-bottom: 60px;
+      margin-left: -200px;
+      margin-right: -200px;
+    }
+  }
+  h2 {
+    @include text-md($color: $article-body-text, $font-multiplier: 1.33, $line-height: 1.42, $font-weight: 600);
+    margin-bottom: 30px;
+    max-width: 100%;
+    font-family: $heading-font-family;
+    @include desktop {
+      max-width: 769px;
+    }
+  }
+  p {
+    max-width: 100%;
+    @include desktop {
+      max-width: 769px;
+    }
+  }
+  a {
+    @include text-md($color: $call-to-action-highlight, $letter-spacing: 0);
+    font-family: $chivo;
+    margin-top: 15px;
+    margin-bottom: 80px;
+    text-decoration: underline;
+    cursor: pointer;
+  }
+  &__get-started {
+    cursor: pointer;
+  }
+  &__video {
+    width: 100%;
+    max-width: 1250px;
+    height: 400px;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    background: rgba(0,0,0,0.01);
+    box-shadow: 0 3px 60px 0px rgba(0, 0, 0, 0.05);
+    background-size: cover;
+    background-position: center;
+    margin-bottom: 50px;
+    @include tablet {
+      height: 500px;
+      margin-bottom: 75px;
+    }
+    @include desktop {
+      height: 658px;
+      margin-bottom: 100px;
+    }
+  }
+	&_reduce-padding {
+		padding: 0 40px 0;
+		width: auto;
+		.account-modal__select_arrow {
+			width: auto;
+			margin: 0;
+		}
+		@include desktop {
+			padding: 40px 0 0;
+		}
+	}
+}
+
+.landing-page-banner {
+  @extend .container;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  background-color: #fff3cb;
+  min-height: 420px;
+  padding: 50px 30px 60px;
+  margin-bottom: 17px;
+  @include tablet-lg {
+    padding: 70px 30px 85px;
+    text-align: left;
+    flex-direction: row;
+  }
+  @include desktop {
+    padding: 130px 0px 150px;
+  }
+  &__content {
+    max-width: 100%;
+    margin-left: 0px;
+    flex-shrink: 1;
+    @include tablet-lg {
+      margin-left: auto;
+      max-width: 720px;
+    }
+  }
+  &__title {
+    @include text-lg($color: $body-text, $font-multiplier: 2.5);
+    margin-bottom: 35px;
+    line-height: 45px;
+  }
+  &__paragraph {
+    @include text-md($color: $body-text);
+    line-height: 32px;
+  }
+  &__button {
+    margin: 50px auto 0px;
+    @include tablet-lg {
+      margin: 0px auto 0px 65px;
+    }
+  }
+}
+
+.landing-page-logo {
+  @extend .container;
+  padding: 53px 0px;
+  &__image {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    width: 100%;
+    @include desktop {
+      justify-content: flex-start;
+    }
+  }
+}

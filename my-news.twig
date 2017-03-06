@@ -1,0 +1,64 @@
+{{ set(this, 'title', 'My News') }}
+
+{% set limit = 20 %}
+{% set articles = _User.getUserFeed({limit: limit, offset: 0}) %}
+{{this.registerJs("UserArticlesController.load();")}}
+<div class="channel">
+    {% if articles|length > 0 %}
+        <div class="card-container LoadMyArticles" data-page="2">
+            {% if articles[0] is defined %}
+                {{this.render('partials/_single-article.twig', {article: articles[0], position: 1, containerClass: 'col-full'}) | raw}}
+            {% endif %}
+            {% for i in 1..2 %}
+                {% if articles[i] is defined %}
+                    {{this.render('partials/_single-article.twig', {article: articles[i], 'position': (i+1), containerClass: 'col-third'}) | raw}}
+                {% endif %}
+            {% endfor %}
+            {% if articles[3] is defined and articles[4] is defined and articles[5] is defined %}
+                <div class="col-third-container">
+                    {% for i in 3..5 %}
+                            {{this.render('partials/_single-article.twig', {article: articles[i], 'position': (i+1), containerClass: 'col-third'}) | raw}}
+                    {% endfor %}
+                </div>
+            {% else %}
+                {% for i in 3..5 %}
+                    {% if articles[i] is defined %}
+                        {{this.render('partials/_single-article.twig', {article: articles[i], 'position': (i+1), containerClass: 'col-third'}) | raw}}
+                    {% endif %}
+                {% endfor %}
+            {% endif %}
+            
+            {% for i in 6..(limit-1) %}
+                {% if articles[i] is defined %}
+                    {{this.render('partials/_single-article.twig', {article: articles[i], 'position': (i+1), containerClass: 'col-third'}) | raw}}
+                {% endif %}
+            {% endfor %}
+        </div>
+    {% endif %}
+          
+</div>
+
+{% if articles | length >= limit %}   
+    <div class="text-center has-margin-bottom-20">
+            <a href="javascript:void(0)" class="button loadMoreMyArticles"><i class="fa fa-arrow-down"></i> Load more</a>
+    </div>
+{% endif %}  
+
+
+{% if articles|length <= 0 %}
+{% set networkData = _Network.getNetworkData() %}
+<div class="auth">
+    <div class="auth__content">
+        <div class="tab-content">
+            <div role="tabpanel" class="tab-pane login active text-center forgot-password" id="signIn">
+                <img width="50" height="50" src="{{networkData.templatePath}}/static/images/icons/error.svg" class="error-icon" alt="Error" />
+                <div class="error-message">
+                    <h4 class="error-heading">Articles not found.</h4>
+                    <p class="content-section">To get a customised feed of content follow channels, authors or blogs in the network.</p>
+                    <a href="/" class="button red home-button" style="margin-top:20px;"><i class="fa fa-long-arrow-left"></i> Back to Home</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endif %}

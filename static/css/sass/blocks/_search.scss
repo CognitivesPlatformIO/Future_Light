@@ -1,0 +1,17 @@
+.search {
+  &__heading {
+    @include text-md($font-multiplier: 1.33, $font-weight: 600, $color: $article-body-text);
+    max-width: 1170px;
+    margin: 0 auto;
+    text-align: left;
+    margin-bottom: 60px;
+    padding-top: 60px;
+    @include desktop-lg {
+      max-width: 1580px;
+    }
+    i {
+      font-style: italic;
+      font-weight: 400;
+    }
+  }
+}

@@ -1,0 +1,101 @@
+{# Channel Twig template #}
+{{ set(this, 'title', _Blog.getBlogTitle()) }}
+
+{% set blogInfo = _Blog.getBlog() %}
+
+{% set mediaCoverImage = ''%}
+{%if blogInfo.media['cover']['id'] is defined and blogInfo.media['cover']['id'] is not empty%}
+    {% set mediaCoverImage = _Media.getMediaUrl(blogInfo.media['cover'], 1160, 600, {gravity: 'north'}) %}  
+{% endif%}
+
+{% set limit = 21 %}
+{% set articlesArr = _Blog.getBlogFeed({'limit': limit, 'offset': 0}) %}
+{% set articles = articlesArr.articles %}
+{% set network = _Network.getNetworkData() %}
+
+{{this.registerJs("HomeController.listing();")}}
+{{this.registerJs("HomeController.blog();")}}
+<div class="channel">
+    <div class="col-full">
+        <article class="card--channel channel-{{blogInfo.id}} {{ blogInfo.title | lower }}">
+            <div class="card card__no-image" {% if mediaCoverImage is not empty%} style="background-image: url('{{ mediaCoverImage }}');" {% endif %}>
+                <div class="card__overlay">
+                    <div class="card__content_wrap">
+                        <div class="card__content">
+                            <h3 class="card__headline">{{blogInfo.title}}</h3>
+                            <p class="card__text">{{Helper.shortStr(blogInfo.shortDescription, 80, false, true) | raw}}</p>
+                            <div class="card__button-wrap">
+                                <div href="javascript:void(0)" class="button button__share">
+                                    <svg width="13px" height="14px" viewBox="0 0 13 14" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                        <!-- Generator: Sketch 40.1 (33804) - http://www.bohemiancoding.com/sketch -->
+                                        <title>Shape</title>
+                                        <desc>Created with Sketch.</desc>
+                                        <defs/>
+                                        <g id="Desktop" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                            <g id="Theme-3-Article---desktop" transform="translate(-1113.000000, -793.000000)" fill="#C0C2CA">
+                                                <g id="Article" transform="translate(215.000000, 216.000000)">
+                                                    <g id="Comments-Share" transform="translate(735.000000, 568.000000)">
+                                                        <g id="Share-button" transform="translate(151.000000, 0.000000)">
+                                                            <path d="M22.0625,18.3333333 C21.5305808,18.3333333 21.0420077,18.5150222 20.650499,18.8174222 L16.6106375,16.3818889 C16.6309173,16.2572889 16.6442308,16.1302 16.6442308,16 C16.6442308,15.8694889 16.6309173,15.7427111 16.6106375,15.6179556 L20.650499,13.1824222 C21.0420077,13.4851333 21.5305808,13.6666667 22.0625,13.6666667 C23.3447721,13.6666667 24.3846154,12.6218 24.3846154,11.3333333 C24.3846154,10.0448667 23.3447721,9 22.0625,9 C20.7802279,9 19.7403846,10.0448667 19.7403846,11.3333333 C19.7403846,11.4635333 19.7536981,11.5906222 19.7742875,11.7152222 L15.734426,14.1507556 C15.3429173,13.8483556 14.8543442,13.6666667 14.3221154,13.6666667 C13.0398433,13.6666667 12,14.7115333 12,16 C12,17.2884667 13.0398433,18.3333333 14.3221154,18.3333333 C14.8543442,18.3333333 15.3429173,18.1518 15.734426,17.8490889 L19.7742875,20.2846222 C19.7536981,20.4093778 19.7403846,20.5361556 19.7403846,20.6666667 C19.7403846,21.9551333 20.7802279,23 22.0625,23 C23.3447721,23 24.3846154,21.9551333 24.3846154,20.6666667 C24.3846154,19.3782 23.3447721,18.3333333 22.0625,18.3333333 L22.0625,18.3333333 Z" id="Shape"/>
+                                                        </g>
+                                                    </g>
+                                                </g>
+                                            </g>
+                                        </g>
+                                    </svg>
+                                    Share
+                                    <div class="share-popup" style="left:0">
+                                        <div class="share-popup__title-wrap">
+                                            <span class="share-popup__title">Share:</span>
+                                            <img class="share-popup__close" src="{{network.templatePath}}/static/images/icons/close-small.svg" alt="">
+                                        </div>
+                                        <input type="text" name="share-link" value="{{blogInfo.url}}" readonly class="share-popup__share-link share-link">
+                                            <div class="share-popup__social-wrap">
+                                                <div class="social-icon_wrap--colored">
+                                                    <a href="https://plus.google.com/share?url={{blogInfo.url}}" target="_blank"><i class="fa fa-google-plus"></i></a>
+                                                    <a href="http://www.facebook.com/sharer/sharer.php?u={{blogInfo.url}}" target="_blank" ><i class="fa fa-facebook"></i></a>
+                                                    <a href="http://twitter.com/intent/tweet?status={{blogInfo.url}}" target="_blank"><i class="fa fa-twitter"></i></a>
+                                                </div>
+                                                <span class="share-popup__copy-text">Copy Link</span>
+                                            </div>
+                                    </div>
+                                </div>
+                                {% if not _User.isGuest %}
+                                    {% set isUserFollowingBlog = _User.isUserFollowing('blog', blogInfo.id) %}
+                                    {% if isUserFollowingBlog %}
+                                        <button class="button button__follow followBlog" data-status="unfollow"  data-guid="{{blogInfo.guid}}">Following</button>
+                                    {% else %}
+                                        <button  class="button button__follow followBlog" data-status="follow"  data-guid="{{blogInfo.guid}}">Follow</button>
+                                    {% endif %}
+                                {% else %}
+                                    <button  class="button button__follow forceLoginModal">Follow</button>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </article>
+    </div>
+    <!-- Article Listing Here -->
+    <div class="card-container ajaxArticles" data-existing-nonpinned-count="{{articlesArr.existingNonPinnedCount}}" data-offset="{{limit}}">
+        {% for i in 0..(articles|length-1) %}
+            {% if articles[i] is defined %}
+                {{this.render('partials/_single-article.twig', {article: articles[i], 'position': (i+1), containerClass: 'col-third'}) | raw}}
+            {% endif %}
+        {% endfor %}
+        {% set noDataCls = 'hide' %}
+        {% if articles|length == 0 %}
+            {% set noDataCls = '' %}
+        {% endif %}
+        <div class="col-full text-center has-margin-bottom-40 {{noDataCls}} NoArticlesMsg">
+            <p class="no-data text-center">No articles found.</p>  
+        </div>
+    </div>
+</div>
+<div class="text-center has-margin-bottom-40">
+    {% if articles|length >= limit %}
+        <a href="javascript:void(0)" class="button loadMoreArticles button__profile-follow"><i class="fa fa-arrow-down"></i> Load More</a>
+    {% endif %}
+</div>
+

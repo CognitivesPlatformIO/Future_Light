@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="21px" height="33px" viewBox="0 0 21 33" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 41 (35326) - http://www.bohemiancoding.com/sketch -->
+    <title>Left arrow</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Desktop---Light" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" stroke-linecap="square">
+        <g id="Theme-Marketer---Light---Product-Detail" transform="translate(-239.000000, -746.000000)" stroke="#2D2D2D" stroke-width="3">
+            <g id="Feature-product" transform="translate(214.000000, 498.000000)">
+                <g id="Arrows" transform="translate(291.500000, 264.500000) rotate(-180.000000) translate(-291.500000, -264.500000) translate(27.000000, 250.000000)">
+                    <path d="M524.664099,14.7854191 L513.93934,25.5101781 L512.87868,26.5708382 L515,28.6921586 L516.06066,27.6314984 L527.631498,16.0606602 L528.692159,15 L528.477578,14.7854191 L528.692159,14.5708382 L527.631498,13.5101781 L516.06066,1.93933983 L515,0.878679656 L512.87868,3 L513.93934,4.06066017 L524.664099,14.7854191 Z" id="Left-arrow"></path>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

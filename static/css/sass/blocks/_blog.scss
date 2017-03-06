@@ -1,0 +1,142 @@
+.blog {
+  &__header {
+    height: 300px;
+    margin-bottom: 262px;
+    @extend .container;
+    @include tablet-lg {
+      height: 471px;
+      padding: 0 15px;
+      margin-bottom: 0;
+    }
+  }
+  &__description {
+    @include text-md($color: $white, $font-weight: 600);
+    margin-bottom: 30px;
+    display: inline-block;
+    max-width: 543px;
+    @include tablet-lg {
+      font-size: 24px;
+    }
+    @include desktop-sm {
+      margin-bottom: 0;
+    }
+  }
+  &__title {
+    margin: 22px auto auto;
+    max-width: 558px;
+    position: relative;
+    @include desktop-sm {
+      margin: auto 80px auto 130px;
+    }
+  }
+  &__background {
+    background-color: #b0d1e0;
+    display: flex;
+    text-align: center;
+    padding: 15px;
+    width: 100%;
+    justify-content: center;
+    align-items: flex-start;
+    flex-direction: column;
+    position: relative;
+    height: 100%;
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+    @include tablet-lg {
+      text-align: left;
+      padding: 30px;
+      flex-direction: row;
+      align-items: center;
+      justify-content: flex-start;
+    }
+  }
+  &__overlay {
+    background-color: rgba(0,0,0, 0.34);
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 100%;
+  }
+  &__heading {
+    @include text-lg($font-multiplier-sm: 2.5);
+    text-transform: capitalize;
+    margin-bottom: 15px;
+    @include tablet-lg {
+      margin-top: 25px;
+      margin-bottom: 20px;
+    }
+  }
+  &__text {
+    margin-bottom: 10px;
+    @include tablet-lg {
+      margin-bottom: 0px;
+    }
+  }
+  &__blurb {
+    max-height:90px;
+    overflow: hidden;
+    max-width: 540px;
+    @include text-md($line-height: 1.66, $color: $white);
+    @include tablet {
+      font-size: 24px;
+      line-height: 1.41;
+      max-height:66px;
+    }
+    @include tablet-lg {
+    }
+  }
+  &__user-header {
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-end;
+    position: absolute;
+    border-radius: 4px;
+    top: 224px;
+
+    background-color: $white;
+    min-height: 260px;
+    width: calc(100% - 30px);
+    padding: 30px 10px;
+    text-align: center;
+    height:100%;
+    z-index: 1;
+    @include tablet-lg {
+      position: static;
+      width:370px;
+      max-width: 370px;
+      align-items: center;
+    }
+    @include desktop-sm {
+      width: 100%;
+    }
+    &__display {
+      position: relative;
+      bottom: 4px;
+      @include tablet-lg {
+        bottom: 0;
+      }
+    }
+    &__image {
+      width:140px;
+      height: 140px;
+      position: relative;
+      top: 8px;
+      margin-bottom: 15px;
+    }
+    &__name {
+      text-align: center;
+      @include text-sm($font-multiplier: 1.22, $color: #4A4A4A, $font-weight: 700);
+      position: relative;
+      margin-bottom: 29px;
+      text-transform: capitalize;
+    }
+    .user-header__share {
+      //margin-top: 10px;
+    }
+  }
+}
+
+
+

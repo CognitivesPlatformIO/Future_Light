@@ -1,0 +1,101 @@
+$light-color:       #fff;
+$gray-color:        #ebebeb;
+$dark-color:        #000000;
+$grey:	            #808080;
+$body-text:         #2D2D2D;
+$header-background: #fff;
+$body-color:        rgb(255, 255, 255);
+$icon-color:        #575757;
+$article-body-text: #4a4a4a;
+$highlight-color:   #D0EDF5;
+$quote-color:       #662d91;
+$hover-color:       $highlight-color;
+$follow-color:      #00a651;
+$hashtag-color:     #55acee;
+$blog-follow-color: #6b7eee;
+$slide-color:       #0076a3;
+$transparent:       rgba(0,0,0,0);
+$border-color:      #e0e0e0;
+$placeholder:       rgba(45, 45, 45, 0.8);
+$error-color:       #e73d4a;
+$success-color:     #4FE8C4;
+$warning:           #fecd50;
+$black:             #000000;
+$white:             #ffffff;
+$call-to-action-highlight:  #41a7cd;
+$landing-form-text: #3f475e;
+$event-card-background: #dae0e9;
+$account-modal-highlight:   #00C1CB;
+$account-modal-green:   #34C87B;
+$account-modal-red:     #F54E4E;
+$account-modal-blue:    #5F6D9A;
+
+
+$sections: (
+        0:    (
+                color: #fcf8b9,
+        ),
+        1: (
+                color: #eef6b3,
+        ),
+        2:        (
+                color: #e2f0d5,
+        ),
+        3:         (
+                color: #d0edf5,
+        ),
+        4:     (
+                color: #d0def5,
+        ),
+        5:    (
+                color: #d8d0f5,
+        ),
+        6: (
+                color: #fcc8e0,
+        ),
+        7:        (
+                color: #fdc3c2,
+        ),
+        8:         (
+                color: #d6c5b1,
+        ),
+        9:     (
+                color: #eedac3,
+        )
+);
+
+$social-colors: (
+        facebook:    #3b5998,
+        featured:    #15b999,
+        google-plus: #e04a32,
+        instagram:   #9f6fc0,
+        linkedin:    #123e65,
+        twitter:     #55acee,
+        youtube:     #cc181e,
+        vimeo:       #00b3ec,
+);
+
+// Dimensions
+$screen-xs:   480px;  // Mobile
+$screen-sm:   768px;  // Tablet
+$screen-smd:  992px; // Tablet large
+$screen-md:   1200px; // Desktop
+$screen-lg:   1600px; // Large desktop
+
+$container-limiter: 30px; // Used to limit larger containers to less than screen breakpoint
+
+// Font
+$heading-font-family:   "Open Sans", Helvetica, Arial, sans-serif !default;
+$base-font-family:  	"Open Sans", Helvetica, Arial, sans-serif !default;
+$text-font-family: 	"Open Sans", Helvetica, Arial, sans-serif !default;
+$raleway: 	        "Raleway", Helvetica, Arial, sans-serif !default;
+$iconfont:	  FontAwesome !default;
+$landing-page-font: "Montserrat", Helvetica, Arial, sans-serif !default;
+$chivo: "Chivo", Helvetica, Arial, sans-serif !default;
+
+
+// Font Size
+$baseFontSize: 18px; /* ($baseFontSize * 1) + 0px; */
+
+// Standard transition
+$transition: 0.5s;

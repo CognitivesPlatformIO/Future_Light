@@ -1,0 +1,38 @@
+{# Page Twig template #}
+{{ set(this, 'title', page.title | raw) }}
+{% set network = _Network.getNetworkData() %}
+{% set featuredMedia = '' %}
+{% if page.media['id'] is defined and page.media['id'] is not empty %}
+    {% set featuredMedia = _Media.getMediaUrl(page.media, page.media['width'], 400, {crop: 'fill'})  %}
+{% endif %}
+<div class="static-page__image {% if featuredMedia is not defined %} static-page__no-image {% endif %}">
+    {% if featuredMedia is defined %}
+    <div class="slides">
+        <div class="slide" data-thumbnail="{{featuredMedia}}" style='background-image: url({{ featuredMedia }})'>
+            <div class="slick__overlay">
+                <p class="slide__caption">{{ page.title }}</p>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+</div>
+
+<div class="static-page__body">
+    <div class="static-page">
+        <div class="static-page__container">
+            {{page.content | raw}}
+        </div>
+    </div>
+</div>
+
+{% set popularArticles = _Article.getPopularArticles({'limit' : 3}) %}
+{% if popularArticles|length > 0 %}
+    <h2 class="text-center additional-articles__header">You might also like ...</h2>
+    <div class="card-container">
+        {% for i in 0..popularArticles|length-1 %}
+            {% if popularArticles[i] is defined %}
+                {{this.render('partials/_single-article.twig', {article: popularArticles[i], 'position': (i+1), containerClass: 'col-third'}) | raw}}
+            {% endif %}
+        {% endfor %}
+    </div>
+{% endif%}

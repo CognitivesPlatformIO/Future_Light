@@ -1,0 +1,411 @@
+.article, .static-page {
+  &.video-play {
+    bottom: 0;
+  }
+  &__body {
+    background-color: white;
+    margin-right: 10px;
+    margin-left: 10px;
+    @include tablet {
+      margin-right: 50px;
+      margin-left:50px;
+    }
+  }
+  bottom: 82px;
+  padding: 0 20px;
+  margin: auto;
+  background-color: $white;
+  position: relative;
+  @include transition(all 0.4s ease);
+  @include tablet {
+    padding: 0 30px;
+    bottom: 94px;
+  }
+  @include desktop-sm {
+    padding:0;
+    max-width: 1030px;
+  }
+  @include desktop-lg {
+    max-width: 1420px;
+  }
+  &::before {
+    display: none;
+  }
+  &::after {
+    display: none;
+  }
+  img {
+    width: 100%;
+    margin-top: 30px;
+    margin-bottom: 60px;
+
+  }
+  h1 {
+    @include text-lg($font-weight: 700, $color: $body-text,$font-multiplier-sm:1.4);
+    margin-bottom: 28px;
+  }
+  h2 {
+    @include text-lg($font-weight: 700, $color: $body-text, $font-multiplier-sm:1.25, $font-multiplier: 2);
+    margin-bottom: 28px;
+  }
+  p {
+    @include text-md($line-height: 1.66, $color: $article-body-text);
+    margin-bottom: 28px;
+  }
+  p + ol, p + ul {
+    //margin-top: -20px;
+  }
+  ol, ul {
+    margin-bottom: 15px;
+    margin-left: 15px;
+    li {
+      @include text-md($font-multiplier: 1.11, $color: $article-body-text);
+      list-style-position: inside;
+    }
+  }
+  ul li {
+    list-style-type: disc;
+  }
+  ol li {
+    list-style-type: decimal;
+  }
+  img {
+    width: calc(100% + 20px);
+    margin-left: -10px;
+    margin-right: -10px;
+    @include desktop-sm {
+      width: 1170px;
+      margin-top: 30px;
+      margin-bottom: 60px;
+      margin-left: -200px;
+      margin-right: -200px;
+    }
+  }
+  &__image {
+    height:300px;
+    width: 100%;
+    @include tablet {
+      height:380px;
+    }
+    @include desktop-sm {
+      margin-left: auto;
+      margin-right: auto;
+      width: 1170px;
+      height: 470px;
+    }
+    @include desktop-lg {
+      width: 1570px;
+      height: 600px;
+    }
+  }
+  &__no-image {
+    background-color: #b0d1e0;
+    height: 155px;
+    width: 100%;
+    @include tablet {
+      height: 165px;
+    }
+    @include desktop-sm {
+      margin-left: auto;
+      margin-right: auto;
+      width: 1170px;
+      height: 165px;
+    }
+    @include desktop-lg {
+      width: 1570px;
+      height: 165px;
+    }
+  }
+  &__container {
+    max-width: 750px;
+    margin: 0 auto 0;
+    text-align: left;
+    @include desktop-lg {
+      max-width: 1080px;
+    }
+  }
+  &__channel_wrap {
+    text-align: left;
+    width: 100%;
+    position: relative;
+  }
+  &__channel {
+    margin-bottom: 22px;
+    display: inline-block;
+    padding-bottom: 12px;
+    position: relative;
+    @include text-sm($letter-spacing: 0.21px, $font-multiplier: 0.72, $color: $body-text);
+    &::after {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 20px;
+      height: 4px;
+      border-radius: 25%;
+      background-color: $body-text;
+    }
+  }
+  &__author {
+    @include text-sm($font-weight: 700);
+    margin-bottom: 7px;
+  }
+  &__header {
+    justify-content: space-between;
+    margin-bottom: 15px;
+    padding:25px 0px;
+    @include tablet {
+      display: flex;
+      padding: 27px 0 20px;
+    }
+    @include desktop-sm {
+      padding: 27px 32px 20px;
+    }
+    &_actions {
+      text-align: center;
+      margin-top: 18px;
+      display: flex;
+      align-items: center;
+      @include tablet {
+        margin-top: 0;
+        text-align: left;
+      }
+      a:first-child {
+        margin-right: 10px;
+      }
+    }
+  }
+  &__profile {
+    justify-content: flex-start;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    @include tablet {
+      justify-content: flex-start;
+      align-items: stretch;
+      flex-direction: row;
+    }
+  }
+  &__headline {
+    text-align: left;
+  }
+  &__date {
+    @include text-sm($font-multiplier:0.68, $color: $article-body-text);
+    text-align: left;
+    opacity: 0.7;
+    margin-bottom: 22px;
+  }
+  &__intro, &__intro p {
+    @include text-md($font-multiplier:1.34, $line-height: 1.41, $color: $article-body-text, $font-weight: 600, $letter-spacing: 0.3px);
+    margin-bottom: 30px;
+  }
+  .header_actions__share .share-popup {
+    @media (max-width: 767px) {
+      left: -204px;
+      bottom: 42px;
+    }
+  }
+}
+
+.show-comments__wrap {
+  text-align: center;
+}
+
+.comments-header {
+  //margin-bottom:10px;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+  padding-top: 50px;
+  margin-bottom: 50px !important;
+  opacity: 0.4;
+  font-weight: 400 !important;
+  text-align: center;
+}
+
+.additional-articles__header {
+  padding-top: 120px;
+  margin-bottom: 50px!important;
+  @include text-lg($color: $article-body-text);
+}
+
+.show-comments {
+  @extend .button;
+  @extend .button__comments;
+}
+
+.static-page__image {
+  .slide__caption {
+    @include text-lg($color: white, $font-multiplier-sm: 2.44);
+    text-shadow: 0 1px 0 rgba(0, 0, 0, 0.25);
+  }
+  .slick__overlay {
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.34);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+.static-page__no-image {
+  .slides {
+    margin-bottom: 0;
+  }
+  .slick__overlay {
+    background-color: transparent;
+  }
+  height: 300px;
+  @include desktop-sm {
+    height: 300px;
+  }
+  @include desktop-lg {
+    height: 300px;
+  }
+}
+
+.profile__author_wrap {
+  align-items: flex-start;
+  display: flex;
+  flex-direction: column;
+  align-self: center;
+  margin-bottom: 2px;
+  margin-left: 15px;
+  @include tablet {
+    align-items: flex-start;
+    align-self: center;
+    margin-left: 15px;
+  }
+}
+
+.heading {
+  font-weight: 300;
+  font-size: 39px;
+  color: #384362;
+  letter-spacing: -1.01px;
+  line-height: 45px;
+  margin-bottom: 45px;
+  width: 100%;
+}
+
+.DisqusCommentArea {
+  width:100%;
+  margin-top:40px;
+  display:inline-block;
+  border-top:2px solid rgba($hover-color, 0.75);
+}
+
+[class*="medium-insert-"], .article-content-section {
+  body {
+    height: auto;
+  }
+  .slide__caption {
+    bottom:0px;
+    width:100%;
+    padding:15px 25px;
+
+    > p {
+      width:100%;
+      margin-bottom:0px!important;
+      font-size:($baseFontSize * 1) - 1!important;
+    }
+  }
+
+  .video {
+    .slide__caption {
+      display:none;
+    }
+  }
+}
+
+.medium-insert-images {
+  margin-bottom: 30px;
+
+  figure {
+
+  }
+  figcaption {
+    @include text-sm($font-multiplier: 0.78, $color: $dark-color);
+    margin-top: 7px;
+    opacity: 0.6;
+  }
+  img {
+    margin: 0!important;
+    width: 100%!important;
+    // TODO: Need to push out image - cannot do because of !importants
+    // @include tablet {
+    // 		margin-left: -80px!important;
+    // 		margin-right: -80px!important;
+    // 		width: calc(100% + 160px)!important;
+    // }
+  }
+  &-left, &-right {
+    @include desktop-sm {
+      max-width: 50%;
+      //margin-bottom: 20px;
+      margin-top: 31px;
+      // img {
+      // 	@include tablet {
+      // 			width: 100%;
+      // 	}
+      // }
+    }
+
+  }
+  &-left {
+    @include desktop-sm {
+      float: left;
+      margin-right: 31px!important;
+      margin-left: -80px!important;
+    }
+
+    figure {
+
+    }
+  }
+  &-right {
+    @include desktop-sm {
+      float: right;
+      margin-left: 31px!important;
+      margin-right: -81px!important;
+    }
+
+  }
+}
+
+.medium-insert-vimeo, .medium-insert-youtube, .medium-insert-instagram {
+  position: relative;
+  padding-bottom: 56.25%;
+  height: 0;
+  overflow: hidden;
+  max-width: 100%;
+  clear: both;
+  iframe, object, embed {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+  .medium-insert-vim div {
+    max-width: none!important;
+  }
+
+}
+
+.medium-insert-instagram {
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+
+video.cloudVideo {
+  width:100%;
+}
+
+.somethings {
+
+
+  
+}
+

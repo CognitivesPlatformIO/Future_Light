@@ -1,0 +1,161 @@
+.product-list-header {
+  @extend .container;
+  display: flex;
+  flex-direction: column;
+  padding: 0px 15px 30px;
+  @include tablet {
+    padding: 0px 20px 30px;
+  }
+	&__container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    padding: 30px 0px 41px;
+    margin-bottom: 50px;
+    border-bottom: 1px solid #dbdbdb;
+    @include mobile {
+      flex-direction: row;
+    }
+  }
+  &__title {
+    @include text-lg($color: $article-body-text, $font-multiplier: 2.44, $font-multiplier-sm: 2.1);
+    margin-bottom: 30px;
+    @include mobile {
+      flex-direction: row;
+      align-items: flex-start;
+      margin-bottom: 0px;
+    }
+  }
+  &__dropdown {
+  }
+  &__category {
+    @include text-md($color: $article-body-text, $font-multiplier: 1.33, $font-weight: 600);
+  }
+}
+
+.product-list-products {
+  @extend .container;
+  display: flex;
+  flex-wrap: wrap;
+  padding: 0 5px 130px;
+  > div:nth-child(even) a {
+    background-color: #b0d1e0;
+  }
+}
+
+.product-list-banner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  background-color: #fff3cb;
+  padding: 94px 30px 70px;
+  margin: 0px 0px 50px;
+  &__content {
+    max-width: 100%;
+    margin-bottom: 38px;
+    flex-shrink: 1;
+    text-align: center;
+    @include tablet-lg {
+      max-width: 720px;
+    }
+  }
+  &__title {
+    @include text-lg($color: $body-text, $font-multiplier: 2.5, $font-multiplier-sm: 2);
+    margin-bottom: 10px;
+    line-height: 45px;
+  }
+  &__paragraph {
+    @include text-md($color: $body-text, $line-height: 1.8);
+  }
+  &__form {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 300px;
+    @include tablet {
+      flex-direction: row;
+      align-items: center;
+      justify-content: center;
+      max-width: 3000px;
+    }
+  }
+  &__input {
+    @include text-md($color: $body-text, $line-height: 1.8);
+    width: 100%;
+    max-width: 518px;
+    border-radius: 4px;
+    border: none;
+    padding: 9px 12px;
+    @include tablet {
+    }
+  }
+  &__button {
+    margin: 15px 0px 0px;
+    width: 100%;
+    max-width: 500px;
+    @include tablet {
+      margin: 0px 0px 0px 12px;
+      max-width: 180px;
+    }
+  }
+}
+
+.product-list-banner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  background-color: #fff3cb;
+  padding: 94px 30px 70px;
+  margin: 0px 0px 50px;
+  &__content {
+    max-width: 100%;
+    margin-bottom: 46px;
+    flex-shrink: 1;
+    text-align: center;
+    @include tablet-lg {
+      max-width: 720px;
+    }
+  }
+  &__title {
+    @include text-lg($color: $body-text, $font-multiplier: 2.5, $font-multiplier-sm: 2);
+    margin-bottom: 10px;
+    line-height: 45px;
+  }
+  &__paragraph {
+    @include text-md($color: $body-text, $line-height: 1.8);
+  }
+  &__form {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 300px;
+    @include tablet {
+      flex-direction: row;
+      align-items: center;
+      justify-content: center;
+      max-width: 3000px;
+    }
+  }
+  &__input {
+    @include text-md($color: $body-text, $line-height: 1.8);
+    width: 100%;
+    max-width: 518px;
+    border-radius: 4px;
+    border: none;
+    padding: 9px 12px;
+    @include tablet {
+    }
+  }
+  &__button {
+    margin: 15px 0px 0px;
+    width: 100%;
+    max-width: 500px;
+    @include tablet {
+      margin: 0px 0px 0px 12px;
+      max-width: 180px;
+    }
+  }
+}

@@ -1,0 +1,66 @@
+.card__product {
+  display: flex;
+  flex-direction: column;
+  background: #d0cac3;
+  height: 471px;
+  margin: 0px 10px 10px;
+  transition: $transition;
+  &:hover {
+    transition: $transition;
+    .card__product__image_overlay {
+      background: transparent;
+    }
+  }
+  @include tablet {
+    margin: 0px 15px 0px;
+  }
+  @include tablet-lg {
+    margin: 0px;
+  }
+  &__image {
+    width: 100%;
+    height: 250px;
+    min-height: 250px;
+    @include image-background();
+  }
+  &__image_overlay {
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.2);
+    transition: $transition;
+  }
+  &__text {
+    position: relative;
+    padding: 28px 0px 0px;
+    &:before {
+      display: block;
+      position: absolute;
+      content: '';
+      top: 0;
+      height: 4px;
+      width: 20px;
+      background: $body-text;
+      border-radius: 100px;
+    }
+  }
+  &__content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 30px 0px;
+    height: 100%;
+  }
+  &__title {
+    @include text-md($color: $body-text, $font-multiplier: 1.33, $font-weight: bold);
+    margin-bottom: 7px;
+    max-height: 102px;
+    overflow: hidden;
+  }
+  &__category {
+    @include text-md($color: $body-text);
+  }
+  &__price {
+    @include text-md($color: $body-text, $font-multiplier: 1.77, $font-weight: bold);
+    margin-left: 30px;
+  }
+}
