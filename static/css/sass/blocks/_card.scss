@@ -16,6 +16,9 @@
     .card__read-more, .card__author {
       @include text-sm($letter-spacing: 0.21px);
     }
+		.card__headline {
+			color: $body-text!important;
+		}
     .card__text {
       color: $body-text!important;
     }
