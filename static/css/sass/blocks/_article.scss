@@ -123,6 +123,14 @@
     @include desktop-lg {
       max-width: 1080px;
     }
+    a {
+        border-bottom: 1px solid $dark-color;
+        color: $dark-color;
+        &:hover, &:focus {
+            color: $call-to-action-highlight;
+            border-color: $call-to-action-highlight
+        }
+    }
   }
   &__channel_wrap {
     text-align: left;
