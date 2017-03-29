@@ -145,7 +145,7 @@ var socialModalTemplate =
             '</button>'+
             '<div class="social-modal__channel social-modal__channel--technology ">{{blog.title}}</div>'+
             '<div class="social-modal__overflow">'+
-                    '<div class="social-modal__text">“<br>{{content}}</div>'+
+                    '<a href="{{url}}" target="_blank"><div class="social-modal__text">“<br>{{content}}</div></a>'+
             '</div>'+
             '<div class="article__profile">'+
                 '<span class="profile__user_image" style="background-image: url(\'{{user.media.path}}\'); height: 56px; width: 56px; background-size: cover; display: inline-block; border-radius: 50%;" ></span>'+
