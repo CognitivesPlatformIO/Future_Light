@@ -407,6 +407,11 @@
             return false;
         }
     });
+    
+    $('.header__user').on('click', function () {
+      $('.header__user_popup-container').toggleClass('active');
+      $('#popup-overlay').addClass('active');
+    });
 
 }(jQuery));
 
