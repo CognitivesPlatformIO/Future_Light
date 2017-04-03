@@ -19,7 +19,7 @@
                 {% endif %}
             {% endfor %}
             {% if events[0] is defined and events[1] is defined and events[2] is defined %}
-               {# {% include '_elements/event-card' with {events: events} %} #}
+                {# {% include '_elements/event-card' with {events: events} %} #}
             {% elseif articles[3] is defined and articles[4] is defined and articles[5] is defined %}
                 <div class="col-third-container">
                     {% for i in 3..5 %}
@@ -32,7 +32,7 @@
             {% if articles[6] is defined %}
                 {{this.render('partials/_single-article.twig', {article: articles[6], 'position': 7, containerClass: 'col-third'}) | raw}}        
             {% endif %}
-            
+
             {% if articles[7] is defined %}
                 {{this.render('partials/_single-article.twig', {article: articles[7], 'position': 8, containerClass: 'col-third'}) | raw}}
             {% endif %}
@@ -47,7 +47,7 @@
             {% endif %}
             {% if articles[11] is defined %}
                 {{this.render('partials/_single-article.twig', {article: articles[11], 'position': 12, containerClass: 'col-full'}) | raw}}
-           {% endif %}
+            {% endif %}
             {% if articles[12] is defined %}
                 {{this.render('partials/_single-article.twig', {article: articles[12], 'position': 13, containerClass: 'col-third'}) | raw}}
             {% endif %}
@@ -61,6 +61,26 @@
                             {{this.render('partials/_single-article.twig', {article: articles[i], 'position': (i+1), containerClass: 'col-third'}) | raw}}
                         {% endif %}
                     {% endfor %}
+                </div>
+            {% endif %}
+            {% if articles[17] is defined %}
+                <div class="call-to-action-wrapper">
+                    <div class="container">
+                        <div class="row">
+                            <div class="call-to-action image-covered">
+                                <div class="overlay_layer"></div>
+                                <div class="col-md-5 col-sm-8 col-xs-12 col-centered text-center">
+                                    <div class="content-area">
+                                        <h3 class="upper">Mayank Test</h3>
+                                        <p>Mayank test1</p>
+                                        <div class="form-group">
+                                            <a class="button blue upper" href="#">test</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             {% endif %}
         {% endif %}
