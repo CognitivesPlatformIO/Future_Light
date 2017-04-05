@@ -18,9 +18,7 @@
                     {{this.render('partials/_single-article.twig', {article: articles[i], 'position': (i+1), containerClass: 'col-third'}) | raw}}
                 {% endif %}
             {% endfor %}
-            {% if events[0] is defined and events[1] is defined and events[2] is defined %}
-               {# {% include '_elements/event-card' with {events: events} %} #}
-            {% elseif articles[3] is defined and articles[4] is defined and articles[5] is defined %}
+            {% if articles[3] is defined and articles[4] is defined and articles[5] is defined %}
                 <div class="col-third-container">
                     {% for i in 3..5 %}
                         {% if articles[i] %}
@@ -32,7 +30,7 @@
             {% if articles[6] is defined %}
                 {{this.render('partials/_single-article.twig', {article: articles[6], 'position': 7, containerClass: 'col-third'}) | raw}}        
             {% endif %}
-            
+
             {% if articles[7] is defined %}
                 {{this.render('partials/_single-article.twig', {article: articles[7], 'position': 8, containerClass: 'col-third'}) | raw}}
             {% endif %}
@@ -45,9 +43,12 @@
                     {% endfor %}
                 </div>
             {% endif %}
+            
+            {{this.render('partials/_cta.twig',{keyword: 'cta_1'}) | raw}}
+            
             {% if articles[11] is defined %}
                 {{this.render('partials/_single-article.twig', {article: articles[11], 'position': 12, containerClass: 'col-full'}) | raw}}
-           {% endif %}
+            {% endif %}
             {% if articles[12] is defined %}
                 {{this.render('partials/_single-article.twig', {article: articles[12], 'position': 13, containerClass: 'col-third'}) | raw}}
             {% endif %}
@@ -63,6 +64,7 @@
                     {% endfor %}
                 </div>
             {% endif %}
+            
         {% endif %}
     </div>
 </div>

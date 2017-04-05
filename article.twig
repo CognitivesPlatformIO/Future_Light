@@ -151,7 +151,9 @@
             <!-- End Disqus Block -->
         </div>
     </div>
-</div>     
+</div>   
+            
+{{this.render('partials/_cta.twig',{keyword: 'cta_1'}) | raw}}
 <!-- Suggested Article Here -->
 {{this.render("partials/article/_popular_articles.twig", {articleId: article.id, network: network}) | raw }}
 </div>
