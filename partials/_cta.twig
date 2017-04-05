@@ -17,7 +17,7 @@
             } 
         ")}}
         <div class="call-to-action-wrapper">
-            <div class="container">
+            <div>
                 <div class="row">
                     <div class="call-to-action image-covered cta_block_{{cta.id}}" {% if ctaBackgroundImage is not empty or cta.backgroundColor is not empty %} style="{{ (ctaBackgroundImage is not empty) ? 'background-image: url('~ctaBackgroundImage~');' : ''}}{{ (cta.backgroundColor is not empty) ? 'background-color: '~cta.backgroundColor~';' : ''}}"{% endif %}>
                         <div class="overlay_layer"></div>
