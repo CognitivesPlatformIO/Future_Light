@@ -18,8 +18,6 @@ module.exports = function(grunt) {
                         'static/js/plugins/jquery.fancybox/source/jquery.fancybox.js',
                         'static/js/plugins/waypoint/lib/jquery.waypoints.min.js',
                         'static/js/jquery.simplemodal.js',
-                        'static/js/jquery.lazyload.min.js',
-                        'static/js/plugins/jquery.dotdotdot/jquery.dotdotdot.js',
                         'static/js/zoom.js',
                         'static/js/handlebars-v4.0.5.js',
                         'static/js/plugins/bootstrap-modalmanager.js',
