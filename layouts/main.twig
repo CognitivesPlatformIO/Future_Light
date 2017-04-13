@@ -43,6 +43,8 @@
         <link href='https://fonts.googleapis.com/css?family={{secFont}}' rel='stylesheet' type='text/css'>
     {% endif %}
     
+	{% set isPage = 'content_box_page' in _Page.getBodyClass() %}
+	
     <link rel="home" href="http://{{networkData.defaultDomain['domain']}}" />
     <link rel="alternate" type="application/rss+xml" title="{{_Network.getNetworkTitle()}} -  RSS Feeds" href="http://{{networkData.defaultDomain['domain']}}/feed/rss"/>
     
@@ -54,6 +56,16 @@
         <link type="text/css" rel="stylesheet" href="{{_AppHelper.getAssetsSDKPath()}}/js/media-player/mediaelementplayer.css" />
         <link rel="stylesheet" href="{{networkData.templatePath}}/static/css/index.min.css" type="text/css" media="all">
     {% endif %}
+	
+	{% if isPage %}
+		<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+		<link href="{{_AppHelper.getAssetsStaticPath()}}/dist/vendors/ContentBox/assets/minimalist-basic/content-bootstrap.css" rel="stylesheet" type="text/css" />
+
+		<link href="{{_AppHelper.getAssetsStaticPath()}}/dist/vendors/ContentBox/box/box.css" rel="stylesheet" type="text/css" />
+		<link href="{{_AppHelper.getAssetsStaticPath()}}/dist/vendors/ContentBox/contentbuilder/contentbuilder.css" rel="stylesheet" type="text/css" />
+		<link href="{{_AppHelper.getAssetsStaticPath()}}/dist/vendors/ContentBox/contentbox/contentbox.css" rel="stylesheet" type="text/css" />
+		<link rel="stylesheet" href="{{networkData.templatePath}}/static/css/contentbox-breakup.css" type="text/css" media="all" />
+	{% endif %}
     
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Raleway:400,600" rel="stylesheet">
@@ -82,7 +94,7 @@
     {% endif %}
     {{ this.head() }}
 </head>
-<body>
+<body class="{{_Page.getBodyClass()}}">
     {{ this.beginBody() }}
 
     <!-- Google Tag Manager(noscript) -->
