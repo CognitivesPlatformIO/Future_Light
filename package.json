@@ -33,7 +33,7 @@
     "grunt": "^1.0.1",
     "grunt-cache-breaker": "^2.0.1",
     "grunt-contrib-cssmin": "^2.0.0",
-    "grunt-contrib-uglify": "^2.2.0",
+    "grunt-contrib-uglify": "^2.3.0",
     "gulp-clean-css": "^2.0.13",
     "gulp-plumber": "^1.1.0"
   }
