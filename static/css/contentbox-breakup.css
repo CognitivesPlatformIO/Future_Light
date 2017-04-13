@@ -6,8 +6,8 @@
     flex-direction: column;
 }
 .static-page__body {
-    margin-top: 40px;
     margin-bottom: 50px;
+	padding: 0 15px;
 }
 .content_box_page .content_area {
     padding: 0px !important;
@@ -101,13 +101,13 @@
 /* Begin Media queries */
 
 @media screen and (max-width: 1199px) {
-    .static-page__container {
+    .static-page__body {
         padding: 0 20px;
     }
 }
 @media screen and (max-width: 767px) {
-    .static-page__container {
-        padding: 0 10px;
+    .static-page__body {
+        padding: 0 15px;
     }
 }
 
