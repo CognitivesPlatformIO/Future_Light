@@ -59,7 +59,7 @@
     min-height: inherit !important;
     padding: 0 15px;
 }
-.content_box_page .container {
+.content_box_page .static-page__body .container {
     width: 90% !important;
 }
 .content_box_page .container {
