@@ -5,12 +5,7 @@
 {% if page.media['id'] is defined and page.media['id'] is not empty %}
     {% set featuredMedia = _Media.getMediaUrl(page.media, page.media['width'], 400, {crop: 'fill'})  %}
 {% endif %}
-{% set isPage = 'content_box_page' in _Page.getBodyClass() %}
-{% set staticClass = 'static-page' %}
-{% if isPage %}
-    {% set staticClass = '' %}
-{%endif%}
-<!-- <div class="static-page__image {% if featuredMedia is not defined %} static-page__no-image {% endif %}">
+<div class="static-page__image {% if featuredMedia is not defined %} static-page__no-image {% endif %}">
     {% if featuredMedia is defined %}
     <div class="slides">
         <div class="slide" data-thumbnail="{{featuredMedia}}" style='background-image: url({{ featuredMedia }})'>
@@ -20,11 +15,11 @@
         </div>
     </div>
     {% endif %}
-</div> -->
+</div>
 
 <div class="static-page__body">
-    <div class="{{staticClass}}">
-        <div class="static-page__container is-wrapper">
+    <div class="static-page">
+        <div class="static-page__container">
             {{page.content | raw}}
         </div>
     </div>

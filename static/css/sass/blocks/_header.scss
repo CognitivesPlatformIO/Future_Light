@@ -185,7 +185,7 @@
       @include desktop-sm {
         display: inline-block;
       }
-      > li:first-child a {
+      > li:first-child > a { 
         padding-left: 0;
       }
       &--right li:last-child a {
