@@ -50,7 +50,7 @@
         }
       }
     }
-    &.article {
+    &.themesArticle {
       &__image {
         //border-top: 4px solid $article-image-color;
       }
@@ -99,10 +99,10 @@
     background-color: $color;
   }
 
-  .article--#{$name} {
+  .themesArticle--#{$name} {
     border-color: $color;
 
-    .article {
+    .themesArticle {
       &__banner {
         border-color: $color;
       }
