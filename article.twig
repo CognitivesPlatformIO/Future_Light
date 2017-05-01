@@ -146,12 +146,13 @@
         </div>
         {{this.render('partials/_cta.twig',{keyword: 'cta_2'}) | raw}}        
         <div class="article__container">
-            <!-- Disqus Plugin Render Here -->
-            {% if network.thirdPartyIntegrations['disqus'] | length > 0 and network.thirdPartyIntegrations['disqus']['shortName'] != '' %}
-                <h2 class="comments-header" id="comments">Comments</h2>
-                {{this.render("partials/article/_disqus_comments.twig", {disqus: network.thirdPartyIntegrations['disqus'], userId: article.createdBy['id'], url:article.url, articleId: article.id}) | raw}}
-            {% endif %}
-            <!-- End Disqus Block -->
+        <!-- Disqus Plugin Render Here -->
+        {% if network.thirdPartyIntegrations['disqus'] | length > 0 and network.thirdPartyIntegrations['disqus']['shortName'] != '' %}
+            <h2 class="comments-header" id="comments">Comments</h2>
+            {{this.render("partials/article/_disqus_comments.twig", {disqus: network.thirdPartyIntegrations['disqus'], userId: article.createdBy['id'], url:article.url, articleId: article.id}) | raw}}
+        {% endif %}
+        <!-- End Disqus Block -->
+    </div>
         </div>
     </div>
     <div class="container">
