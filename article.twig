@@ -133,7 +133,7 @@
             </div>
             <div class="article__container">
                 <div class="article__channel_wrap">
-                    <div class="article__channel">{{ article.label | capitalize }}</div>
+                    <div class="article__channel"><a href="{{article.blog['url']}}">{{ article.label | capitalize }}</a></div>
                 </div>
                 <h1 class="article__headline" itemprop="headline">{{article.title}}</h1>
                 <div class="article__date" itemprop="datePublished">{{article.publishedDate}}</div>
