@@ -1,18 +1,6 @@
 {# Article Twig template #}
 {{ set(this, 'title', article.title) }}
 
-{% set status = 'follow' %}
-{% set text = 'Follow' %}
-{% if not _User.isGuset() and _User.isUserFollowing('blog', article.blog['id'])%}
-    {% set status = 'unfollow' %}
-    {% set text = 'Unfollow' %}
-{% endif %}
-
-{% set isUserFollowing = 'FALSE' %}
-{% if not _User.isGuest() %}
-    {% set isUserFollowing = _User.isUserFollowing('writer', article.createdBy['id'])  %}
-{% endif %}
-
 {% set network = _Network.getNetworkData() %}
 
 {% set publisher = {height: 60, width: 600, name: network.title, logo: ''} %}
@@ -76,14 +64,28 @@
                     <a href="{{_AppHelper.buildUrl('profile/user-profile',{name: Html.encode(article.createdBy['username'])})}}" class="profile__user_image" style="background-image:url('{{_Media.getMediaUrl(article.createdBy['media'], 100, 100, {crop:'thumb', radius: 'max', gravity:'face',type:'user'})}}');height: 56px; width: 56px; background-size: cover; display: inline-block; border-radius: 50%;"></a>
                     <div class="profile__author_wrap" itemprop="author">
                         <a href="{{_AppHelper.buildUrl('profile/user-profile',{name: Html.encode(article.createdBy['username'])})}}" class="article__author" itemprop="name">By {{article.createdBy['displayName'] | capitalize}}</a>
-                        {% if _User.isGuest() %}
-                            <a href="javascript:;" class="button button-sm button__follow--reverse forceLoginModal">Follow</a>
-                        {% elseif article.createdBy['id'] != _User.getId() %}
+                        {% if  not _Network.isNetworkClosed(network)%}
                             {% set status = 'follow' %}
-                            {% if isUserFollowing %}
+                            {% set text = 'Follow' %}
+                            {% if not _User.isGuset() and _User.isUserFollowing('blog', article.blog['id'])%}
                                 {% set status = 'unfollow' %}
+                                {% set text = 'Unfollow' %}
                             {% endif %}
-                            <a href="javascript:void(0);" class="button button-sm button__follow--reverse followArticleBtn"  data-guid="{{article.createdBy['guid']}}" data-status="{{status}}">{{ (isUserFollowing == 'TRUE') ? 'Unfollow' : 'Follow' }}</a>
+
+                            {% set isUserFollowing = 'FALSE' %}
+                            {% if not _User.isGuest() %}
+                                {% set isUserFollowing = _User.isUserFollowing('writer', article.createdBy['id'])  %}
+                            {% endif %}
+
+                            {% if _User.isGuest()  %}
+                                <a href="javascript:;" class="button button-sm button__follow--reverse forceLoginModal">Follow</a>
+                            {% elseif article.createdBy['id'] != _User.getId() %}
+                                {% set status = 'follow' %}
+                                {% if isUserFollowing %}
+                                    {% set status = 'unfollow' %}
+                                {% endif %}
+                                <a href="javascript:void(0);" class="button button-sm button__follow--reverse followArticleBtn"  data-guid="{{article.createdBy['guid']}}" data-status="{{status}}">{{ (isUserFollowing == 'TRUE') ? 'Unfollow' : 'Follow' }}</a>
+                            {% endif%}
                         {% endif%}
                     </div>
                 </div>

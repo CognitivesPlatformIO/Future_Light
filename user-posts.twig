@@ -9,10 +9,10 @@
                 <div class="profile-sidebar__picture" {% if profileImage is not empty %}  style="background-image:url({{profileImage}});"{% endif %}></div>
                 <div class="profile-sidebar__name">{{Html.encode(user.firstname)}} {{Html.encode(user.lastname)}}</div>
 
-                {% if _User.isGuest() %}
+                {% if _User.isGuest() and not _Network.isNetworkClosed(networkData) %}
                     <a href="javascript:void(0);" class="button button__follow button-blue button__profile-follow forceLoginModal">Follow</a>
                 {% endif %}
-                {% if not _User.isGuest() and _User.getId() != user.id %}
+                {% if not _User.isGuest() and _User.getId() != user.id and not _Network.isNetworkClosed(networkData) %}
                     {% set isUserFollowing = _User.isUserFollowing('user', user.id)  %}
                     <a href="javascript:void(0);" class="button button__follow button-blue button__profile-follow FollowProfileUser"  data-guid="{{user.guid}}" data-status="{% if isUserFollowing == 'TRUE' %}unfollow{% else %} follow {% endif %}">{% if isUserFollowing == 'TRUE' %} Unfollow {% else %} Follow {% endif %}</a>
                 {% endif %}
