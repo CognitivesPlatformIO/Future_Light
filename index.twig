@@ -27,10 +27,13 @@
                     {% endfor %}
                 </div>
             {% endif %}
+            
+            {{this.render('partials/_cta.twig',{keyword: 'cta_1'}) | raw}}
+            
             {% if articles[6] is defined %}
                 {{this.render('partials/_single-article.twig', {article: articles[6], 'position': 7, containerClass: 'col-third'}) | raw}}        
             {% endif %}
-
+            
             {% if articles[7] is defined %}
                 {{this.render('partials/_single-article.twig', {article: articles[7], 'position': 8, containerClass: 'col-third'}) | raw}}
             {% endif %}
@@ -44,7 +47,7 @@
                 </div>
             {% endif %}
             
-            {{this.render('partials/_cta.twig',{keyword: 'cta_1'}) | raw}}
+            {{this.render('partials/_cta.twig',{keyword: 'cta_2'}) | raw}}
             
             {% if articles[11] is defined %}
                 {{this.render('partials/_single-article.twig', {article: articles[11], 'position': 12, containerClass: 'col-full'}) | raw}}

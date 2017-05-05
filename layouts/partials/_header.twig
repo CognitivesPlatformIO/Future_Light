@@ -18,12 +18,9 @@
                 </a>
             </div>
             <div class="header__heading--right">
-                {% if _User.isGuest()%}
+                {% if _User.isGuest() and not _Network.isNetworkClosed(network)%}
                     <div class="header__heading-link" id="login">
-                        <a href="javascript:void(0);" class="header__login__link header__login__link">Login</a> 
-                        {% if not _Network.isNetworkClosed(network)%}
-                            | <a href="javascript:void(0);" class="header__login__link header__login__link--signup sign-up__link">Sign Up</a>
-                        {% endif %}
+                        <a href="javascript:void(0);" class="header__login__link header__login__link">Login</a> | <a href="javascript:void(0);" class="header__login__link header__login__link--signup sign-up__link">Sign Up</a>
                     </div>
                 {% endif %}
                 <div class="header__heading-icons">

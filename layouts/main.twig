@@ -44,12 +44,14 @@
     {% endif %}
     
 	{% set isPage = 'content_box_page' in _Page.getBodyClass() %}
+        
+        {% set bodyClass = _Page.getBodyClass() | replace({('article') : 'article__page'}) %}
 	
     <link rel="home" href="http://{{networkData.defaultDomain['domain']}}" />
     <link rel="alternate" type="application/rss+xml" title="{{_Network.getNetworkTitle()}} -  RSS Feeds" href="http://{{networkData.defaultDomain['domain']}}/feed/rss"/>
     
     {% if _AppHelper.getApplicationEnv() == 'PROD'%}
-        <link rel="stylesheet" href="{{networkData.templatePath}}/static/deploy/output.min.css?rel=1492089521119" type="text/css" media="all">
+        <link rel="stylesheet" href="{{networkData.templatePath}}/static/deploy/output.min.css?rel=1493278044414" type="text/css" media="all">
     {% else %}
         <link type="text/css" rel="stylesheet" href="{{networkData.templatePath}}/static/js/plugins/jquery.fancybox/source/jquery.fancybox.css" />
         <link type="text/css" rel="stylesheet" href="{{networkData.templatePath}}/static/js/plugins/jquery.noty-2.3.8/demo/animate.css" />
@@ -63,7 +65,7 @@
 		<link href="{{_AppHelper.getAssetsStaticPath()}}/dist/vendors/ContentBox/box/box.css" rel="stylesheet" type="text/css" />
 		<link href="{{_AppHelper.getAssetsStaticPath()}}/dist/vendors/ContentBox/contentbuilder/contentbuilder.css" rel="stylesheet" type="text/css" />
 		<link href="{{_AppHelper.getAssetsStaticPath()}}/dist/vendors/ContentBox/contentbox/contentbox.css" rel="stylesheet" type="text/css" />
-		<link rel="stylesheet" href="{{networkData.templatePath}}/static/css/contentbox-breakup.css" type="text/css" media="all" />
+		<link rel="stylesheet" href="{{networkData.templatePath}}/static/css/contentbox-breakup.css?rel=1493278044414" type="text/css" media="all" />
 	{% endif %}
     
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800" rel="stylesheet">
@@ -78,6 +80,78 @@
         }
     </style>
     
+    {% set themeColors = networkData['styling']['colours'] %}
+        <style type="text/css">
+        {% if primaryFont != "" %}
+            body, .body, p {
+                font-family: "{{primaryFont | replace({'+': ' '})}}" !important;
+            }
+        {% endif %}
+        {% if secFont != "" %}
+            h1, h2, h3, h4, h5, a.header__navigation-link {
+                font-family: "{{secFont | replace({'+': ' '})}}" !important;
+            }
+        {% endif %}
+        {% if themeColors.linkColor != "" %}
+            a {
+                color: {{themeColors.linkColor}} !important;
+            }
+        {% endif %}
+        {% if themeColors.linkHoverColor != "" %}
+            a:hover {
+                color: {{themeColors.linkHoverColor}} !important;
+            }
+        {% endif %}
+        {% if themeColors.headingColor != "" %}
+            h1, h2, h3, h4, h5 {
+                color: {{themeColors.headingColor}} !important;
+            }
+        {% endif %}
+        {% if themeColors.navigationColor != "" %}
+            .header__search-text, a.header__navigation-link {
+                color: {{themeColors.navigationColor}} !important;
+            }
+        {% endif %}
+        {% if themeColors.navigationHoverColor != "" %}
+            a.header__navigation-link:hover {
+                color: {{themeColors.navigationHoverColor}} !important;
+            }
+        {% endif %}
+        {% if themeColors.navigationActiveColor != "" %}
+            a.header__navigation-link.header__navigation-selected {
+                color: {{themeColors.navigationActiveColor}} !important;
+            }
+        {% endif %}
+        {% if themeColors.navigationBgColor != "" %}
+        .header__navigation {
+            background-color: {{themeColors.navigationBgColor}} !important;
+        }
+        {% endif %}
+        {% if themeColors.headerBgColor != "" %}
+        .header__heading {
+            background-color: {{themeColors.headerBgColor}} !important;
+        }
+        {% endif %}
+        {% if themeColors.footerBgColor != "" %}
+        .footer {
+            background-color: {{themeColors.footerBgColor}} !important;
+        }
+        {% endif %}
+        {% if themeColors.pageBgColor != "" %}
+        body, .body, .body > .section {
+            background-color: {{themeColors.pageBgColor}} !important;
+        }
+        .sub_header {
+            background-color: {{themeColors.pageBgColor}} !important;
+        }
+        {% endif %}
+
+        {% set customCss = networkData['styling']['customStyleSheet'] %}
+        {% if customCss != "" %}
+                {{customCss | raw }}
+        {% endif %}
+        </style>
+        
     {% if blogData.settings['GoogleAnalyticsID'] is defined and  blogData.settings['GoogleAnalyticsID'] is not empty  %}
         <!-- Google Analytics -->
         <script>
@@ -91,9 +165,10 @@
         </script>
         <!-- End Google Analytics -->
     {% endif %}
+    <script src='https://www.google.com/recaptcha/api.js'></script>
     {{ this.head() }}
 </head>
-<body class="{{_Page.getBodyClass()}}">
+<body class="{{bodyClass}}">
     {{ this.beginBody() }}
 
     <!-- Google Tag Manager(noscript) -->
@@ -118,17 +193,14 @@
         {{ this.render('partials/_footer.twig', {network : networkData, blogData: blogData}) | raw }}
 
     </div>
-    {{this.render('partials/account-modal.twig',{network : networkData}) | raw }}
+    {{ this.render('partials/account-modal.twig',{network : networkData}) | raw }}
     {{ this.render('partials/_javascript.twig', {networkData : networkData}) | raw }}
- 
     <div class="SwappingHelper" style="display:none">
         <div style="width: 270px; height: 105px; padding: 3px; background-color: #FFF; max-width: 270px; max-height: 105px; overflow: hidden; z-index: 999 !important;">
             <img class="article-image" src="{{networkData.placeHolder100x100}}" style="width:97px; height: 97px; float: left;" />
             <p class="article-text" style="width: 165px; float: left; padding-left: 3px;color: #394659;font-size: 14px; font-family: Droid Serif,serif; line-height: 20px; margin-top:0px;">Dummy text  </p>
         </div>
     </div>
-    
-    
     {{ this.endBody() }}
 </body>
 </html>
