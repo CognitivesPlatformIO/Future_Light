@@ -1,0 +1,13 @@
+{{ set(this, 'title', "Verify Email Address") }}
+<div class="search__heading">
+    <div class="text-center">
+        {% if success == '1' %}
+            Your email address has been verified successfully.
+        {% else %}
+            Verification of email address failed.
+        {% endif %}
+    </div>
+    <div class="text-center">
+        <a href="{{_AppHelper.getLoginUrl()}}" class="button search__button">Back to Login</a>
+    </div>
+</div>
