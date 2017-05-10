@@ -47,22 +47,23 @@
                     {% set mediaUrl = "" %}
                     {% if media.isSystemVideo == 'TRUE'%}
                         {% set mediaUrl = media.video_path  %}
+                        <div class="video-player">
+                            <amp-video id="myVideo" controls width="1280" height="550" layout="responsive" src="{{mediaUrl}}"></amp-video>
+
+                            <div id="myOverlay" class="click-to-play-overlay">
+                                <div class="play-icon" role="button" tabindex="0" on="tap:myOverlay.hide, myVideo.play"></div>
+                                <amp-img class="poster-image" layout="fill" src="{{media.path}}"></amp-img>
+                            </div>
+                        </div>
                     {% else %}
                         {% if media.source == 'youtube' %}
-                            {% set mediaUrl = "https://www.youtube.com/embed/" ~ media.videoId  %}
+                            <amp-youtube data-videoid="{{media.videoId}}" layout="responsive" width="480" height="270"></amp-youtube>
                         {% else %}
-                            {% set mediaUrl = "https://player.vimeo.com/video/" ~ media.videoId  %}
+                            <amp-vimeo data-videoid="{{media.videoId}}" layout="responsive" width="500" height="281"></amp-vimeo>
                         {% endif %}
                     {% endif %}
 
-                    <div class="video-player">
-                        <amp-video id="myVideo" controls width="1280" height="550" layout="responsive" src="{{mediaUrl}}"></amp-video>
-
-                        <div id="myOverlay" class="click-to-play-overlay">
-                            <div class="play-icon" role="button" tabindex="0" on="tap:myOverlay.hide, myVideo.play"></div>
-                            <amp-img class="poster-image" layout="fill" src="{{media.path}}"></amp-img>
-                        </div>
-                    </div>
+                    
                 {% else %}
                     <figure>
                         <amp-img src="{{media.path}}" class="" layout="fill"></amp-img>

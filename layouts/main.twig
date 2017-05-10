@@ -49,6 +49,7 @@
 	
     <link rel="home" href="http://{{networkData.defaultDomain['domain']}}" />
     <link rel="alternate" type="application/rss+xml" title="{{_Network.getNetworkTitle()}} -  RSS Feeds" href="http://{{networkData.defaultDomain['domain']}}/feed/rss"/>
+    <link rel="amphtml" href="{{_AppHelper.getServerUrl(false)}}?amp=1">
     
     {% if _AppHelper.getApplicationEnv() == 'PROD'%}
         <link rel="stylesheet" href="{{networkData.templatePath}}/static/deploy/output.min.css?rel=1493278044414" type="text/css" media="all">
