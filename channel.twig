@@ -5,7 +5,7 @@
 
 {% set mediaCoverImage = ''%}
 {%if blogInfo.media['cover']['id'] is defined and blogInfo.media['cover']['id'] is not empty%}
-    {% set mediaCoverImage = _Media.getMediaUrl(blogInfo.media['cover'], 1160, 600, {gravity: 'north'}) %}  
+    {% set mediaCoverImage = _Media.getMediaUrl(blogInfo.media['cover'], 1160, 600, {crop: 'fill'}) %}  
 {% endif%}
 
 {% set limit = 21 %}
