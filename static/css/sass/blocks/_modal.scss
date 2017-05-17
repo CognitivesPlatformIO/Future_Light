@@ -120,7 +120,7 @@
 		@include text-sm($font-multiplier: 1.4, $letter-spacing: -0.3px, $line-height: 1.2);
 		margin-bottom: 28px;
 		text-align: left;
-		word-break: break-word;
+		word-break: normal;
 		word-wrap: break-word;
 		white-space: pre-wrap;
 		white-space: -moz-pre-wrap;
