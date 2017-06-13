@@ -1,0 +1,56 @@
+{% set img = false %}
+{% if event.media['image'] | length > 0%}
+	{% set img = event.media['image'][0] %}
+{% endif%}
+<div class="event-header" {% if img %}style="background-image: url('{{img}}');"{% endif %}>
+	<div class="event-header__image">
+		<div class="event-header__content">
+			<div class="event-header__content-left">
+				<div class="event-header__days">{{ event.startDate|date('d') }}-{{ event.endDate|date('d') }}</div>
+				<div class="event-header__month">{{ event.startDate|date('F') }}</div>
+				<div class="event-header__hours">{{ event.startDate|date('h') }}pm-{{ event.endDate|date('h') }}pm</div>
+			</div>
+			<div class="event-header__content-right">
+				<div class="event-header__title">{{ event.title }}</div>
+				<div class="event-header__subtitle">Presented by {{ event.createdBy['name'] }}</div>
+			</div>
+		</div>
+		<div class="event-header__panels">
+			<div class="event-header__panel">
+				<div class="event-header__panel-content">
+					<div class="event-header__icon"><i class="fa fa-map-marker"></i></div>
+					<div class="event-header__text-container">
+						<div class="event-header__text-container_title">{{ event.venue }}, {{event.address1}}, {{event.address2}}, {{event.city}}, {{event.state}}</div>
+						<div class="event-header__text-container_sub-title">{{ event.postcode }}</div>
+					</div>
+				</div>
+			</div>
+			<div class="button__share event-header__panel event-header__panel--share">
+				<div class="event-header__panel-content">
+					<div class="event-header__icon"><i class="fa fa-share-alt"></i></div>
+					<div class="event-header__text-container">
+						<div class="event-header__text-container_title">Let People Know</div>
+						<div class="event-header__text-container_sub-title">Share event</div>
+					</div>
+				</div>
+				{#% include '/_elements/share-popup.twig' %#}
+			</div>
+			<div class="event-header__panel">
+				<div class="event-header__panel-content">
+					<div class="event-header__text-container">
+						<div class="event-header__text-container_title">Keen to go?</div>
+						<div class="event-header__text-container_sub-title">Join event</div>
+					</div>
+					<a href="#" class="event-header__button button button__event-header">Join</a>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="event-content__container">
+	<div class="event-content">
+		{{ event.content|raw }}
+	</div>
+</div>
+
+
