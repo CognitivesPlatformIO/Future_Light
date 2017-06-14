@@ -221,13 +221,20 @@
     .slick-dots {
         z-index: 99;
     }
-    .event-header__image {
-        margin: 0px;
-        @include tablet-lg {
-            display: block;
-            position: absolute;
-            bottom: 0;
-            width: 100%;
+    .event-header {
+        &__image {
+            margin: 0px;
+            @include tablet-lg {
+                display: block;
+                position: absolute;
+                bottom: 0;
+                width: 100%;
+                padding: 0 70px;
+            }
+        }
+        &__content-right {
+            margin-top: 0px;
+            align-self: end;
         }
     }
 }
