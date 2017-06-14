@@ -3,9 +3,29 @@
         <div class="event-list__menu">
             <div class="event-list__menu--large">
                 <div class="event-list__menu_title">View by month</div>
-                {% set currentMonth = now|date('m') %}
-                {% for j in 1..12 %}
-                    <a class="event-list__menu_month {% if j == currentMonth %}event-list__menu_month--active{% endif %}">{{ j |date('2012-' ~ j ~ '-01') |date('F') }}</a>
+                {% set currentMonth = (month) ? month : now|date('m') %}
+                {% set currentYear  = (year) ? year : now|date('Y') %}
+                {% for j in 5..1 %}
+                    {% set i = currentMonth - j %}
+                    {% set year = currentYear %}
+                    {% if i < 1 %}
+                        {% set i = i+12 %}
+                        {% set year = currentYear - 1 %}
+                    {% endif %}
+                    {% set month = i |date(year ~ '-' ~ i ~ '-01') |date('F') %}
+                    <a href="{{ _AppHelper.buildUrl('event/index',{month :  month, year : year})}}" class="event-list__menu_month">{{ month }}</a>
+                {% endfor %}
+                    {% set month = currentMonth |date(currentYear ~ '-' ~ currentMonth ~ '-01') |date('F') %}
+                    <a href="{{ _AppHelper.buildUrl('event/index',{month :  month, year : currentYear})}}" class="event-list__menu_month event-list__menu_month--active">{{ month }}</a>
+                {% for j in 1..5 %}
+                    {% set i = currentMonth + j %}
+                    {% set year = currentYear %}
+                    {% if i > 12 %}
+                        {% set i = i - 12 %}
+                        {% set year = currentYear + 1 %}
+                    {% endif %}
+                    {% set month = i |date(year ~ '-' ~ i ~ '-01') |date('F') %}
+                    <a href="{{ _AppHelper.buildUrl('event/index',{month :  month, year : year})}}" class="event-list__menu_month">{{ month }}</a>
                 {% endfor %}
             </div>
             <div class="event-list__menu--small">
@@ -15,7 +35,7 @@
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="dropdown">
                         {% for j in 1..12 %}
-                            <li><a class="event-list__menu_month {% if j == currentMonth %}event-list__menu_month--active{% endif %}">{{ j |date('2012-' ~ j ~ '-01') |date('F') }}</a></li>
+                            <li><a class="event-list__menu_month {% if j == currentMonth %}event-list__menu_month--active{% endif %}">{{ j |date(currentYear ~ '-' ~ j ~ '-01') |date('F') }}</a></li>
                         {% endfor %}
                     </ul>
                 </div>
@@ -60,10 +80,7 @@
                             <i class="fa fa-map-marker"></i>
                             <span>
                                 {{ event.venue }}
-                                {{ event.address1 }}
-                                {{ event.address2 }}
-                                {{ event.city }}
-                                {{ event.state }}
+                                {{ event.address }}
                             </span>
                         </div>
                         <!--<div class="event-list__time">
@@ -76,5 +93,8 @@
                     <a href="{{ event.url }}" class="event-list__link">More details ></a>
                 </div>
             {% endfor %}
+            {% if events|length < 1%}
+                <p class="no-data">No Events Found</p>
+            {% endif %}
         </div>
     </div>
