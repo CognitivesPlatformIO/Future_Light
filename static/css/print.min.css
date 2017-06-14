@@ -1,1 +1,1 @@
-@media print{.article__image,.footer,.header{display:none}a[href]:after{content:none!important}.article__body{page-break-after:avoid}@page{size:A4 landscape}body{-webkit-print-color-adjust:exact!important}}
+@media print and (color){.article__image,.footer,.header{display:none!important}a[href]:after{content:none!important}.article__body{page-break-after:always}@page{size:A4 landscape}*{-webkit-print-color-adjust:exact!important;print-color-adjust:exact}.col-lg-6,.col-md-6,.col-sm-6,.col-xs-6{width:600px!important;float:left}}
