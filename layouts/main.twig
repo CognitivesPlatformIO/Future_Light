@@ -51,12 +51,13 @@
     <link rel="alternate" type="application/rss+xml" title="{{_Network.getNetworkTitle()}} -  RSS Feeds" href="http://{{networkData.defaultDomain['domain']}}/feed/rss"/>
     
     {% if _AppHelper.getApplicationEnv() == 'PROD'%}
-        <link rel="stylesheet" href="{{networkData.templatePath}}/static/deploy/output.min.css?rel=1497342157022" type="text/css" media="all">
+        <link rel="stylesheet" href="{{networkData.templatePath}}/static/deploy/output.min.css?rel=1497424184729" type="text/css" media="all">
     {% else %}
         <link type="text/css" rel="stylesheet" href="{{networkData.templatePath}}/static/js/plugins/jquery.fancybox/source/jquery.fancybox.css" />
         <link type="text/css" rel="stylesheet" href="{{networkData.templatePath}}/static/js/plugins/jquery.noty-2.3.8/demo/animate.css" />
         <link type="text/css" rel="stylesheet" href="{{_AppHelper.getAssetsSDKPath()}}/js/media-player/mediaelementplayer.css" />
         <link rel="stylesheet" href="{{networkData.templatePath}}/static/css/index.min.css" type="text/css" media="all">
+        <link rel="stylesheet" href="{{networkData.templatePath}}/static/css/print.min.css" type="text/css"> 
     {% endif %}
 	
     {% if isPage %}
@@ -64,7 +65,7 @@
             <link href="{{_AppHelper.getAssetsStaticPath()}}/dist/vendors/ContentBox/box/box.css" rel="stylesheet" type="text/css" />
             <link href="{{_AppHelper.getAssetsStaticPath()}}/dist/vendors/ContentBox/contentbuilder/contentbuilder.css" rel="stylesheet" type="text/css" />
             <link href="{{_AppHelper.getAssetsStaticPath()}}/dist/vendors/ContentBox/contentbox/contentbox.css" rel="stylesheet" type="text/css" />
-            <link rel="stylesheet" href="{{networkData.templatePath}}/static/css/contentbox-breakup.css?rel=1497342157022" type="text/css" media="all" />
+            <link rel="stylesheet" href="{{networkData.templatePath}}/static/css/contentbox-breakup.css?rel=1497424184729" type="text/css" media="all" />
     {% endif %}
     
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800" rel="stylesheet">
