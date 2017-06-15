@@ -1,100 +1,101 @@
-    <div class="event-list__title">Upcoming events</div>
-    <div class="event-list__page">
-        <div class="event-list__menu">
-            <div class="event-list__menu--large">
-                <div class="event-list__menu_title">View by month</div>
-                {% set currentMonth = (month) ? month : now|date('m') %}
-                {% set currentYear  = (year) ? year : now|date('Y') %}
-                {% for j in 5..1 %}
-                    {% set i = currentMonth - j %}
-                    {% set year = currentYear %}
-                    {% if i < 1 %}
-                        {% set i = i+12 %}
-                        {% set year = currentYear - 1 %}
-                    {% endif %}
-                    {% set month = i |date(year ~ '-' ~ i ~ '-01') |date('F') %}
-                    <a href="{{ _AppHelper.buildUrl('event/index',{month :  month, year : year})}}" class="event-list__menu_month">{{ month }}</a>
-                {% endfor %}
-                    {% set month = currentMonth |date(currentYear ~ '-' ~ currentMonth ~ '-01') |date('F') %}
-                    <a href="{{ _AppHelper.buildUrl('event/index',{month :  month, year : currentYear})}}" class="event-list__menu_month event-list__menu_month--active">{{ month }}</a>
-                {% for j in 1..5 %}
-                    {% set i = currentMonth + j %}
-                    {% set year = currentYear %}
-                    {% if i > 12 %}
-                        {% set i = i - 12 %}
-                        {% set year = currentYear + 1 %}
-                    {% endif %}
-                    {% set month = i |date(year ~ '-' ~ i ~ '-01') |date('F') %}
-                    <a href="{{ _AppHelper.buildUrl('event/index',{month :  month, year : year})}}" class="event-list__menu_month">{{ month }}</a>
-                {% endfor %}
-            </div>
-            <div class="event-list__menu--small">
-                <div class="event-list__month-select dropdown">
-                    <a href="#" class="event-list__menu_title dropdown-toggle" type="button" id="monthDropdown" data-toggle="dropdown" aria-expanded="false" aria-haspopup="true">
-                        View by month <i class="fa fa-angle-down"></i>
-                    </a>
-                    <ul class="dropdown-menu" aria-labelledby="dropdown">
-                        {% for j in 1..12 %}
-                            <li><a class="event-list__menu_month {% if j == currentMonth %}event-list__menu_month--active{% endif %}">{{ j |date(currentYear ~ '-' ~ j ~ '-01') |date('F') }}</a></li>
-                        {% endfor %}
-                    </ul>
-                </div>
-            </div>
-        </div>
-        <div class="event-list">
-            {% for event in events %}
-                <div class="event-list__card">
-                    <div class="event-list__date">
-                        {% if event.startDate|date('m') == event.endDate|date('m') %}
-                            <div class="event-list__day">
-                                {{ event.startDate|date('d') }}
-                            </div>
-                            <div class="event-list__month">
-                                {{ event.startDate|date('F') }}
-                            </div>
-                        {% else %}
-                            <div class="event-list__day">
-                                {{ event.startDate|date('d') }} - {{ event.endDate|date('d') }}
-                            </div>
-                            <div class="event-list__month">
-                                {{ event.startDate|date('M') }} - {{ event.endDate|date('M') }}
-                            </div>
-                        {% endif %}
-                    </div>
-                    <div class="event-list__blurb">
-                        <div class="event-list__event-title">{{ event.title }}</div>
-                        <div class="event-list__company">Presented by {{ event.createdBy['name'] }}</div>
-                        <div class="event-list__intro">{{ event.excerpt|striptags[:80] }}</div>
-                        <a href="{{ event.url }}" class="event-list__link">More details ></a>
-                    </div>
-                    <div class="event-list__details">
-                        <div class="event-list__date-small">
-                            <i class="fa fa-calendar"></i>
-                            <span>{{ event.startDate|date('d F Y') }}</span>
-                        </div>
-                        <div class="event-list__time">
-                            <i class="fa fa-clock-o"></i>
-                            <span>{{ event.startDate|date('h') }} - {{ event.endDate|date('h') }}</span>
-                        </div>
-                        <div class="event-list__address">
-                            <i class="fa fa-map-marker"></i>
-                            <span>
-                                {{ event.venue }}
-                                {{ event.address }}
-                            </span>
-                        </div>
-                        <!--<div class="event-list__time">
-                            <i class="fa fa-ticket"></i>
-                            <span>
-                                ${{ event.price }}
-                            </span>
-                        </div> -->
-                    </div>
-                    <a href="{{ event.url }}" class="event-list__link">More details ></a>
-                </div>
-            {% endfor %}
-            {% if events|length < 1%}
-                <p class="no-data">No Events Found</p>
-            {% endif %}
-        </div>
-    </div>
+{{ set(this, 'title', 'Events List') }}
+<div class="event-list__title">Upcoming events</div>
+<div class="event-list__page">
+	<div class="event-list__menu">
+		<div class="event-list__menu--large">
+			<div class="event-list__menu_title">View by month</div>
+			{% set currentMonth = (month) ? month : now|date('m') %}
+			{% set currentYear  = (year) ? year : now|date('Y') %}
+			{% for j in 5..1 %}
+				{% set i = currentMonth - j %}
+				{% set year = currentYear %}
+				{% if i < 1 %}
+					{% set i = i+12 %}
+					{% set year = currentYear - 1 %}
+				{% endif %}
+				{% set month = i |date(year ~ '-' ~ i ~ '-01') |date('F') %}
+				<a href="{{ _AppHelper.buildUrl('event/index',{month :  month, year : year})}}" class="event-list__menu_month">{{ month }}</a>
+			{% endfor %}
+				{% set month = currentMonth |date(currentYear ~ '-' ~ currentMonth ~ '-01') |date('F') %}
+				<a href="{{ _AppHelper.buildUrl('event/index',{month :  month, year : currentYear})}}" class="event-list__menu_month event-list__menu_month--active">{{ month }}</a>
+			{% for j in 1..5 %}
+				{% set i = currentMonth + j %}
+				{% set year = currentYear %}
+				{% if i > 12 %}
+					{% set i = i - 12 %}
+					{% set year = currentYear + 1 %}
+				{% endif %}
+				{% set month = i |date(year ~ '-' ~ i ~ '-01') |date('F') %}
+				<a href="{{ _AppHelper.buildUrl('event/index',{month :  month, year : year})}}" class="event-list__menu_month">{{ month }}</a>
+			{% endfor %}
+		</div>
+		<div class="event-list__menu--small">
+			<div class="event-list__month-select dropdown">
+				<a href="#" class="event-list__menu_title dropdown-toggle" type="button" id="monthDropdown" data-toggle="dropdown" aria-expanded="false" aria-haspopup="true">
+					View by month <i class="fa fa-angle-down"></i>
+				</a>
+				<ul class="dropdown-menu" aria-labelledby="dropdown">
+					{% for j in 1..12 %}
+						<li><a class="event-list__menu_month {% if j == currentMonth %}event-list__menu_month--active{% endif %}">{{ j |date(currentYear ~ '-' ~ j ~ '-01') |date('F') }}</a></li>
+					{% endfor %}
+				</ul>
+			</div>
+		</div>
+	</div>
+	<div class="event-list">
+		{% for event in events %}
+			<div class="event-list__card">
+				<div class="event-list__date">
+					{% if event.startDate|date('m') == event.endDate|date('m') %}
+						<div class="event-list__day">
+							{{ event.startDate|date('d') }}
+						</div>
+						<div class="event-list__month">
+							{{ event.startDate|date('F') }}
+						</div>
+					{% else %}
+						<div class="event-list__day">
+							{{ event.startDate|date('d') }} - {{ event.endDate|date('d') }}
+						</div>
+						<div class="event-list__month">
+							{{ event.startDate|date('M') }} - {{ event.endDate|date('M') }}
+						</div>
+					{% endif %}
+				</div>
+				<div class="event-list__blurb">
+					<div class="event-list__event-title">{{ event.title }}</div>
+					<div class="event-list__company">Presented by {{ event.createdBy['name'] }}</div>
+					<div class="event-list__intro">{{ event.excerpt|striptags[:80] }}</div>
+					<a href="{{ event.url }}" class="event-list__link">More details ></a>
+				</div>
+				<div class="event-list__details">
+					<div class="event-list__date-small">
+						<i class="fa fa-calendar"></i>
+						<span>{{ event.startDate|date('d F Y') }}</span>
+					</div>
+					<div class="event-list__time">
+						<i class="fa fa-clock-o"></i>
+						<span>{{ event.startDate|date('h') }} - {{ event.endDate|date('h') }}</span>
+					</div>
+					<div class="event-list__address">
+						<i class="fa fa-map-marker"></i>
+						<span>
+							{{ event.venue }}
+							{{ event.address }}
+						</span>
+					</div>
+					<!--<div class="event-list__time">
+						<i class="fa fa-ticket"></i>
+						<span>
+							${{ event.price }}
+						</span>
+					</div> -->
+				</div>
+				<a href="{{ event.url }}" class="event-list__link">More details ></a>
+			</div>
+		{% endfor %}
+		{% if events|length < 1%}
+			<p class="no-data">No Events Found</p>
+		{% endif %}
+	</div>
+</div>
