@@ -41,13 +41,25 @@
     <div class="event-header__image">
         <div class="event-header__content">
             <div class="event-header__content-left">
-                <div class="event-header__days">{{ event.startDate|date('d') }}-{{ event.endDate|date('d') }}</div>
-                <div class="event-header__month">{{ event.startDate|date('F') }}</div>
-                <div class="event-header__hours">{{ event.startDate|date('h') }}pm-{{ event.endDate|date('h') }}pm</div>
+                <div class="event-header__days">{{ event.startDate|date('d') }}
+                    {% if event.endDate != "" %}
+                    - {{ event.endDate|date('d') }}
+                    {% endif %}
+                </div>
+                <div class="event-header__month">{{ event.startDate|date('F') }}
+                {% if event.endDate != "" and  event.endDate|date('F') != event.startDate|date('F') %}
+                    - {{ event.endDate|date('F') }}
+                {% endif %}
+                </div>
+                <div class="event-header__hours">{{ event.startDate|date('h:i A') }} 
+                {% if event.endDate != "" %}
+                    - {{ event.endDate|date('h:i A') }}
+                {% endif %}
+                </div>
             </div>
             <div class="event-header__content-right">
                 <div class="event-header__title">{{ event.title }}</div>
-                <div class="event-header__subtitle">Presented by {{ event.createdBy['name'] }}</div>
+                <!--<div class="event-header__subtitle">Presented by {{ event.createdBy['name'] }}</div>-->
             </div>
         </div>
         <div class="event-header__panels">
@@ -55,7 +67,26 @@
                 <div class="event-header__panel-content">
                     <div class="event-header__icon"><i class="fa fa-map-marker"></i></div>
                     <div class="event-header__text-container">
-                        <div class="event-header__text-container_title">{{ event.venue }}, {{event.address1}}, {{event.address2}}, {{event.city}}, {{event.state}}</div>
+                        <div class="event-header__text-container_title">
+                            {% if event.venue != "" %}
+                            {{ event.venue }}, 
+                            {% endif %}
+                            {% if event.address1 != "" %}
+                            {{event.address1}}, 
+                            {% endif %}
+                            {% if event.address2 != "" %}
+                            {{event.address2}}, 
+                            {% endif %}
+                            {% if event.city != "" %}
+                            {{event.city}}, 
+                            {% endif %}
+                            {% if event.state != "" %}
+                            {{event.state}},
+                            {% endif %}
+                            {% if event.country != "" %}
+                            {{event.country}}
+                            {% endif %}
+                        </div>
                         <div class="event-header__text-container_sub-title">{{ event.postcode }}</div>
                     </div>
                 </div>

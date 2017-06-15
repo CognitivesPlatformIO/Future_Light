@@ -1,4 +1,4 @@
-{{ set(this, 'title', 'Events List') }}
+{{ set(this, 'title', 'Upcoming events') }}
 <div class="event-list__title">Upcoming events</div>
 <div class="event-list__page">
 	<div class="event-list__menu">
@@ -46,26 +46,17 @@
 		{% for event in events %}
 			<div class="event-list__card">
 				<div class="event-list__date">
-					{% if event.startDate|date('m') == event.endDate|date('m') %}
 						<div class="event-list__day">
 							{{ event.startDate|date('d') }}
 						</div>
 						<div class="event-list__month">
 							{{ event.startDate|date('F') }}
 						</div>
-					{% else %}
-						<div class="event-list__day">
-							{{ event.startDate|date('d') }} - {{ event.endDate|date('d') }}
-						</div>
-						<div class="event-list__month">
-							{{ event.startDate|date('M') }} - {{ event.endDate|date('M') }}
-						</div>
-					{% endif %}
 				</div>
 				<div class="event-list__blurb">
 					<div class="event-list__event-title">{{ event.title }}</div>
-					<div class="event-list__company">Presented by {{ event.createdBy['name'] }}</div>
-					<div class="event-list__intro">{{ event.excerpt|striptags[:80] }}</div>
+                        <!--<div class="event-list__company">Presented by {{ event.createdBy['name'] }}</div>-->
+                        <div class="event-list__intro">{{ event.excerpt|striptags[:180] }}</div>
 					<a href="{{ event.url }}" class="event-list__link">More details ></a>
 				</div>
 				<div class="event-list__details">
@@ -75,7 +66,10 @@
 					</div>
 					<div class="event-list__time">
 						<i class="fa fa-clock-o"></i>
-						<span>{{ event.startDate|date('h') }} - {{ event.endDate|date('h') }}</span>
+                            <span>{{ event.startDate|date('h:i A') }}
+                                {% if event.startDate|date('d-m-Y') == event.endDate|date('d-m-Y') %}
+                                - {{ event.endDate|date('h:i A') }}</span>
+                                {% endif %}
 					</div>
 					<div class="event-list__address">
 						<i class="fa fa-map-marker"></i>
@@ -87,7 +81,7 @@
 					<!--<div class="event-list__time">
 						<i class="fa fa-ticket"></i>
 						<span>
-							${{ event.price }}
+                                ${#{ event.price }#}
 						</span>
 					</div> -->
 				</div>
