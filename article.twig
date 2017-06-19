@@ -11,7 +11,7 @@
 {{this.registerLinkTag({rel:'amphtml', href:_AppHelper.getServerUrl(false)~'?amp=1'})}}
 
 {{this.registerJs("HomeController.article();")}}
-<div itemscope itemtype="http://schema.org/NewsArticle" itemtype="http://schema.org/NewsArticle">
+<div itemscope itemtype="http://schema.org/NewsArticle">
     <meta itemscope itemprop="mainEntityOfPage"  itemType="https://schema.org/WebPage" itemid="https://google.com/article"/>
     <meta itemprop="url" content="{{article.url}}">
     <meta itemprop="dateModified" content="{{article.updatedAt}}">
