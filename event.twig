@@ -11,7 +11,7 @@
         {% if event.media | length > 0 %}
             <div class="slides">
                 {% for media in event.media %}
-                    <div class="slide lazyload-remove" data-thumbnail="{{media.path}}" data-original="{{media.path}}" style="background-image: url({{media.path}})">
+                    <div class="slide lazyload-remove" data-thumbnail="{{media.path}}" data-original="{{media.path}}" style="background-image: url({{_Media.getMediaUrl(media,1175, 475, {'crop': 'thumb', 'gravity': 'face'} )}})">
                         {% if media.type == 'video' %} 
                             {% set mediaUrl = "" %}
                             {% if media.isSystemVideo == 'TRUE'%}
