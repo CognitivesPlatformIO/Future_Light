@@ -213,3 +213,29 @@
     }
   }
 }
+
+/* Begin customised section for event slider by Mayank */
+.event__slider {
+    position: relative;
+    display: block;
+    .slick-dots {
+        z-index: 99;
+    }
+    .event-header {
+        &__image {
+            margin: 0px;
+            @include tablet-lg {
+                display: block;
+                position: absolute;
+                bottom: 0;
+                width: 100%;
+                padding: 0 70px;
+            }
+        }
+        &__content-right {
+            margin-top: 0px;
+            align-self: end;
+        }
+    }
+}
+/* End customised section for event slider by Mayank */
