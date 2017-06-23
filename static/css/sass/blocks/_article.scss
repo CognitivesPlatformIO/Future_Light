@@ -95,7 +95,7 @@
     ol li {
         list-style-type: decimal;
     }
-    img {
+    /* img {
         width: calc(100% + 20px) !important;
         margin-left: -10px;
         margin-right: -10px;
@@ -106,6 +106,16 @@
             margin-bottom: 60px;
             margin-left: -200px;
             margin-right: -200px;
+        }
+    } */    
+    img {
+        width: 100%;
+        margin-left: 0px;
+        margin-right: 0px;
+        height: auto !important;
+        @include desktop-sm {
+            margin-top: 30px;
+            margin-bottom: 60px;
         }
     }
     figure {
@@ -118,9 +128,12 @@
             margin-bottom: 0px;
         }
         figcaption {
-            width: calc(100% + 20px);
+            /* width: calc(100% + 20px);
             margin-left: -10px;
-            margin-right: -10px;
+            margin-right: -10px; */
+            width: 100%;
+            margin-left: 0px;
+            margin-right: 0px;
             position: absolute;
             bottom: 0;
             left: 0;
@@ -128,11 +141,11 @@
             color: $white;
             z-index: 30;
             padding: 10px 20px;
-            @include desktop-sm {
+            /* @include desktop-sm {
                 width: 1170px !important;
                 margin-left: -200px;
                 margin-right: -200px;
-            } 
+            } */
         }
     } 
     &__image {
@@ -185,6 +198,11 @@
                 border-color: $call-to-action-highlight
             }
         }
+        /* img {
+            margin-left: 0px !important;
+            margin-right: 0px !important;
+            width: auto !important;
+        } */ 
     }
     &__channel_wrap {
         text-align: left;

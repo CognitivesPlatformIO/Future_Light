@@ -66,9 +66,9 @@
     width: 90% !important;
 }
 .content_box_page .container {
-    max-width: inherit !important;
+    max-width: inherit;
     -webkit-flex-direction: column;
-    flex-direction: column;
+    flex-direction: column; 
 }
 /* 
 
@@ -96,7 +96,7 @@
     font-weight: bold !important;
 }
 .content_box_page h1 span, .content_box_page h2 span, .content_box_page h3 span, .content_box_page h4 span, .content_box_page h5 span, .content_box_page h6 span, .content_box_page p span {
-    font-size: inherit !important;
+    font-size: inherit;
 }
 
 

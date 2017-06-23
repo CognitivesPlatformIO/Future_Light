@@ -27,7 +27,7 @@ browserSync.init({
 });
 
 gulp.task('styles', function(){
-  gulp.src('static/css/sass/index.scss')
+  gulp.src(['static/css/sass/index.scss'])
     .pipe(sourcemaps.init())
     .pipe(plumber())
     .pipe(
