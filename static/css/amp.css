@@ -1103,3 +1103,102 @@ amp-sidebar .close__button {
 }
 
 /* End AMP Basic requirement css */
+.event-header__image {
+    padding: 60px 15px 30px;
+}
+.event-header__content {
+    text-align: center;
+}
+.event-header__days {
+    font-size: 81px;
+    font-weight: 700;
+    line-height: 75px;
+    letter-spacing: -1.3px;
+    color: #2e2e2e;
+    margin: 0 0 20px;
+    position: relative;
+    right: 3px;
+}
+.event-header__month {
+    font-size: 18px;
+    font-weight: 600;
+    line-height: 1.44;
+    letter-spacing: .7px;
+    color: #2e2e2e;
+    text-transform: uppercase;
+    margin: 0 0 2px;
+}
+.event-header__content-right {
+    margin-top: 30px;
+}
+.event-header__title {
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 1.22;
+    letter-spacing: -0.6px;
+    color: #2e2e2e;
+    margin: 0 0 20px;
+}
+.event-header__subtitle {
+    font-size: 12.96px;
+    font-weight: 600;
+    line-height: 1.44;
+    letter-spacing: .7px;
+    color: #2e2e2e;
+    margin-left: 5px;
+}
+.event-header__panel {
+    background: #efefef;
+    margin: 10px 0;
+    padding: 30px 0px;
+    overflow: hidden
+}
+.event-header__panel-content {
+    display: table;
+    width: 60%;
+    margin: 0 auto;
+}
+.event-header__panel-content.join__event {
+    width: 90%;
+}
+.event-header__panel-content.join__event .event-header__text-container {
+    display: table-cell;
+    vertical-align: middle;
+}
+.event-header__button {
+    font-size: 12.96px;
+    font-weight: 400;
+    line-height: 1.44;
+    letter-spacing: -.0138em;
+    color: #fff;
+    background-color: #23bfca;
+    padding: 8px 27px;
+    border: none;
+    float: left;
+    display: inline-block;
+    margin-top: 8px;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    -ms-border-radius: 4px;
+    border-radius: 4px;
+
+}
+.event-header__icon {
+    display: table-cell;
+    vertical-align: middle;
+    font-size: 24px;
+    color: #2e2e2e;
+}
+.event-header__text-container {
+    color: #2e2e2e;
+    margin-left: 20px;
+}
+.event-header__text-container_title {
+    font-size: 18px;
+    font-weight: 700;
+    line-height: 1.44;
+    letter-spacing: 0;
+    color: #4a4a4a;
+    margin-bottom: 5px;
+
+}
