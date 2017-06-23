@@ -844,7 +844,6 @@ a.bg-danger:hover {
     color: #2d2d2d;
 }
 .article__channel::after, .static-page__channel::after {
-    content: "";
     position: absolute;
     bottom: 0;
     left: 0;
@@ -914,14 +913,14 @@ a.bg-danger:hover {
 .comments-header {
     border-top: 1px solid rgba(0, 0, 0, .1);
     padding-top: 50px;
-    margin-bottom: 50px!important;
+    margin-bottom: 50px;
     opacity: .4;
-    font-weight: 400!important;
+    font-weight: 400;
     text-align: center;
 }
 .additional-articles__header {
     padding-top: 120px;
-    margin-bottom: 50px!important;
+    margin-bottom: 50px;
     font-size: 25.2px;
     font-weight: 700;
     line-height: 1.22;
@@ -957,8 +956,8 @@ a.bg-danger:hover {
 }
 .article-content-section .slide__caption>p, [class*=medium-insert-] .slide__caption>p {
     width: 100%;
-    margin-bottom: 0!important;
-    font-size: 17px!important;
+    margin-bottom: 0;
+    font-size: 17px;
 }
 .article-content-section .video .slide__caption, [class*=medium-insert-] .video .slide__caption {
     display: none;
@@ -976,8 +975,8 @@ a.bg-danger:hover {
     opacity: .6;
 }
 .medium-insert-images img {
-    margin: 0!important;
-    width: 100%!important;
+    margin: 0;
+    width: 100%;
 }
 
 /* End article page css */
@@ -1046,8 +1045,8 @@ amp-sidebar .close__button {
     height: 90px;
     display: block;
     color: #ffffff;
-    margin-top: -45px !important;
-    margin-left: -45px !important;
+    margin-top: -45px ;
+    margin-left: -45px ;
     position: absolute;
     border-radius: 50%;
     text-indent: 5px;
