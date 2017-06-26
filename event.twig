@@ -105,16 +105,19 @@
                             {% set address = event.address['address1'] %}                            
                         {% endif %}
                         {% if event.address['address2'] is not empty %}
-                            {% set address = address~','~event.address['address2'] %}
+                            {% set address = address~', '~event.address['address2'] %}
                         {% endif %}
                         {% if event.address['city'] is not empty %}
-                            {% set address = address~','~event.address['city'] %}
+                            {% set address = address~', '~event.address['city'] %}
                         {% endif %}
                         {% if event.address['state'] is not empty %}
-                            {% set address = address~','~event.address['state'] %}
+                            {% set address = address~', '~event.address['state'] %}
+                        {% endif %}
+                        {% if event.address['postcode'] is not empty %}
+                            {% set address = address~' - '~event.address['postcode'] %}
                         {% endif %}
                         {% if event.address['country'] is not empty %}
-                            {% set address = address~','~event.address['country'] %}
+                            {% set address = address~', '~event.address['country'] %}
                         {% endif %}
                         <div class="event-header__text-container_title">{{ event.venue }}</div>
                         <div class="event-header__text-container_sub-title">{{address}}</div>
@@ -176,7 +179,10 @@
             {% set googleMapAddress = event.address['address1'] %}
         {% endif %}
         {% if event.address['address2'] is not empty %}
-            {% set googleMapAddress = event.address['address2'] %}
+            {% set googleMapAddress = googleMapAddress~','~event.address['address2'] %}
+        {% endif %}
+        {% if event.address['suburb'] is not empty %}
+            {% set googleMapAddress = googleMapAddress~','~event.address['suburb'] %}
         {% endif %}
         {% if event.address['city'] is not empty %}
             {% set googleMapAddress = googleMapAddress~','~event.address['city'] %}
@@ -184,20 +190,12 @@
         {% if event.address['state'] is not empty %}
             {% set googleMapAddress = googleMapAddress~','~event.address['state'] %}
         {% endif %}
-        {% if event.event.address['country'] is not empty %}
+        {% if event.address['country'] is not empty %}
             {% set googleMapAddress = googleMapAddress~','~event.address['country'] %}
         {% endif %}
 
-
         {% if googleMapAddress is not empty %}
-            <iframe
-                src="https://maps.google.com/maps?q={{googleMapAddress | url_encode}}&amp;ie=UTF8&amp;&amp;output=embed"
-                width="1580"
-                height="470"
-                frameborder="0"
-                style="border:0"
-                class="contact__map"
-                allowfullscreen>
+            <iframe src="https://maps.google.com/maps?q={{googleMapAddress | url_encode}}&ie=UTF8&output=embed" width="1580" height="470" frameborder="0" style="border:0" class="contact__map" allowfullscreen>
             </iframe>
         {% endif %}
 
