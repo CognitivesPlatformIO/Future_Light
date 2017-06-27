@@ -1,0 +1,211 @@
+{{ set(this, 'title', event.title) }}
+{{this.registerLinkTag({rel:'amphtml', href:_AppHelper.getServerUrl(false)~'?amp=1'})}}
+{% set network = _Network.getNetworkData() %}
+{% set img = false %}
+{% if event.media['image'] | length > 0%}
+    {% set img = event.media['image'][0] %}
+{% endif%}
+
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "Event",
+  "name": "{{ event.title }}",  
+  "description": "{{ event.content }}",
+  "startDate": "{{ event.startDate }}",
+  "endDate": "{{ event.endDate }}",
+  "location": {
+    "@type": "Place",
+    "name": "{{ event.venue }}",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "{{ event.address['address1'] }} {{ event.address['address2'] }}",
+      "addressLocality": "{{ event.address['city'] }}",
+      "postalCode": "{{ event.address['postcode'] }}",
+      "addressRegion": "{{ event.address['state'] }}",
+      "addressCountry": "{{ event.address['country'] }}"
+    }
+  }
+    {% if event.media | length > 0 %}
+    ,
+        {% set i = 1 %}
+        {% for media in event.media %}
+            {% if media.type != 'video' %} 
+                "image": {
+                    "@type": "ImageObject",
+                    "url": "{{media.path}}",
+                    "width": {{media.width}},
+                    "height": {{media.height}}
+                }
+                {% if event.media | length > i %}
+                ,
+                {% endif %}
+            {% endif %}
+            {% set i = i+1 %}
+        {% endfor %}
+    {% endif %}
+}
+</script>
+
+<div class="event-header event__slider" {% if img %}style="background-image: url('{{img}}');"{% endif %}>
+    <div class="article__image {% if event.media | length <= 0 %} article__no-image{% endif %}">
+        {% if event.media | length > 0 %}
+            <div class="slides">
+                {% for media in event.media %}
+                    <div class="slide lazyload-remove" data-thumbnail="{{media.path}}" data-original="{{media.path}}" style="background-image: url({{_Media.getMediaUrl(media,1175, 475, {'crop': 'thumb', 'gravity': 'face'} )}})">
+                        {% if media.type == 'video' %} 
+                            {% set mediaUrl = "" %}
+                            {% if media.isSystemVideo == 'TRUE'%}
+                                {% set mediaUrl = _Media.getMediaVideoUrl(media, 0, 0,{resource_type: 'video', format: 'mp4'})  %}
+                                <a href="javascript:void(0)" itemprop="video" class="video-overlay" data-source="{{media.source}}" data-url="{{mediaUrl}}"  data-video-id="{{media.videoId}}" data-poster="{{media.path}}" data-caption="{{event.title | raw}}">
+                                    <div class="icons">
+                                        <div class="icon"><i class="fa fa-play"></i></div>
+                                    </div> 
+                                    <iframe class="slick-video" src="{{mediaUrl}}?autoplay=0"  frameborder="0" allowfullscreen></iframe>
+                                </a>
+                            {% else %}
+                                {% if media.source == 'youtube' %}
+                                    {% set mediaUrl = "https://www.youtube.com/embed/" ~ media.videoId  %}
+                                {% else %}
+                                    {% set mediaUrl = "http://player.vimeo.com/video/" ~ media.videoId  %}
+                                {% endif %}
+                                <a href="javascript:void(0)" itemprop="video" class="video-overlay" data-source="{{media.source}}" data-url="{{mediaUrl}}"  data-video-id="{{media.videoId}}" data-poster="{{media.path}}" data-caption="{{event.title | raw}}">
+                                    <iframe class="slick-video" src="{{mediaUrl}}" frameborder="0" allowfullscreen></iframe>
+                                </a>
+                            {% endif %}
+                        {% endif %}
+                    </div>
+                {% endfor %}
+            </div>
+        {% endif %}
+    </div>
+    <div class="event-header__image">
+        <div class="event-header__content">
+            <div class="event-header__content-left">
+                {% set eventDate = event.startDate|date('d') %}
+                {% if event.startDate|date('d-m') != event.endDate|date('d-m') %}
+                    {% set eventDate = event.startDate|date('d')~'-'~event.endDate|date('d')%}                            
+                {% endif %}
+                <div class="event-header__days">{{ eventDate }}</div>
+                <div class="event-header__month">{{ event.startDate|date('F') }}</div>
+                <div class="event-header__hours">{{ event.startDate|date('h') }}pm-{{ event.endDate|date('h') }}pm</div>
+            </div>
+            <div class="event-header__content-right">
+                <div class="event-header__title">{{ event.title }}</div>
+                <div class="event-header__subtitle">Presented by {{ event.createdBy['name'] }}</div>
+            </div>
+        </div>
+        <div class="event-header__panels">
+            <div class="event-header__panel">
+                <div class="event-header__panel-content">
+                    <div class="event-header__icon"><i class="fa fa-map-marker"></i></div>
+                    <div class="event-header__text-container">
+                        {% set address = ''%}
+                        {% if event.address['address1'] is not empty %}
+                            {% set address = event.address['address1'] %}                            
+                        {% endif %}
+                        {% if event.address['address2'] is not empty %}
+                            {% set address = address~', '~event.address['address2'] %}
+                        {% endif %}
+                        {% if event.address['city'] is not empty %}
+                            {% set address = address~', '~event.address['city'] %}
+                        {% endif %}
+                        {% if event.address['state'] is not empty %}
+                            {% set address = address~', '~event.address['state'] %}
+                        {% endif %}
+                        {% if event.address['postcode'] is not empty %}
+                            {% set address = address~' - '~event.address['postcode'] %}
+                        {% endif %}
+                        {% if event.address['country'] is not empty %}
+                            {% set address = address~', '~event.address['country'] %}
+                        {% endif %}
+                        <div class="event-header__text-container_title">{{ event.venue }}</div>
+                        <div class="event-header__text-container_sub-title">{{address}}</div>
+                    </div>
+                </div>
+            </div>
+            <div class="button__share event-header__panel event-header__panel--share">
+                <div class="event-header__panel-content">
+                    <div class="event-header__icon"><i class="fa fa-share-alt"></i></div>
+                    <div class="event-header__text-container">
+                        <div class="event-header__text-container_title">Let People Know</div>
+                        <div class="event-header__text-container_sub-title">Share event</div>
+                    </div>
+                </div>
+                <div class="share-popup">
+                    <div class="share-popup__title-wrap">
+                        <span class="share-popup__title">Share:</span>
+                        <img class="share-popup__close" src="{{network.templatePath}}/static/images/icons/close-small.svg" alt="">
+                    </div>
+                    <input type="text" name="share-link" value="{{event.url}}" readonly class="share-popup__share-link share-link">
+                    <div class="share-popup__social-wrap">
+                        <div class="social-icon_wrap--colored">
+                            <a href="https://plus.google.com/share?url={{event.url}}" target="_blank"><i class="fa fa-google-plus"></i></a>
+                            <a href="http://www.facebook.com/sharer/sharer.php?u={{event.url}}" target="_blank" ><i class="fa fa-facebook"></i></a>
+                            <a href="http://twitter.com/intent/tweet?status={{event.url}}" target="_blank"><i class="fa fa-twitter"></i></a>
+                        </div>
+                        <span class="share-popup__copy-text">Copy Link</span>
+                    </div>
+                </div>
+            </div>
+            <div class="event-header__panel">
+                {% if event.websiteUrl is not empty%}
+                    <div class="event-header__panel-content">
+                        <div class="event-header__text-container">
+                            <div class="event-header__text-container_title">Keen to go?</div>
+                            <div class="event-header__text-container_sub-title">Join event</div>
+                        </div>
+                        <a href="{{event.websiteUrl}}" target="_blank" class="event-header__button button button__event-header">Join</a>
+                    </div>
+                {% else %}
+                    <div class="event-header__panel-content">
+                        <div class="event-header__icon"><i class="fa fa-list-alt"></i></div>
+                        <div class="event-header__text-container">
+                            <div class="event-header__text-container_title">{{event.contactName}}</div>
+                            <div class="event-header__text-container_sub-title">{{event.contactEmail}}</div>
+                        </div>
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+<div class="event-content__container">
+    <div class="event-content">
+        {{ event.content|raw }}
+
+        {% set googleMapAddress = ''%}
+        {% if event.address['address1'] is not empty %}
+            {% set googleMapAddress = event.address['address1'] %}
+        {% endif %}
+        {% if event.address['address2'] is not empty %}
+            {% set googleMapAddress = googleMapAddress~','~event.address['address2'] %}
+        {% endif %}
+        {% if event.address['suburb'] is not empty %}
+            {% set googleMapAddress = googleMapAddress~','~event.address['suburb'] %}
+        {% endif %}
+        {% if event.address['city'] is not empty %}
+            {% set googleMapAddress = googleMapAddress~','~event.address['city'] %}
+        {% endif %}
+        {% if event.address['state'] is not empty %}
+            {% set googleMapAddress = googleMapAddress~','~event.address['state'] %}
+        {% endif %}
+        {% if event.address['country'] is not empty %}
+            {% set googleMapAddress = googleMapAddress~','~event.address['country'] %}
+        {% endif %}
+
+        {% if googleMapAddress is not empty %}
+            <iframe src="https://maps.google.com/maps?q={{googleMapAddress | url_encode}}&ie=UTF8&output=embed" width="1580" height="470" frameborder="0" style="border:0" class="contact__map" allowfullscreen>
+            </iframe>
+        {% endif %}
+
+        <!-- Disqus Plugin Render Here -->
+        {% if network.thirdPartyIntegrations['disqus'] | length > 0 and network.thirdPartyIntegrations['disqus']['shortName'] != '' %}
+            <h2 class="comments-header" id="comments">Comments</h2>
+            {{this.render("partials/article/_disqus_comments.twig", {disqus: network.thirdPartyIntegrations['disqus'], userId: event.createdBy['user_id'], url:event.url, articleId: event.eventId}) | raw}}
+        {% endif %}
+        <!-- End Disqus Block -->
+    </div>
+</div>
+
+

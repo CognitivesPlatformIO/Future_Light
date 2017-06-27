@@ -43,7 +43,7 @@
             
    {% if googleMapAddress is not empty %}
     <iframe
-        src="https://www.google.com/maps/embed/v1/place?q={{googleMapAddress | url_encode}}&key=AIzaSyDMdDBfWf_VurIr9I-SeG_gOgajMQN9RyM"
+        src="https://maps.google.com/maps?q={{googleMapAddress | url_encode}}&amp;ie=UTF8&amp;&amp;output=embed"
         width="1580"
         height="470"
         frameborder="0"

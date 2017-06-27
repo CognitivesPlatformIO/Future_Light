@@ -163,6 +163,7 @@
   flex-direction: column;
   top: 0px;
   padding: 62px 15px 84px;
+  max-width: 769px;
   @include tablet {
     padding: 62px 20px 84px;
   }
@@ -174,15 +175,21 @@
     padding-right: 15px;
   }
   h3, p, iframe, img {
-    margin: 0px auto 56px;
+    margin: 0px auto 20px; 
   }
   h3 {
     @include text-md($color: $article-body-text, $font-multiplier: 1.33, $font-weight: 600, $letter-spacing: -0.3px, $line-height: 1.42);
-    max-width: 769px;
   }
   p {
     @include text-md($color: $article-body-text, $font-multiplier: 1, $line-height: 1.67);
-    max-width: 769px;
+    
+  }
+  ul {
+      list-style: disc;
+      li {
+          @include text-md($color: $article-body-text, $font-multiplier: 1, $line-height: 1.67);
+          margin-bottom: 20px;
+      }
   }
   img {
     width: 100%;
@@ -213,3 +220,32 @@
     }
   }
 }
+
+/* Begin customised section for event slider by Mayank */
+.event__slider {
+    position: relative;
+    display: block;
+    .slick-dots {
+        z-index: 99;
+    }
+    .event-header {
+        &__image {
+            margin: 0px;
+            @include tablet-lg {
+                display: block;
+                position: absolute;
+                bottom: 0;
+                width: 100%;
+                padding: 0 70px;
+            }
+        }
+        &__content-right {
+            margin-top: 30px;
+            @include tablet-lg {
+                margin-top: 0px;
+                align-self: end;
+            }
+        }
+    }
+}
+/* End customised section for event slider by Mayank */
