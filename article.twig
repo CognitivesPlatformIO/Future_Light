@@ -148,7 +148,7 @@
                 </div>
             </div>
         </div>
-        {{this.render('partials/_cta.twig',{keyword: 'cta_2'}) | raw}}        
+        {{this.render('partials/_cta.twig',{keyword: 'cta_1'}) | raw}}        
         <div class="article__container">
         <!-- Disqus Plugin Render Here -->
         {% if network.thirdPartyIntegrations['disqus'] | length > 0 and network.thirdPartyIntegrations['disqus']['shortName'] != '' %}
@@ -158,10 +158,7 @@
         <!-- End Disqus Block -->
     </div>
         </div>
-    </div>
-    <div class="container">
-        {{this.render('partials/_cta.twig',{keyword: 'cta_1'}) | raw}} 
-    </div>  
+    </div> 
     <!-- Suggested Article Here -->
     {{this.render("partials/article/_popular_articles.twig", {articleId: article.id, network: network}) | raw }}
 </div>

@@ -10,6 +10,12 @@
             "contentEditor" : {
                 "enabled" : true
             }
+        },
+        "cta" : {
+            "keywords" : {
+                "cta_1" : "This is the place id for the placement of Call to Action 1",
+                "cta_2" : "This is the place id for the placement of Call to Action 2"
+            }
         }
     }
 }
