@@ -418,7 +418,7 @@ div.home, div.channel, div.profile, .card-container, .profile__card-container {
     .card__content {
         max-height: 221px;
         &.noHeight {
-            max-height: inherit;
+            max-height: inherit; 
         }
     }
     @include desktop-sm {
