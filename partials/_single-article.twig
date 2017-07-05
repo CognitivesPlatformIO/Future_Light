@@ -77,7 +77,7 @@
                             <div class="card__channel-wrap">
                                 <h5 class="card__channel">{{article.label | raw}}</h5>
                             </div>
-                            <h3 class="card__headline" itemprop="headline">{{article.title | raw}}</h3>
+                            <h3 class="card__headline" itemprop="headline">{{article.title [:40] ~ '...' | raw}}</h3>
                             <p class="card__text" itemprop="description">{{Html.encode(article.excerpt) | raw}}</p>
                             <div itemprop="author" itemscope itemtype="https://schema.org/Person">
                                 <meta itemprop="name" content="{{article.createdBy['displayName']}}"/>
