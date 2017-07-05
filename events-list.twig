@@ -123,16 +123,16 @@
                         {% if event.address['address1'] is not empty%}
                             {% set address = event.address['address1'] %}
                             {% if event.address['address2'] is not empty %}
-                                {% set address = address~','~event.address['address2'] %}
+                                {% set address = address~', '~event.address['address2'] %}
                             {% endif %}
                             {% if event.address['city'] is not empty %}
-                                {% set address = address~','~event.address['city'] %}
+                                {% set address = address~', '~event.address['city'] %}
                             {% endif %}
                             {% if event.address['state'] is not empty %}
-                                {% set address = address~','~event.address['state'] %}
+                                {% set address = address~', '~event.address['state'] %}
                             {% endif %}
                             {% if event.address['country'] is not empty %}
-                                {% set address = address~','~event.address['country'] %}
+                                {% set address = address~', '~event.address['country'] %}
                             {% endif %}
                         {% endif %}
                         <span>
