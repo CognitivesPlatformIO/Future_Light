@@ -190,7 +190,7 @@
         @include desktop-lg {
             max-width: 1080px;
         }
-        a:not(.is-btn-ghost1, .is-btn-ghost2) {
+        a:not(.is-btn-ghost1, .is-btn-ghost2, .btn) { 
             border-bottom: 1px solid $dark-color;
             color: $dark-color;
             &:hover, &:focus {
