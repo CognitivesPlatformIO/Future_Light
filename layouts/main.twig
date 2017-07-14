@@ -51,8 +51,8 @@
 
     {% set bodyClass = _Page.getBodyClass() | replace({('article') : 'article__page'}) %}
 	
-    <link rel="home" href="http://{{networkData.defaultDomain['domain']}}" />
-    <link rel="alternate" type="application/rss+xml" title="{{_Network.getNetworkTitle()}} -  RSS Feeds" href="http://{{networkData.defaultDomain['domain']}}/feed/rss"/>
+    <link rel="home" href="{{_AppHelper.getBaseUrl()}}" />
+    <link rel="alternate" type="application/rss+xml" title="{{_Network.getNetworkTitle()}} -  RSS Feeds" href="{{_AppHelper.getBaseUrl()}}/feed/rss"/>
     
     {% if _AppHelper.getApplicationEnv() == 'PROD'%}
         <link rel="stylesheet" href="{{networkData.templatePath}}/static/deploy/output.min.css?rel=1499240629399" type="text/css" media="all">
