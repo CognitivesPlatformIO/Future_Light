@@ -197,6 +197,9 @@
         &-item {
             display: inline-block;
             //margin-right: -3px;
+            a {
+                white-space: normal; 
+            }
         }
         &-link {
             display: inline-block;
