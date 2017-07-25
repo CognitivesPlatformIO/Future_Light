@@ -277,6 +277,9 @@
 .dropdown-menu {
     width: 100%;
     padding: 0;
+    .header__navigation-item {
+        width: 100%;
+    }
 }
 
 #header__menu {

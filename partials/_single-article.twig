@@ -91,8 +91,14 @@
                             <div itemprop="author" itemscope itemtype="https://schema.org/Person">
                                 <meta itemprop="name" content="{{article.createdBy['displayName']}}"/>
                             </div>
-                            <div class="card__read-time_wrap">
-                                <p class="card__read-time"><span class="card__paragraph-icon"></span> {{Helper.renderReadingTime(article.readingTime) | raw}}</p>
+                            <div class="card__read-time_wrap user__info">
+                                <p class="card__read-time">
+                                    <span class="card__paragraph-icon"></span>
+                                <div class="user__info-details">
+                                    <span class="title">{{article.blog['owner']['name']}}</span>
+                                    <span class="time">{{article.publishDate|date("M Y")}}<i>{{Helper.renderReadingTime(article.readingTime) | raw}}</i></span>
+                                </div>
+                                </p>
                             </div>
                         </div>
                         {% if article.hasMedia == 'TRUE' %}
