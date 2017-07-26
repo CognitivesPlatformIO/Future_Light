@@ -32,26 +32,6 @@
     }
     &__channel-wrap {
         margin-bottom: auto;
-        position: absolute;
-        top: 70px;
-        left: 0;
-        .card__channel {
-            margin-bottom: 0px;
-            padding: 0 10px;
-            color: #ffffff;
-            &:after {
-                display: none;
-            }
-        }
-        &.publishing {
-            background: #4a90e2;
-        }
-        &.advertising {
-            background: #e24a7c;
-        }
-        &.strategy {
-            background: #f5a623;
-        }
     }
     &__content_wrap {
         display: flex;
@@ -61,7 +41,6 @@
         //background-color: rgba(0, 0, 0, 0.34);
         position: relative;
         @include transition(all 0.4s ease);
-        border: 1px solid #dce0e4;
     }
     &:hover {
         .card__content_wrap {
@@ -148,7 +127,7 @@
         max-width: 680px;
         min-width: 0px;
         flex: 0 1 auto;
-        margin-bottom: 11px;
+        margin-bottom: 30px;
         @include text-md($color: $white, $font-weight: 600);
         display: none;
     }
@@ -237,7 +216,7 @@ div.home, div.channel, div.profile, .card-container, .profile__card-container {
             background-image: none!important;
             &__text {
                 color: $body-text;
-                max-height: 55px;
+                max-height: 62px;
                 overflow: hidden;
                 // Padding bottom is here to stop text being cut off
                 padding-bottom: 2px;
@@ -636,104 +615,6 @@ div.home, div.channel, div.profile, .card-container, .profile__card-container {
                 margin-right: 10px;
                 background-color: white;
                 border: 1px solid #C6D5B8;
-            }
-        }
-    }
-}
-
-/* Voice cark breakup */
-.col-third, .col-half {
-    .card {
-        &__content {
-            position: relative;
-            justify-content: flex-end;
-        }
-        &__channel-wrap {
-            top: -40px;
-        }
-    }
-    .card__text {
-        display: block;
-    }
-}
-.col-third-container {
-    .col-third {
-        .card {
-             background-image: none !important;
-            &__image {
-                display: block !important;
-                width: 150px;
-                height: 100%;
-                left: 0;
-                position: absolute;
-                top: 0;
-                z-index: 1;
-            }
-            &__content {
-                width: calc(100% - 150px);
-                margin-left: 150px;
-                position: static;
-                &_wrap {
-                    background: $white;
-                }
-                .card__text {
-                    color: #2d2d2d; 
-                }
-            }
-            &__channel-wrap {
-                top: auto;
-                bottom: 20px;
-                z-index: 10;
-                .card__channel {
-                    padding: 0 10px;
-                }
-            }
-            &:hover, &:focus {
-                background-image: none !important;
-                
-            }
-            &.card__no-image {
-                .card {
-                    &__image {
-                        display: none !important;
-                    }
-                    &__content {
-                        width: 100%;
-                        margin-left: 0px;
-                    }
-                    &__channel-wrap {
-                        top: 20px;
-                        bottom: auto;
-                    }
-                }
-            }
-        }
-    }
-}
-.card__read-time_wrap {
-    &.user__info {
-        display: flex;
-        .card__read-time {
-            border: none !important;
-            span {
-                background-image: url('../images/icons/profile.svg');
-                height: 30px;
-                width: 30px;
-            }
-        }
-        .user__info-details {
-            justify-content: center;
-            display: flex;
-            flex-direction: column;
-            .title {
-                display: block;
-            }
-            .time {
-                @include text-sm($font-weight: 400, $color: #a4a4a4);
-                i {
-                    font-style: normal;
-                    margin-left: 8px;
-                }
             }
         }
     }

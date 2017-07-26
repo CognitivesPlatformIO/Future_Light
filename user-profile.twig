@@ -18,22 +18,46 @@
                     <a href="javascript:void(0);" class="button button__follow button-blue button__profile-follow FollowProfileUser"  data-guid="{{userDetails.guid}}" data-status="{% if isUserFollowing == 'TRUE' %}unfollow{% else %} follow {% endif %}">{% if isUserFollowing == 'TRUE' %} Unfollow {% else %} Follow {% endif %}</a>
                 {% endif %}
                 <span class="profile-sidebar__description">{{Html.decode(userDetails.bio) | raw }}</span>
-                
                 <!--<div class="social-links">
                     <a href="#"><i class="fa fa-twitter"></i></a>
                     <a href="#"><i class="fa fa-youtube-play"></i></a>
                     <a href="#"><i class="fa fa-google-plus"></i></a>
                     <a href="#"><i class="fa fa-facebook-f"></i></a>
                 </div>-->
+            </div>
+        </div>
+        <div class="profile__activity">
+            {% if userOwnerBlogs is not empty and userOwnerBlogs | length > 0 %}
                 <div class="profile__title">Contributes to:</div>
                 <div class="profile__card-container">
                     {{this.render('partials/user-profile/_user_blogs.twig', {userOwnerBlogs : userOwnerBlogs}) | raw }}
                 </div>
-            </div>
-        </div>
-        <div class="profile__activity">            
+            {% endif %}
+            
+            {% if myBlogs is not empty and myBlogs | length > 0 %}
+                <div class="profile__title">Following Blogs:</div>
+                <div class="profile__card-container">
+                    {{this.render('partials/user-profile/_user_following_blogs.twig', {myBlogs : myBlogs, network: network}) | raw }}
+                </div>
+            {% endif %}
+
+            {% if myFollowings is not empty and myFollowings | length > 0 %}
+                <div class="profile__title">Follows:</div>
+                <div class="profile__card-container">
+                    {{this.render('partials/user-profile/_user_following_writer.twig', {myFollowings : myFollowings, network: network}) | raw }}
+                </div>
+            {% endif %}
+            
+            {% if myFollowers is not empty and myFollowers | length > 0 %}
+                <div class="profile__title">Followers:</div>
+                <div class="profile__card-container">
+                    {{this.render('partials/user-profile/_user_followed_by.twig', {myFollowers : myFollowers, network: network}) | raw }}
+                    {{this.render('partials/user-profile/_user_followed_by.twig', {myFollowers : myFollowers, network: network}) | raw }}
+                </div>
+            {% endif %}
+            
             {% if myArticles is not empty and myArticles | length > 0%}
-                <div class="profile__title">The Latest from {{Html.encode(userDetails.firstname)}} {{Html.encode(userDetails.lastname)}}:</div>
+                <div class="profile__title">Articles by {{Html.encode(userDetails.firstname)}} {{Html.encode(userDetails.lastname)}}:</div>
                 <div class="profile__card-container">
                     {{this.render('partials/user-profile/_recent_articles.twig', {myArticles : myArticles}) | raw }}
                 </div>

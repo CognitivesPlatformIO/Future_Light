@@ -242,7 +242,6 @@ HomeController.Listing = (function ($) {
                             data.articles[i]['pinTitle'] = (data.articles[i].isPinned == 1) ? 'Un-Pin Article' : 'Pin Article';
                             data.articles[i]['pinText'] = (data.articles[i].isPinned == 1) ? 'UN-PIN' : 'PIN';
                             data.articles[i]['readingTime']= renderReadingTime(data.articles[i].readingTime);
-                            data.articles[i]['publishedDate']= dateFormat(data.articles[i].metaPublishDate);
                             
                             data.articles[i]['blogClass']= '';
                             if(data.articles[i].blog['title'] !== null) {
@@ -251,9 +250,6 @@ HomeController.Listing = (function ($) {
                             
                             var ImageUrl = $.image({media:data.articles[i]['featuredMedia'], mediaOptions:{width: 570 ,height:470, crop: 'limit'} });
                             data.articles[i]['imageUrl'] = ImageUrl;
-							
-							var userImageUrl = $.image({media:data.articles[i]['createdBy']['media'], mediaOptions:{width: 50 ,height:50, crop: 'limit'} });
-                            data.articles[i]['userImageUrl'] = userImageUrl;
 
                             Handlebars.registerHelper('trimString', function(passedString,len) {
                                 var theString = passedString.substring( 0, len );
@@ -263,8 +259,6 @@ HomeController.Listing = (function ($) {
                                 }
                                 return new Handlebars.SafeString(theString)
                             });
-							
-							
                           
                             var articleId = parseInt(data.articles[i].articleId);
                             var articleTemplate;
@@ -282,7 +276,6 @@ HomeController.Listing = (function ($) {
                             } else {
                                 articleTemplate = Handlebars.compile(systemCardTemplate);
                             }
-							console.log(data.articles[i]);
                             var article = articleTemplate(data.articles[i]);
                             $('.ajaxArticles').append(article);
                         }
@@ -319,13 +312,6 @@ HomeController.Listing = (function ($) {
                 return hr + ' hour read';
             }
         };
-		
-		var dateFormat = function(date) {
-			var monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "June", "July", "Aug", "Sept", "Oct", "Nov", "Dec"];  
-			var d = new Date(date);			
-			var retDate = monthNames[d.getMonth()]+' '+ d.getFullYear();
-			return retDate;
-		};
         
         var bindSocialShareButton = function () {
             $(".card__social-share").on("click", function (e) {

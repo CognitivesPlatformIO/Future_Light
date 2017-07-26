@@ -423,28 +423,7 @@
       $('.header__user_popup-container').toggleClass('active');
       $('#popup-overlay').addClass('active');
     });
-    
-    var searchField = $('.header__search-text');
-    
-    if($(searchField).val().trim() != ''){
-        $(searchField).addClass('active');
-    } 
-            
-    $('.header__search-btn').on('click', function() {
-        $(this).prev('input').toggleClass('active');       
-    });
-    
-    $('body').on('click', function() {
-        if(searchField.hasClass('active')) {
-            if($(searchField).val().trim() == ''){
-                $(searchField).removeClass('active');
-            }           
-       };
-    });
-    
-    $(".header__search").click(function(e) {
-        e.stopPropagation();
-   });
+
 }(jQuery));
 
 

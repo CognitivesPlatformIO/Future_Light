@@ -360,12 +360,6 @@
         align-self: center;
         margin-left: 15px;
     }
-    .user__details {
-        @include text-sm($font-weight: 400);
-        span {
-            margin-left: 8px;
-        }
-    }
 }
 
 .heading {

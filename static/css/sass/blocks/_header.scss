@@ -239,12 +239,8 @@
             padding: 4px 0 7px 19px;
             background-color: transparent;
             border: 1px solid #2D2D2D;
-            visibility: hidden;
             &:focus {
                 //background-color: #FBE1AC;
-            }
-            &.active {
-                visibility: visible;
             }
         }
         &-btn {
@@ -281,9 +277,6 @@
 .dropdown-menu {
     width: 100%;
     padding: 0;
-    .header__navigation-item {
-        width: 100%;
-    }
 }
 
 #header__menu {

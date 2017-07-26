@@ -7,7 +7,7 @@
             {% if network.logoMedia | length > 0 %}
                 {% set logo = _Media.getMediaUrl(network.logoMedia, 200, 45, {'crop': 'limit'} )%}
             {% endif %}
-            <!-- <a href="{{logoUrl}}" class="footer__logo"><img src="{{logo}}"/></a> -->
+            <a href="{{logoUrl}}" class="footer__logo"><img src="{{logo}}"/></a>
             <div class="header__navigation-row">
                 <ul class="header__navigation-list footer__navigation-list">
                    {% set menuItems = blogData.blogHeaderMenu %}
@@ -73,7 +73,6 @@
         </div>
         <div class="footer__additional-links">
             <!-- Social Links -->
-            <h3>Connect with us</h3>
             <div class="social-links">
                 {% if blogInfo.social['twitter'] is not empty %}
                     <a href="{{blogInfo.social['twitter']}}" target="_blank"><i class="fa fa-twitter"></i></a>
@@ -98,7 +97,7 @@
                 {% endif %}
             </div>
             <!-- end Social Links -->
-            {#{% set menuItems = blogData.blogFooterMenu %}
+            {% set menuItems = blogData.blogFooterMenu %}
             {% for i in 0..4 %}
                 {% if menuItems[i] is defined %}
                     {% set menuItem = menuItems[i] %}
@@ -106,7 +105,7 @@
                         {{ ((menuItem.label is empty) ? ((menuItem.pageTitle is empty)? menuItem.blogTitle : menuItem.pageTitle) : menuItem.label )}}
                     </a>
                 {% endif %}
-            {% endfor %}#}
+            {% endfor %}
         </div>
     </div>
     <div class="footer__container">
