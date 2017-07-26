@@ -1,5 +1,5 @@
 .footer {
-    padding: 70px 0px 80px;
+    padding: 30px 0px 10px;
     &__container {
         @extend .container;
         display: flex;
@@ -17,6 +17,12 @@
         align-self: flex-start;
         @include desktop {
             display: block;
+        }
+        .header__navigation-item {
+            .dropdown-menu {
+                top: auto;
+                bottom: 100%;
+            }
         }
     }
     &__logo {
@@ -50,9 +56,9 @@
             }
         }
         .social-links {
-            margin-bottom: 30px;
+            margin: 15px 0;
             .fa {
-                background-color: $body-text;
+                //background-color: $body-text;
             }
         }
     }

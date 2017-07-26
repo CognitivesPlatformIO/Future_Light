@@ -74,7 +74,7 @@
                             </div>
                         {% endif %}
                         <div class="card__content noHeight">
-                            <div class="card__channel-wrap">
+                            <div class="card__channel-wrap publishing">
                                 <h5 class="card__channel">{{article.label | raw}}</h5>
                             </div>
                             {% set articleTitle = article.title | raw %}
@@ -93,7 +93,7 @@
                             </div>
                             <div class="card__read-time_wrap user__info">
                                 <p class="card__read-time">
-                                    <span class="card__paragraph-icon"></span>
+                                    <span class="card__paragraph-icon" style="background-image:url('{{_Media.getMediaUrl(article.createdBy['media'], 100, 100, {crop:'thumb', radius: 'max', gravity:'face',type:'user'})}}');height: 30px; width: 30px; background-size: cover; display: inline-block; border-radius: 50%;"></span>
                                 <div class="user__info-details">
                                     <span class="title">{{article.blog['owner']['name']}}</span>
                                     <span class="time">{{article.publishDate|date("M Y")}}<i>{{Helper.renderReadingTime(article.readingTime) | raw}}</i></span>
@@ -147,7 +147,7 @@
                             </div>
                         {% endif %}
                         <div class="card__content">
-                            <div class="card__channel-wrap">
+                            <div class="card__channel-wrap strategy">
                                 <h5 class="card__channel">{{social.blog['title'] | raw }}</h5>
                             </div>
                             {% if social.media['type'] == 'video' and social.media['videoUrl'] is not empty %}

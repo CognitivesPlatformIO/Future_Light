@@ -239,8 +239,12 @@
             padding: 4px 0 7px 19px;
             background-color: transparent;
             border: 1px solid #2D2D2D;
+            visibility: hidden;
             &:focus {
                 //background-color: #FBE1AC;
+            }
+            &.active {
+                visibility: visible;
             }
         }
         &-btn {

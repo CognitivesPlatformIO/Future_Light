@@ -17,7 +17,7 @@ body {
         display: inline-block;
         height: 30px;
         border-radius: 100px;
-        background-color: #4A4A4A;
+        //background-color: #4A4A4A;
         padding-top: 9px;
         margin: auto auto auto 5px;
         text-align:center;
@@ -167,4 +167,14 @@ body {
 }
 .image-covered {
     @include image_background();
-} 
+}
+.has-margin-left-15 {
+    margin-left: 15px;
+}
+.has-margin-left-5 {
+    margin-left: 5px;
+}
+body.profile {
+    width: 100%;
+    padding: 0px !important;
+}

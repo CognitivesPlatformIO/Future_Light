@@ -642,7 +642,7 @@ div.home, div.channel, div.profile, .card-container, .profile__card-container {
 }
 
 /* Voice cark breakup */
-.col-third {
+.col-third, .col-half {
     .card {
         &__content {
             position: relative;

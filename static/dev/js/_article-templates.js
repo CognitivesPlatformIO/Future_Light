@@ -46,7 +46,7 @@ var systemCardTemplate =
                             '</div>'+
                         '{{/if}}'+
                         '<div class="card__content">'+
-                            '<div class="card__channel-wrap">'+
+                            '<div class="card__channel-wrap publishing">'+
                                 '<h5 class="card__channel">{{label}}</h5>'+
                             '</div>'+
                             '<h3 itemprop="headline"  class="card__headline">{{title}}</h3>'+
@@ -54,8 +54,14 @@ var systemCardTemplate =
                             '<div itemprop="author" itemscope itemtype="https://schema.org/Person">'+
                                  '<meta itemprop="name" content="{{createdBy.displayName}}"/>'+
                             '</div>'+
-                            '<div class="card__read-time_wrap">'+
-                                '<p class="card__read-time"><span class="card__paragraph-icon"></span> {{readingTime}}</p>'+
+                            '<div class="card__read-time_wrap user__info">'+
+                                '<p class="card__read-time">'+
+                                    '<span class="card__paragraph-icon" style="background-image: url(\'{{userImageUrl}}\');height: 30px; width: 30px; background-size: cover; display: inline-block; border-radius: 50%;"></span>'+
+                                    '<div class="user__info-details">'+
+                                        '<span class="title">{{createdBy.displayName}}</span>'+
+                                        '<span class="time">{{publishedDate}}<i>{{readingTime}}</i></span>'+
+                                    '</div>'+
+                                '</p>'+
                             '</div>'+
                         '</div>'+
                         '{{#if hasMedia}}'+
@@ -90,7 +96,7 @@ var socialCardTemplate =
                             '</div>'+	
                          '{{/if}}'+
                         '<div class="card__content">'+
-                            '<div class="card__channel-wrap">'+
+                            '<div class="card__channel-wrap strategy">'+
                                 '<h5 class="card__channel">{{social.blog.title}}</h5>'+
                             '</div>'+
                              '{{#if hasMediaVideo }}'+
