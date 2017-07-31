@@ -190,7 +190,7 @@
         @include desktop-lg {
             max-width: 1080px;
         }
-        a {
+        a:not(.is-btn-ghost1, .is-btn-ghost2, .btn) { 
             border-bottom: 1px solid $dark-color;
             color: $dark-color;
             &:hover, &:focus {
@@ -215,6 +215,7 @@
         padding-bottom: 12px;
         position: relative;
         @include text-sm($letter-spacing: 0.21px, $font-multiplier: 0.72, $color: $body-text);
+        text-transform: capitalize;
         &::after {
             content: "";
             position: absolute;
