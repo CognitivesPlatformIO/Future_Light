@@ -6,7 +6,7 @@
 {% set articlesArr = _Blog.getBlogFeed({'limit': limit, 'offset': 0}) %}
 {% set articles = articlesArr.articles %}
 
-{{this.registerJs("script.onload = script.onreadystatechange = function(e){ HomeController.listing();}", constant('\\yii\\web\\View::POS_END'))}}
+{{this.registerJs("HomeController.listing();")}}
 <div class="layout-container">
     <div class="home ajaxArticles" data-existing-nonpinned-count="{{articlesArr.existingNonPinnedCount}}"  data-offset="{{limit}}">
         {% if articles|length > 0 %}
