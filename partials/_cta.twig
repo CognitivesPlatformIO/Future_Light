@@ -1,6 +1,6 @@
 {% if keyword is defined and keyword is not empty %}
     {% set cta = _CallToAction.getKeywordBasedCTA(keyword)%}
-    {% if cta is defined and cta is not empty %}
+    {% if cta is defined and cta|length > 0 %}
         {% set ctaBackgroundImage = ''%}
         {% if(cta.media['id'] is defined and cta.media['id'] is not empty) %}
             {% set ctaBackgroundImage = _Media.getMediaUrl(cta.media,0,0,{'crop': 'fill'}) %}
