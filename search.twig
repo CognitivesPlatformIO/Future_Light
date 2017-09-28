@@ -5,8 +5,9 @@
 
 {% set limit = 20 %}
 {% set articles = _Search.searchArticles({'limit': limit, 'offset': 0, 'search': search}) %}
+{% set articlesCount = _Search.searchArticles({'countOnly': 1, 'search': search}) %}
 {% set blog = _Blog.getBlog() %}
-<div class="search__heading">{{ articles|length }} Search results for: <i>{{search}}</i></div>
+<div class="search__heading">{{ articlesCount }} Search results for: <i>{{search}}</i></div>
 <div class="search">
     {% if articles|length %}
         {% for article in articles %}
